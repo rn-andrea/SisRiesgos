@@ -12,16 +12,17 @@
             <li class="breadcrumb-item active"></br></li>
         </ol>
 
-    <form action="/MantAccion/store" method="POST">
-         @csrf
+    <form action="/MantAccion/update/{{$accion->id}}" method="POST">
+    @csrf
+    {{method_field('PUT')}}
     <div class="row">
         <div class="col-sm">
         <label for="txtAccion">Descripción de la Acción</label>
-            <input type="text" class="form-control" id="txtAccion" name="NOM_ACCION" placeholder="">
+            <input type="text" class="form-control" id="txtAccion" name="NOM_ACCION" placeholder="" value="{{$accion->NOM_ACCION}}">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" name="DES_OBSERVACION" rows="3"></textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION">{{$accion->DES_OBSERVACION}}</textarea>
         </div>
     </div>
 
@@ -45,7 +46,7 @@
     <div class="row">
        
         <div class="col-sm">
-            <button type="submit" id="btnAccionRiesg" class="btn btn-primary my-1">Registrar Acción</button>
+            <button type="submit" id="btnAccionRiesgMod" class="btn btn-primary my-1">Actualizar Acción</button>
         </div>    
         <div class="col-sm"></div>
     </div>
@@ -80,7 +81,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($Accions as $Accion)
+                    @foreach($accions as $Accion)
                              <tr>
 								<td>{{$Accion->id}}</td>
 								<td>{{$Accion->NOM_ACCION}}</td>

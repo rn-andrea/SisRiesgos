@@ -13,7 +13,7 @@
 
         <h1 class="mt-4">Panel Principal</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Prototipo (Mockup) Sistema de Gestión de Riesgos</li>
+            <li class="breadcrumb-item active">Sistema de Gestión de Riesgos</li>
         </ol>
         <div class="row">
             <div class="col-xl-2 col-md-6">

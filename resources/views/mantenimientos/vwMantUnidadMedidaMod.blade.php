@@ -11,16 +11,17 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></br></li>
         </ol>
-    <form action="/MantUnidadMedida/store" method="POST">
-     @csrf
+        <form action="/MantUnidadMedida/update/{{$UnidadMedida->id}}" method="POST">
+		@csrf
+        {{method_field('PUT')}}
     <div class="row">
         <div class="col-sm">
         <label for="txtUnidadMedida">Descripción de la Unidad de Medida</label>
-            <input type="text" class="form-control" id="txtUnidadMedida" placeholder="" name="NOM_UNIDAD_MEDIA">
+            <input type="text" class="form-control" id="txtUnidadMedida" placeholder=""  value="{{$UnidadMedida->NOM_UNIDAD_MEDIA}}" name="NOM_UNIDAD_MEDIA">
         </div>
         <div class="col-sm">
         <label for="txtObservacion">Observación</label>
-            <textarea class="form-control" id="txtObservacion" rows="3" name="DES_OBSERVACION"></textarea>
+            <textarea class="form-control" id="txtObservacion" rows="3" name="DES_OBSERVACION">{{$UnidadMedida->DES_OBSERVACION}}</textarea>
         </div>
     </div>
 
@@ -40,15 +41,15 @@
             </div>
     
     </br>
-    </form>
+    
     <div class="row">
-        
+       
         <div class="col-sm">
-            <button type="submit" id="btnUnidadMedida" class="btn btn-primary my-1">Registrar Unidad</button>
+            <button type="submit" id="btnUnidadMedida" class="btn btn-primary my-1">Actualizar Unidad</button>
         </div>    
         <div class="col-sm"></div>
     </div>
-    </form>
+</form>
     </br>
     
     <div class="row">
@@ -89,7 +90,7 @@
                                 <td>{{$UnidadMedida->updated_at}}</td>
                                 <td>{{$UnidadMedida->usuario1->USR_NOMBRE}}</td>
                                 <td>{{$UnidadMedida->estado->NOM_ESTADO}}</td>
-                                <td>  <a href="/MantUnidadMedida/{{$UnidadMedida->id}}">Modificar</a></td>
+                                
                             </tr>
                     @endforeach  
                     </tbody>

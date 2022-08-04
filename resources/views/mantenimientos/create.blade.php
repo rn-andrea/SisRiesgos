@@ -5,25 +5,24 @@
 </br>
 
 <div class="container-fluid px-4">
-	<h1 class="mt-4">Modificar Usuario</h1>
+	<h1 class="mt-4">Mantenimiento Usuarios</h1>
 	<ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"> Sistema de Gestión de Riesgos</li>
         </ol>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></br></li>
         </ol>
-	<form action="/MantUsuarios/update/{{$usuario->id}}" method="POST">
+	<form action="/MantUsuarios/store" method="POST">
 				@csrf
-                {{method_field('PUT')}}
 				<div class="row">
 					<div class="col-sm">
 						<label for="txtCodUsu">Código de usuario</label>
-							<input type="text" class="form-control" id="txtCodigo" name="ID_USUARIO" value="{{$usuario->ID_USUARIO}}" readOnly="true">
-                         
+							<input type="text" class="form-control" id="txtCodigo" name="ID_USUARIO"  placeholder="">
+					
 						</div>
 					<div class="col-sm">
 					<label for="txtContrasena">Contraseña</label>
-							<input type="text" class="form-control" id="txtContra" name="USR_PASSWORD" value="{{$usuario->USR_PASSWORD}}" >
+							<input type="password" class="form-control" id="txtContra" name="USR_PASSWORD"  placeholder="">
 						
 						
 					</div>
@@ -33,11 +32,11 @@
 				<div class="row">
                 <div class="col-sm">
                 <label for="txtCodUsu">Nombre</label>
-                    <input type="text" class="form-control" id="txtNombre"  name="USR_NOMBRE" value="{{$usuario->USR_NOMBRE}}">
+                    <input type="text" class="form-control" id="txtNombre"  name="USR_NOMBRE" placeholder="">
                 </div>
                 <div class="col-sm">
                 <label for="txtCodUsu">Apellidos</label>
-                    <input type="text" class="form-control" id="txtApellidos" name="USR_APELLIDOS" value="{{$usuario->USR_APELLIDOS}}">
+                    <input type="text" class="form-control" id="txtApellidos" name="USR_APELLIDOS" placeholder="">
                 </div>
             </div>
 
@@ -46,16 +45,16 @@
         <div class="row">
             <div class="col-sm">
             <label for="txtClasificacion">Rol del usuario</label>
-                <select id="cbRol" class="form-control" name="ID_ROL" value="{{$usuario->rol->NOM_ROL}}">
+                <select id="cbRol" class="form-control" name="ID_ROL" placeholder="Seleccione">
                    @foreach ($rols as $rol)
-                        <option value="{{$rol['id']}}">{{$rol ['NOM_ROL']}}</option>
+                        <option value="{{$rol['id'] }}">{{$rol ['NOM_ROL']}}</option>
                    @endforeach
                 </select>
                
             </div>
             <div class="col-sm">
             <label for="txtCorreo">Correo eléctronico</label>
-                <input type="text" class="form-control" id="txtCorreo" name="USR_EMAIL"  value="{{$usuario->USR_EMAIL}}">
+                <input type="text" class="form-control" id="txtCorreo" name="USR_EMAIL"  placeholder="">
             </div>
         </div>
 
@@ -79,7 +78,7 @@
             <div class="row">
 
                 <div class="col-sm">
-                    <button type="submit" class="btn btn-primary my-1">Actualizar Usuario</button>
+                    <button type="submit" class="btn btn-primary my-1">Registrar Usuario</button>
                 </div>    
                 <div class="col-sm"></div>
             </div>
@@ -94,30 +93,33 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                          
                             <th>Código de Usuario</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Correo eléctronico</th>
                             <th>Rol</th>
                             <th>Estado</th>
-                          
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                           
                             <th>Código de Usuario</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
                             <th>Correo eléctronico</th>
                             <th>Rol</th>
                             <th>Estado</th>
-                          
+                            <th></th>
 							
                         </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($usuarios as $usuario)
+						@foreach($usuarios as $usuario)
 							<tr>
+                              
 								<td>{{$usuario->ID_USUARIO}}</td>
 								<td>{{$usuario->USR_NOMBRE}}</td>
 								<td>{{$usuario->USR_APELLIDOS}}</td>
@@ -125,9 +127,10 @@
 								<td>{{$usuario->rol->NOM_ROL}}</td>
 								<td>{{$usuario->estado->NOM_ESTADO}}</td>
                                 
-								
+								<td>
+                                    <a href="/MantUsuarios/{{$usuario->id}}">Modificar</a></td>
 							 </tr>
-					@endforeach
+						@endforeach
                     </tbody>
                 </table>
             </div>

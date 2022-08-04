@@ -11,16 +11,17 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></br></li>
         </ol>
-    <form action="/MantEstadosEvento/store" method="POST">
-     @csrf
+    <form action="/MantEstadosEvento/update/{{$estadoresolucion->id}}" method="POST">
+	@csrf
+    {{method_field('PUT')}}
     <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Descripción Estado</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NOM_ESTADO_RESOLUCIOND">
+            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NOM_ESTADO_RESOLUCIOND" value="{{$estadoresolucion->NOM_ESTADO_RESOLUCIOND}}">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION"></textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION">{{$estadoresolucion->DES_OBSERVACION}}</textarea>
         </div>
     </div>
 
@@ -39,7 +40,7 @@
     <div class="row">
         
         <div class="col-sm">
-            <button type="submit" id="btnEstadoResolucion" class="btn btn-primary my-1">Registrar Estado</button>
+            <button type="submit" id="btnEstadoResolucion2" class="btn btn-primary my-1">Actualizar  Estado</button>
         </div>    
         <div class="col-sm"></div>
     </div>
@@ -77,7 +78,6 @@
                                 <td>{{$estadoresolucion->updated_at}}</td>
                                 <td>{{$estadoresolucion->usuario1->USR_NOMBRE}}</td>
                                 <td>{{$estadoresolucion->estado->NOM_ESTADO}}</td>
-                                <td>  <a href="/MantEstadosEvento/{{$estadoresolucion->id}}">Modificar</a></td>
                             </tr>
                     @endforeach   
                          

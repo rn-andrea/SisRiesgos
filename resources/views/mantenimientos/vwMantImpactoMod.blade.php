@@ -11,16 +11,17 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></br></li>
         </ol>
-    <form action="/MantImpacto/store" method="POST">
-     @csrf
+    <form action="/MantImpacto/update/{{$impacto->id}}" method="POST">
+	@csrf
+    {{method_field('PUT')}}
         <div class="row">
             <div class="col-sm">
             <label for="txtRiesgo">Descripción Impacto</label>
-                <input type="text" class="form-control" id="txtImpacto" placeholder="" name="NOM_IMPACTO">
+                <input type="text" class="form-control" id="txtImpacto" placeholder="" name="NOM_IMPACTO" value="{{$impacto->NOM_IMPACTO}}" >
             </div>
             <div class="col-sm">
             <label for="txtClasificacion">Observación</label>
-                <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION" ></textarea>
+                <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION"  >{{$impacto->DES_OBSERVACION}}</textarea>
             </div>
         </div>
 
@@ -33,18 +34,17 @@
                 </label>
         </div>
         <div class="col-sm">
-                <input type="hidden" class="form-control" id="txtUSRCREACION"  name="USR_CREACION" value="3050500002"> 
-            </div>
+                
             <div class="col-sm">
                 <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
             </div>
-        
+            </div>
         </br>
         
         <div class="row">
             
             <div class="col-sm">
-                <button type="submit" id="bntImpacto" class="btn btn-primary my-1">Registrar Impacto</button>
+                <button type="submit" id="bntImpacto" class="btn btn-primary my-1">Actualizar Impacto</button>
             </div>    
             <div class="col-sm"></div>
         </div>
@@ -89,8 +89,7 @@
                                 <td>{{$impacto->updated_at}}</td>
                                 <td>{{$impacto->usuario1->USR_NOMBRE}}</td>
                                 <td>{{$impacto->estado->NOM_ESTADO}}</td>
-                                <td>  <a href="/MantImpacto/{{$impacto->id}}">Modificar</a></td>
-                            </tr>
+                                 </tr>
                     @endforeach
                     </tbody>
                 </table>
