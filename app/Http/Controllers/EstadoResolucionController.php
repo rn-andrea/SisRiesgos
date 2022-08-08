@@ -25,11 +25,11 @@ class EstadoResolucionController extends Controller
     public function store(Request $request)
     {
         $EstadoResolcions= new EstadoResolucion ();        			  		 
-        $EstadoResolcions-> NOM_ESTADO_RESOLUCIOND= $request-> get('NOM_ESTADO_RESOLUCIOND');
-        $EstadoResolcions-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $EstadoResolcions-> USR_CREACION = $request-> get('USR_CREACION');
-        $EstadoResolcions-> USR_MODIFICA = $request-> get('USR_MODIFICA');
-        $EstadoResolcions-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+        $EstadoResolcions-> nom_estado_resolucion= $request-> get('NOM_ESTADO_RESOLUCIOND');
+        $EstadoResolcions-> ind_estado = $request-> get('IND_ESTADO');
+        $EstadoResolcions-> usr_creacion = $request-> get('USR_CREACION');
+        $EstadoResolcions-> usr_modifica = $request-> get('USR_MODIFICA');
+        $EstadoResolcions-> des_observacion = $request-> get('DES_OBSERVACION');
         $EstadoResolcions-> save();
         return redirect('/MantEstadosEvento');
     }
@@ -49,10 +49,10 @@ class EstadoResolucionController extends Controller
     public function update(Request $request, $id)
     {
         $estadoresolucion= EstadoResolucion::findOrFail($id);
-        $estadoresolucion-> NOM_ESTADO_RESOLUCIOND = $request->NOM_ESTADO_RESOLUCIOND;
-        $estadoresolucion-> IND_ESTADO = $request->IND_ESTADO ;
-        $estadoresolucion-> DES_OBSERVACION= $request->DES_OBSERVACION;
-        $estadoresolucion-> USR_MODIFICA= $request->USR_MODIFICA;
+        $estadoresolucion-> nom_estado_resolucion = $request->NOM_ESTADO_RESOLUCIOND;
+        $estadoresolucion-> ind_estado = $request->IND_ESTADO ;
+        $estadoresolucion-> des_observacion = $request->DES_OBSERVACION;
+        $estadoresolucion-> usr_modifica= $request->USR_MODIFICA;
         $estadoresolucion-> updte_at;
         $estadoresolucion-> save();
         

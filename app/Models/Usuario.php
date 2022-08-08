@@ -12,10 +12,10 @@ class Usuario extends Model
     //public $timestamps = false;
 
     public function rol(){
-        return $this->hasOne('App\Models\Rol','ID','ID_ROL');
+        return $this->hasOne('App\Models\Rol','id','id_rol');
     }
     public function estado(){
-        return $this->hasOne('App\Models\Estado','ID_ESTADO','IND_ESTADO');
+        return $this->hasOne('App\Models\Estado','id_estado','ind_estado');
     }
 
 }

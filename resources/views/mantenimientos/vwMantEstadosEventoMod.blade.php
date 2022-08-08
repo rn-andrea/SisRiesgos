@@ -17,11 +17,11 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Descripción Estado</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NOM_ESTADO_RESOLUCIOND" value="{{$estadoresolucion->NOM_ESTADO_RESOLUCIOND}}">
+            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NOM_ESTADO_RESOLUCIOND" readonly value="{{$estadoresolucion->nom_estado_resolucion}}">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION">{{$estadoresolucion->DES_OBSERVACION}}</textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION">{{$estadoresolucion->des_observacion}}</textarea>
         </div>
     </div>
 
@@ -71,13 +71,13 @@
                     @foreach($estadoresolucions as $estadoresolucion)
                              <tr>
 								<td>{{$estadoresolucion->id}}</td>
-								<td>{{$estadoresolucion->NOM_ESTADO_RESOLUCIOND}}</td>
-								<td>{{$estadoresolucion->DES_OBSERVACION}}</td>
+								<td>{{$estadoresolucion->nom_estado_resolucion}}</td>
+								<td>{{$estadoresolucion->des_observacion}}</td>
                                 <td>{{$estadoresolucion->created_at}}</td>
-                                <td>{{$estadoresolucion->usuario->USR_NOMBRE}}</td>
+                                <td>{{$estadoresolucion->usuario->usr_nombre}}</td>
                                 <td>{{$estadoresolucion->updated_at}}</td>
-                                <td>{{$estadoresolucion->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$estadoresolucion->estado->NOM_ESTADO}}</td>
+                                <td>{{$estadoresolucion->usuario1->usr_nombre}}</td>
+                                <td>{{$estadoresolucion->estado->nom_estado}}</td>
                             </tr>
                     @endforeach   
                          

@@ -19,26 +19,26 @@ class EventoController extends Controller
 
     public function create()
     {
-        return view('mantenimientos.vwMantEstadosEventos',
+        return view('mantenimientos.vwMantEstadosEventos'),
     }
 
     public function store(Request $request)
     {
-        $Eventos= new Evento();        			  		   	   $Eventos-> NOM_EVENTO = $request-> get('NOM_EVENTO');
-	   $Eventos-> NOM_RIESGO = $request-> get('NOM_RIESGO');
-        $Eventos-> FEC_EVENTO = $request-> get('FEC_EVENTO');
-	   $Eventos-> DESC_SITUACION_PRE = $request-> get('DESC_SITUACION_PRE');
-        $Eventos-> DES_DETALLE_MEDIDAS = $request-> get('DES_DETALLE_MEDIDAS');
-        $Eventos-> ID_ESTADO_RESOLUCION= $request-> get('ID_ESTADO_RESOLUCION');
-	   $Eventos-> ID_ACCION = $request-> get('ID_ACCION');
-        $Eventos-> JUS_EVENTO_NO_RESUELTO = $request-> get('JUS_EVENTO_NO_RESUELTO');
-        $Eventos-> JUS_MEDIDA_APLICADA = $request-> get('JUS_MEDIDA_APLICADA');
-        $Eventos-> NUM_PERDIDA_ESTIMADA= $request-> get('NUM_PERDIDA_ESTIMADA');
-        $Eventos-> DES_LECCIONES_APREND= $request-> get('DES_LECCIONES_APREND');
-	  $Eventos-> IND_ESTADO= $request-> get('IND_ESTADO');
-	  $Eventos-> FEC_CREACION = $request-> get('FEC_CREACION ');	  $Eventos-> USR_CREACION = $request-> get('USR_CREACION ');
-	  $Eventos-> FEC_MODIFICA = $request-> get('FEC_MODIFICA  ');
-        $Eventos-> USR_MODIFICA = $request-> get('USR_MODIFICA ');
+        $Eventos= new Evento();        			  		   
+        $Eventos-> nom_evento = $request-> get('NOM_EVENTO');
+	    $Eventos-> nom_riesgo = $request-> get('NOM_RIESGO');
+        $Eventos-> fec_evento = $request-> get('FEC_EVENTO');
+	    $Eventos-> des_situacion_pre = $request-> get('DESC_SITUACION_PRE');
+        $Eventos-> des_detalle_medidas = $request-> get('DES_DETALLE_MEDIDAS');
+        $Eventos-> id_estado_resolucion= $request-> get('ID_ESTADO_RESOLUCION');
+	    $Eventos-> id_accion = $request-> get('ID_ACCION');
+        $Eventos-> jus_evento_no_resuelto = $request-> get('JUS_EVENTO_NO_RESUELTO');
+        $Eventos-> jus_medida_aplicada = $request-> get('JUS_MEDIDA_APLICADA');
+        $Eventos-> num_perdida_estimada= $request-> get('NUM_PERDIDA_ESTIMADA');
+        $Eventos-> des_lecciones_aprend= $request-> get('DES_LECCIONES_APREND');
+	    $Eventos-> ind_estado= $request-> get('IND_ESTADO');
+	   	$Eventos-> usr_creacion = $request-> get('USR_CREACION ');
+        $Eventos-> usr_modifica = $request-> get('USR_MODIFICA ');
 
 
         $Eventos-> save();

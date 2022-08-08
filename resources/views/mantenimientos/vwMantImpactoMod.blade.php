@@ -17,11 +17,11 @@
         <div class="row">
             <div class="col-sm">
             <label for="txtRiesgo">Descripción Impacto</label>
-                <input type="text" class="form-control" id="txtImpacto" placeholder="" name="NOM_IMPACTO" value="{{$impacto->NOM_IMPACTO}}" >
+                <input type="text" class="form-control" id="txtImpacto" placeholder="" name="NOM_IMPACTO" value="{{$impacto->nom_impacto}}" readonly>
             </div>
             <div class="col-sm">
             <label for="txtClasificacion">Observación</label>
-                <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION"  >{{$impacto->DES_OBSERVACION}}</textarea>
+                <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION"  >{{$impacto->des_observacion}}</textarea>
             </div>
         </div>
 
@@ -75,20 +75,20 @@
                             <th>Usuario Creación</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
-                            <td>Estado</td>
+                            <th>Estado</th>
                         </tr>
                     </tfoot>
                     <tbody>
                     @foreach($impactos as $impacto)
                              <tr>
 								<td>{{$impacto->id}}</td>
-								<td>{{$impacto->NOM_IMPACTO}}</td>
-								<td>{{$impacto->DES_OBSERVACION}}</td>
+								<td>{{$impacto->nom_impacto}}</td>
+								<td>{{$impacto->des_observacion}}</td>
                                 <td>{{$impacto->created_at}}</td>
-                                <td>{{$impacto->usuario->USR_NOMBRE}}</td>
+                                <td>{{$impacto->usuario->usr_nombre}}</td>
                                 <td>{{$impacto->updated_at}}</td>
-                                <td>{{$impacto->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$impacto->estado->NOM_ESTADO}}</td>
+                                <td>{{$impacto->usuario1->usr_nombre}}</td>
+                                <td>{{$impacto->estado->nom_estado}}</td>
                                  </tr>
                     @endforeach
                     </tbody>

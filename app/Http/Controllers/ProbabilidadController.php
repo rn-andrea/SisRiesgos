@@ -26,11 +26,11 @@ class ProbabilidadController extends Controller
     {
         $Probabilidades= new Probabilidad();  
         $Probabilidades-> id = $request-> get('ID_PROBABILIDAD');
-        $Probabilidades-> NOM_PROBABILIDAD = $request-> get('NOM_PROBABILIDAD');
-        $Probabilidades-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $Probabilidades-> USR_CREACION = $request-> get('USR_CREACION');
-        $Probabilidades-> USR_MODIFICA = $request-> get('USR_MODIFICA');
-        $Probabilidades-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+        $Probabilidades-> nom_probabilidad = $request-> get('NOM_PROBABILIDAD');
+        $Probabilidades-> ind_estado = $request-> get('IND_ESTADO');
+        $Probabilidades-> usr_creacion = $request-> get('USR_CREACION');
+        $Probabilidades-> usr_modifica = $request-> get('USR_MODIFICA');
+        $Probabilidades-> des_observacion = $request-> get('DES_OBSERVACION');
         $Probabilidades-> save();
         return REDIRECT ('/MantProbabilidad');
     }
@@ -51,10 +51,10 @@ class ProbabilidadController extends Controller
     {
         $probabilidad = Probabilidad::findOrFail($id);
        // $usuario-> ID_USUARIO = $request-> get;
-        $probabilidad-> NOM_PROBABILIDAD = $request->NOM_PROBABILIDAD;
-        $probabilidad-> IND_ESTADO = $request->IND_ESTADO ;
-        $probabilidad-> DES_OBSERVACION= $request->DES_OBSERVACION;
-        $probabilidad-> USR_MODIFICA= $request->USR_MODIFICA;
+        $probabilidad-> nom_probabilidad = $request->NOM_PROBABILIDAD;
+        $probabilidad-> ind_estado = $request->IND_ESTADO ;
+        $probabilidad-> des_observacion= $request->DES_OBSERVACION;
+        $probabilidad-> usr_modifica= $request->USR_MODIFICA;
         $probabilidad-> updte_at;
         $probabilidad-> save();
         

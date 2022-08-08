@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->engine="InnoDB";
-            $table->ID();
-            $table->string('ID_USUARIO')->unique();
-            $table->string('USR_NOMBRE');
-            $table->string('USR_APELLIDOS');
-            $table->string('USR_EMAIL');
-	 	    $table->string('USR_PASSWORD');
-            $table->unsignedBigInteger('IND_ESTADO');
-            $table->unsignedBigInteger('ID_ROL');
+            $table->id();
+            $table->string('id_usuario',10)->unique();
+            $table->string('usr_nombre',25);
+            $table->string('usr_apellidos',25);
+            $table->string('usr_email',25);
+	 	    $table->string('usr_password',25);
+            $table->unsignedBigInteger('ind_estado');
+            $table->unsignedBigInteger('id_rol');
             $table->timestamps();
-            $table->foreign('ID_ROL')->references('ID')
+            $table->foreign('id_rol')->references('id')
                   ->on('rols')->onDelete("cascade");
-            $table->foreign('IND_ESTADO')->references('ID_ESTADO')
+            $table->foreign('ind_estado')->references('id_estado')
                   ->on('estados')->onDelete("cascade");
             
         });

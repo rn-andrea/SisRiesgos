@@ -18,11 +18,11 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtAccion">Descripción de la Acción</label>
-            <input type="text" class="form-control" id="txtAccion" name="NOM_ACCION" placeholder="" value="{{$accion->NOM_ACCION}}">
+            <input type="text" class="form-control" id="txtAccion" name="NOM_ACCION" placeholder="" value="{{$accion->nom_accion}}">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION">{{$accion->DES_OBSERVACION}}</textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION">{{$accion->des_observacion}}</textarea>
         </div>
     </div>
 
@@ -77,21 +77,21 @@
                             <th>Usuario Creación</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
-                            <td>Estado</td>
+                            <td>Estado</th>
                         </tr>
                     </tfoot>
                     <tbody>
                     @foreach($accions as $Accion)
                              <tr>
 								<td>{{$Accion->id}}</td>
-								<td>{{$Accion->NOM_ACCION}}</td>
-								<td>{{$Accion->DES_OBSERVACION}}</td>
+								<td>{{$Accion->nom_accion}}</td>
+								<td>{{$Accion->des_observacion}}</td>
                                 <td>{{$Accion->created_at}}</td>
-                                <td>{{$Accion->usuario->USR_NOMBRE}}</td>
+                                <td>{{$Accion->usuario->usr_nombre}}</td>
                                 <td>{{$Accion->updated_at}}</td>
-                                <td>{{$Accion->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$Accion->estado->NOM_ESTADO}}</td>
-                                <td>  <a href="/MantAccion/{{$Accion->id}}">Modificar</a></td>
+                                <td>{{$Accion->usuario1->usr_nombre}}</td>
+                                <td>{{$Accion->estado->nom_estado}}</td>
+                               
                             </tr>
                     @endforeach
                         

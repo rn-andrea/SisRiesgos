@@ -65,6 +65,7 @@
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
                             <th>Estado</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -76,20 +77,21 @@
                             <th>Usuario Creación</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
-                            <td>Estado</td>
+                            <th>Estado</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
                     @foreach($Accions as $Accion)
                              <tr>
 								<td>{{$Accion->id}}</td>
-								<td>{{$Accion->NOM_ACCION}}</td>
-								<td>{{$Accion->DES_OBSERVACION}}</td>
+								<td>{{$Accion->nom_accion}}</td>
+								<td>{{$Accion->des_observacion}}</td>
                                 <td>{{$Accion->created_at}}</td>
-                                <td>{{$Accion->usuario->USR_NOMBRE}}</td>
+                                <td>{{$Accion->usuario->usr_nombre}}</td>
                                 <td>{{$Accion->updated_at}}</td>
-                                <td>{{$Accion->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$Accion->estado->NOM_ESTADO}}</td>
+                                <td>{{$Accion->usuario1->usr_nombre}}</td>
+                                <td>{{$Accion->estado->nom_estado}}</td>
                                 <td>  <a href="/MantAccion/{{$Accion->id}}">Modificar</a></td>
                             </tr>
                     @endforeach

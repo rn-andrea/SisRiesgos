@@ -26,11 +26,11 @@ class AccionController extends Controller
     {
         $Accions= new Accion(); 
         $Accions-> id = $request-> get('ID_ACCION'); 
-        $Accions-> NOM_ACCION = $request-> get('NOM_ACCION');
-        $Accions-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $Accions-> USR_CREACION = $request-> get('USR_CREACION');
-        $Accions-> USR_MODIFICA = $request-> get('USR_MODIFICA');
-        $Accions-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+        $Accions-> nom_accion = $request-> get('NOM_ACCION');
+        $Accions-> ind_estado = $request-> get('IND_ESTADO');
+        $Accions-> usr_creacion = $request-> get('USR_CREACION');
+        $Accions-> usr_modifica = $request-> get('USR_MODIFICA');
+        $Accions-> des_observacion = $request-> get('DES_OBSERVACION');
         $Accions-> save();
         return redirect('/MantAccion');
     }
@@ -51,10 +51,10 @@ class AccionController extends Controller
     {
         $action= Accion::findOrFail($id);
        // $usuario-> ID_USUARIO = $request-> get;
-        $action-> NOM_ACCION = $request->NOM_ACCION;
-        $action-> IND_ESTADO = $request->IND_ESTADO ;
-        $action-> DES_OBSERVACION= $request->DES_OBSERVACION;
-        $action-> USR_MODIFICA= $request->USR_MODIFICA;
+        $action-> nom_accion = $request->NOM_ACCION;
+        $action-> ind_estado = $request->IND_ESTADO ;
+        $action-> des_observacion = $request->DES_OBSERVACION;
+        $action-> usr_modifica= $request->USR_MODIFICA;
         $action-> updte_at;
         $action-> save();
         

@@ -17,11 +17,11 @@
             <div class="row">
                 <div class="col-sm">
                 <label for="txtRiesgo">Descripción Probabilidad</label>
-                    <input type="text" class="form-control" id="txtRiesgo" placeholder="" value="{{$probabilidad->NOM_PROBABILIDAD}}" name="NOM_PROBABILIDAD" >
+                    <input type="text" class="form-control" id="txtRiesgo" placeholder=""  value="{{$probabilidad->nom_probabilidad}}" name="NOM_PROBABILIDAD" readonly>
                 </div>
                 <div class="col-sm">
                 <label for="txtObservacion">Observación</label>
-                    <textarea class="form-control" id="xtObservacion" rows="3" name="DES_OBSERVACION" >{{$probabilidad->DES_OBSERVACION}}</textarea>
+                    <textarea class="form-control" id="xtObservacion" rows="3" name="DES_OBSERVACION" >{{$probabilidad->des_observacion}}</textarea>
                 </div>
             </div>
 
@@ -84,13 +84,13 @@
                     @foreach($probabilidads as $probabilidad)
                              <tr>
 								<td>{{$probabilidad->id}}</td>
-								<td>{{$probabilidad->NOM_PROBABILIDAD}}</td>
-								<td>{{$probabilidad->DES_OBSERVACION}}</td>
+								<td>{{$probabilidad->nom_probabilidad}}</td>
+								<td>{{$probabilidad->des_observacion}}</td>
                                 <td>{{$probabilidad->created_at}}</td>
-                                <td>{{$probabilidad->usuario->USR_NOMBRE}}</td>
+                                <td>{{$probabilidad->usuario->usr_nombre}}</td>
                                 <td>{{$probabilidad->updated_at}}</td>
-                                <td>{{$probabilidad->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$probabilidad->estado->NOM_ESTADO}}</td>
+                                <td>{{$probabilidad->usuario1->usr_nombre}}</td>
+                                <td>{{$probabilidad->estado->nom_estado}}</td>
                               </tr>
                     @endforeach
                         

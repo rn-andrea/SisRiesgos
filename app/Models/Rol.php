@@ -9,7 +9,8 @@ class Rol extends Model
 {
     use HasFactory;
 
-    public function usarios(){
-        return $this->hasMany(Usuario::class,'id');
+    
+    public function estado(){
+        return $this->hasOne('App\Models\Estado','id_estado','ind_estado');
     }
 }

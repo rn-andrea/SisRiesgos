@@ -17,11 +17,11 @@
         <div class="row">
             <div class="col-sm">
             <label for="txtcategoria">Nombre de la Categoría</label>
-                <input type="text" class="form-control" id="txtCategoria" placeholder="" name="NOM_CATEGORIA" value="{{$CategoriaRiesgo->NOM_CATEGORIA}}">
+                <input type="text" class="form-control" id="txtCategoria" placeholder="" name="NOM_CATEGORIA" value="{{$CategoriaRiesgo->nom_categoria}}">
             </div>
             <div class="col-sm">
             <label for="txtobservacion">Observación</label>
-                <textarea class="form-control"  id="txtobservacion" name="DES_OBSERVACION">{{$CategoriaRiesgo->DES_OBSERVACION}} </textarea>
+                <textarea class="form-control"  id="txtobservacion" name="DES_OBSERVACION">{{$CategoriaRiesgo->des_observacion}} </textarea>
             </div>
         </div>
         </br>
@@ -83,13 +83,13 @@
                     @foreach($categoriariesgos as $CatRiesgo)
                              <tr>
 								<td>{{$CatRiesgo->id}}</td>
-								<td>{{$CatRiesgo->NOM_CATEGORIA}}</td>
-								<td>{{$CatRiesgo->DES_OBSERVACION}}</td>
+								<td>{{$CatRiesgo->nom_categoria}}</td>
+								<td>{{$CatRiesgo->des_observacion}}</td>
                                 <td>{{$CatRiesgo->created_at}}</td>
-                                <td>{{$CatRiesgo->usuario->USR_NOMBRE}}</td>
+                                <td>{{$CatRiesgo->usuario->usr_nombre}}</td>
                                 <td>{{$CatRiesgo->updated_at}}</td>
-                                <td>{{$CatRiesgo->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$CatRiesgo->estado->NOM_ESTADO}}</td>
+                                <td>{{$CatRiesgo->usuario1->usr_nombre}}</td>
+                                <td>{{$CatRiesgo->estado->nom_estado}}</td>
                                </tr>
                     @endforeach
                         

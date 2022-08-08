@@ -26,11 +26,11 @@ class UnidadMedidaController extends Controller
     {
         $UnidadMedidas = new UnidadMedida();  
         $UnidadMedidas-> id = $request-> get('ID_UNIDAD_MEDIA');
-        $UnidadMedidas-> NOM_UNIDAD_MEDIA = $request-> get('NOM_UNIDAD_MEDIA');    			  
-        $UnidadMedidas-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $UnidadMedidas-> USR_CREACION = $request-> get('USR_CREACION');
-        $UnidadMedidas-> USR_MODIFICA = $request-> get('USR_MODIFICA');
-        $UnidadMedidas-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+        $UnidadMedidas-> nom_unidad_medida = $request-> get('NOM_UNIDAD_MEDIA');    			  
+        $UnidadMedidas-> ind_estado = $request-> get('IND_ESTADO');
+        $UnidadMedidas-> usr_creacion = $request-> get('USR_CREACION');
+        $UnidadMedidas-> usr_modifica = $request-> get('USR_MODIFICA');
+        $UnidadMedidas-> des_observacion = $request-> get('DES_OBSERVACION');
         $UnidadMedidas-> save();
         return redirect('/MantUnidadMedida');
     }
@@ -54,10 +54,10 @@ class UnidadMedidaController extends Controller
     {
         $UnidadMedida = UnidadMedida::findOrFail($id);
       // $UnidadMedida-> id = $request-> get('id');
-       $UnidadMedida-> NOM_UNIDAD_MEDIA = $request-> get('NOM_UNIDAD_MEDIA');    			  
-       $UnidadMedida-> IND_ESTADO = $request-> get('IND_ESTADO');
-       $UnidadMedida-> USR_MODIFICA = $request-> get('USR_MODIFICA');
-       $UnidadMedida-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+       $UnidadMedida-> nom_unidad_medida = $request-> get('NOM_UNIDAD_MEDIA');    			  
+       $UnidadMedida-> ind_estado = $request-> get('IND_ESTADO');
+       $UnidadMedida-> usr_modifica = $request-> get('USR_MODIFICA');
+       $UnidadMedida-> des_observacion = $request-> get('DES_OBSERVACION');
        $UnidadMedida-> save();
         return REDIRECT ('/MantUnidadMedida');
     }

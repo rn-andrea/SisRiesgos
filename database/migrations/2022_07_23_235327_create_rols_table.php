@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('rols', function (Blueprint $table) {
             $table->engine="InnoDB";
-            $table->ID();
-            $table->string('NOM_ROL');
-            $table->TIMESTAMPS();
+            $table->id();
+            $table->string('nom_rol',50);
+            $table->timestamps();
+            $table->unsignedBigInteger('ind_estado');
+            $table->foreign('ind_estado')->references('id_estado')
+                  ->on('estados')->onDelete("cascade");
         });
     }
 

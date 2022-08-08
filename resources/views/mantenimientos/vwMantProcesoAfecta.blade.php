@@ -16,18 +16,18 @@
      <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Nomenclatura del Proceso que Afecta</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="Digite tres letras que representen el proceso" name="ID_PROCESO">
+            <input type="text" class="form-control" id="txtClasificacion" placeholder="Digite tres letras que representen el proceso" name="ID_NOMENCLATURA">
         </div>
         <div class="col-sm">
         <label for="txtRiesgo">Nombre del Proceso que Afecta</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="Nombre descriptivo del proceso" name="NOM_PROCESO_AFECTA">
+            <input type="text" class="form-control" id="txtClasificacion" placeholder="Nombre descriptivo del proceso que afecta" name="NOM_PROCESO_AFECTA">
         </div>
     </div>
     <div class="row">
     
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION"></textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION" placeholder="Digite las observaciones necesarias"></textarea>
         </div>
     </div>
 
@@ -40,6 +40,11 @@
                     </label>
                    
     </div>
+    <input type="hidden" class="form-control" id="txtUSRCREACION"  name="USR_CREACION" value="3050500002"> 
+            </div>
+            <div class="col-sm">
+            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
+            </div>
     
     
     </br>
@@ -91,14 +96,14 @@
                     @foreach($ProcesoAfectas as $ProcesoAfecta)
                              <tr>
                                 <td>{{$ProcesoAfecta->id}}</td>
-								<td>{{$ProcesoAfecta->ID_PROCESO}}</td>
-								<td>{{$ProcesoAfecta->NOM_PROCESO_AFECTA}}</td>
-								<td>{{$ProcesoAfecta->DES_OBSERVACION}}</td>
+								<td>{{$ProcesoAfecta->id_nomenclatura}}</td>
+								<td>{{$ProcesoAfecta->nom_proceso_afecta}}</td>
+								<td>{{$ProcesoAfecta->des_observacion}}</td>
                                 <td>{{$ProcesoAfecta->created_at}}</td>
-                                <td>{{$ProcesoAfecta->usuario->USR_NOMBRE}}</td>
+                                <td>{{$ProcesoAfecta->usuario->usr_nombre}}</td>
                                 <td>{{$ProcesoAfecta->updated_at}}</td>
-                                <td>{{$ProcesoAfecta->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$ProcesoAfecta->estado->NOM_ESTADO}}</td>
+                                <td>{{$ProcesoAfecta->usuario1->usr_nombre}}</td>
+                                <td>{{$ProcesoAfecta->estado->nom_estado}}</td>
                                 <td>  <a href="/MantProcesoAfecta/{{$ProcesoAfecta->id}}">Modificar</a></td>
                             </tr>
                     @endforeach  

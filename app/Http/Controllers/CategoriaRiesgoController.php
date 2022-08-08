@@ -26,11 +26,11 @@ class CategoriaRiesgoController extends Controller
     {
         $CategoriaRiesgo = new CategoriaRiesgo();      
         $CategoriaRiesgo-> id = $request-> get('id');
-        $CategoriaRiesgo-> NOM_CATEGORIA = $request-> get('NOM_CATEGORIA');
-        $CategoriaRiesgo-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $CategoriaRiesgo-> USR_CREACION = $request-> get('USR_CREACION');
-        $CategoriaRiesgo-> USR_MODIFICA = $request-> get('USR_MODIFICA');
-        $CategoriaRiesgo-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+        $CategoriaRiesgo-> nom_categoria = $request-> get('NOM_CATEGORIA');
+        $CategoriaRiesgo-> ind_estado = $request-> get('IND_ESTADO');
+        $CategoriaRiesgo-> usr_creacion = $request-> get('USR_CREACION');
+        $CategoriaRiesgo-> usr_modifica = $request-> get('USR_MODIFICA');
+        $CategoriaRiesgo-> des_observacion = $request-> get('DES_OBSERVACION');
         $CategoriaRiesgo-> save();
         return redirect('/MantCategoria');
     }
@@ -52,10 +52,10 @@ class CategoriaRiesgoController extends Controller
     {
         $CategoriaRiesgo = CategoriaRiesgo::findOrFail($id);
        // $usuario-> ID_USUARIO = $request-> get;
-       $CategoriaRiesgo-> NOM_CATEGORIA = $request->NOM_CATEGORIA;
-       $CategoriaRiesgo-> IND_ESTADO = $request->IND_ESTADO ;
-       $CategoriaRiesgo-> DES_OBSERVACION= $request->DES_OBSERVACION;
-       $CategoriaRiesgo-> USR_MODIFICA= $request->USR_MODIFICA;
+       $CategoriaRiesgo-> nom_categoria = $request->NOM_CATEGORIA;
+       $CategoriaRiesgo-> ind_estado = $request->IND_ESTADO ;
+       $CategoriaRiesgo-> des_observacion = $request->DES_OBSERVACION;
+       $CategoriaRiesgo-> usr_modifica = $request->USR_MODIFICA;
        $CategoriaRiesgo-> updte_at;
        $CategoriaRiesgo-> save();
         

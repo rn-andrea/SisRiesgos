@@ -18,12 +18,12 @@
 				<div class="row">
 					<div class="col-sm">
 						<label for="txtCodUsu">Código de usuario</label>
-							<input type="text" class="form-control" id="txtCodigo" name="ID_USUARIO" value="{{$usuario->ID_USUARIO}}" readOnly="true">
+							<input type="text" class="form-control" id="txtCodigo" name="ID_USUARIO" value="{{$usuario->id_usuario}}" readOnly="true">
                          
 						</div>
 					<div class="col-sm">
 					<label for="txtContrasena">Contraseña</label>
-							<input type="text" class="form-control" id="txtContra" name="USR_PASSWORD" value="{{$usuario->USR_PASSWORD}}" >
+							<input type="text" class="form-control" id="txtContra" name="USR_PASSWORD" value="{{$usuario->usr_password}}" >
 						
 						
 					</div>
@@ -33,11 +33,11 @@
 				<div class="row">
                 <div class="col-sm">
                 <label for="txtCodUsu">Nombre</label>
-                    <input type="text" class="form-control" id="txtNombre"  name="USR_NOMBRE" value="{{$usuario->USR_NOMBRE}}">
+                    <input type="text" class="form-control" id="txtNombre"  name="USR_NOMBRE" value="{{$usuario->usr_nombre}}">
                 </div>
                 <div class="col-sm">
                 <label for="txtCodUsu">Apellidos</label>
-                    <input type="text" class="form-control" id="txtApellidos" name="USR_APELLIDOS" value="{{$usuario->USR_APELLIDOS}}">
+                    <input type="text" class="form-control" id="txtApellidos" name="USR_APELLIDOS" value="{{$usuario->usr_apellidos}}">
                 </div>
             </div>
 
@@ -46,16 +46,16 @@
         <div class="row">
             <div class="col-sm">
             <label for="txtClasificacion">Rol del usuario</label>
-                <select id="cbRol" class="form-control" name="ID_ROL" value="{{$usuario->rol->NOM_ROL}}">
+                <select id="cbRol" class="form-control" name="ID_ROL" value="{{$usuario->rol->nom_rol}}">
                    @foreach ($rols as $rol)
-                        <option value="{{$rol['id']}}">{{$rol ['NOM_ROL']}}</option>
+                        <option value="{{$rol['id']}}">{{$rol['nom_rol']}}</option>
                    @endforeach
                 </select>
                
             </div>
             <div class="col-sm">
             <label for="txtCorreo">Correo eléctronico</label>
-                <input type="text" class="form-control" id="txtCorreo" name="USR_EMAIL"  value="{{$usuario->USR_EMAIL}}">
+                <input type="text" class="form-control" id="txtCorreo" name="USR_EMAIL"  value="{{$usuario->usr_email}}">
             </div>
         </div>
 
@@ -118,12 +118,12 @@
                     <tbody>
                     @foreach($usuarios as $usuario)
 							<tr>
-								<td>{{$usuario->ID_USUARIO}}</td>
-								<td>{{$usuario->USR_NOMBRE}}</td>
-								<td>{{$usuario->USR_APELLIDOS}}</td>
-								<td>{{$usuario->USR_EMAIL}}</td>
-								<td>{{$usuario->rol->NOM_ROL}}</td>
-								<td>{{$usuario->estado->NOM_ESTADO}}</td>
+								<td>{{$usuario->id_usuario}}</td>
+								<td>{{$usuario->usr_nombre}}</td>
+								<td>{{$usuario->usr_apellidos}}</td>
+								<td>{{$usuario->usr_email}}</td>
+								<td>{{$usuario->rol->nom_rol}}</td>
+								<td>{{$usuario->estado->nom_estado}}</td>
                                 
 								
 							 </tr>

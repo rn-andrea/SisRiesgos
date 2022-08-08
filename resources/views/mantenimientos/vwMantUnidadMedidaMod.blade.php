@@ -17,11 +17,11 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtUnidadMedida">Descripción de la Unidad de Medida</label>
-            <input type="text" class="form-control" id="txtUnidadMedida" placeholder=""  value="{{$UnidadMedida->NOM_UNIDAD_MEDIA}}" name="NOM_UNIDAD_MEDIA">
+            <input type="text" class="form-control" id="txtUnidadMedida" placeholder=""  value="{{$UnidadMedida->nom_unidad_medida}}" name="NOM_UNIDAD_MEDIA">
         </div>
         <div class="col-sm">
         <label for="txtObservacion">Observación</label>
-            <textarea class="form-control" id="txtObservacion" rows="3" name="DES_OBSERVACION">{{$UnidadMedida->DES_OBSERVACION}}</textarea>
+            <textarea class="form-control" id="txtObservacion" rows="3" name="DES_OBSERVACION">{{$UnidadMedida->des_observacion}}</textarea>
         </div>
     </div>
 
@@ -76,20 +76,20 @@
                             <th>Usuario Creación</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
-                            <td>Estado</td>
+                            <th>Estado</th>
                         </tr>
                     </tfoot>
                     <tbody>
                     @foreach($UnidadMedidas as $UnidadMedida)
                              <tr>
 								<td>{{$UnidadMedida->id}}</td>
-								<td>{{$UnidadMedida->NOM_UNIDAD_MEDIA}}</td>
-								<td>{{$UnidadMedida->DES_OBSERVACION}}</td>
+								<td>{{$UnidadMedida->nom_unidad_medida}}</td>
+								<td>{{$UnidadMedida->des_observacion}}</td>
                                 <td>{{$UnidadMedida->created_at}}</td>
-                                <td>{{$UnidadMedida->usuario->USR_NOMBRE}}</td>
+                                <td>{{$UnidadMedida->usuario->usr_nombre}}</td>
                                 <td>{{$UnidadMedida->updated_at}}</td>
-                                <td>{{$UnidadMedida->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$UnidadMedida->estado->NOM_ESTADO}}</td>
+                                <td>{{$UnidadMedida->usuario1->usr_nombre}}</td>
+                                <td>{{$UnidadMedida->estado->nom_estado}}</td>
                                 
                             </tr>
                     @endforeach  

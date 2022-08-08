@@ -16,11 +16,11 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtCategoria">Nombre de la Categoría</label>
-            <input type="text" class="form-control" id="txtCategoria" placeholder="" name="NOM_CATEGORIA">
+            <input type="text" class="form-control" id="txtCategoria" placeholder="Digite el nombre descriptivo de la categoría"name="NOM_CATEGORIA">
         </div>
         <div class="col-sm">
         <label for="txtObservacion">Observación</label>
-            <textarea class="form-control" id="txtObservacion" rows="3" name="DES_OBSERVACION"></textarea>
+            <textarea class="form-control" id="txtObservacion" rows="3" name="DES_OBSERVACION" placeholder="Digite las observaciones necesarias"></textarea>
         </div>
     </div>
     <div class="row">
@@ -64,6 +64,7 @@
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
                             <th>Estado</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -75,20 +76,21 @@
                             <th>Usuario Creación</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
-                            <td>Estado</td>
+                            <td>Estado</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
                     @foreach($categoriariesgos as $CatRiesgo)
                              <tr>
 								<td>{{$CatRiesgo->id}}</td>
-								<td>{{$CatRiesgo->NOM_CATEGORIA}}</td>
-								<td>{{$CatRiesgo->DES_OBSERVACION}}</td>
+								<td>{{$CatRiesgo->nom_categoria}}</td>
+								<td>{{$CatRiesgo->des_observacion}}</td>
                                 <td>{{$CatRiesgo->created_at}}</td>
-                                <td>{{$CatRiesgo->usuario->USR_NOMBRE}}</td>
+                                <td>{{$CatRiesgo->usuario->usr_nombre}}</td>
                                 <td>{{$CatRiesgo->updated_at}}</td>
-                                <td>{{$CatRiesgo->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$CatRiesgo->estado->NOM_ESTADO}}</td>
+                                <td>{{$CatRiesgo->usuario1->usr_nombre}}</td>
+                                <td>{{$CatRiesgo->estado->nom_estado}}</td>
                                 <td>  <a href="/MantCategoria/{{$CatRiesgo->id}}">Modificar</a></td>
                             </tr>
                     @endforeach

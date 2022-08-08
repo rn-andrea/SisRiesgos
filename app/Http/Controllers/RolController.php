@@ -39,8 +39,9 @@ class RolController extends Controller
     public function store(Request $request)
     {
         $rol = new Rol();
-        $rol-> ID= $request-> get('ID_ROL');
-        $rol-> NOM_ROL = $request-> get('NOM_ROL');       		  
+        $rol-> id= $request-> get('ID_ROL');
+        $rol-> nom_rol = $request-> get('NOM_ROL');   
+        $rol->ind_estado = $request-> get('IND_ESTADO');   		  
         $rol-> save();
         return Redirect('/MantRoles');
     }
@@ -49,7 +50,8 @@ class RolController extends Controller
     {
         $rol = Rol::findOrFail($id);
        // $usuario-> ID_USUARIO = $request-> get;
-        $rol-> NOM_ROL = $request->NOM_ROL;
+        $rol-> nom_rol = $request-> NOM_ROL; 
+        $rol->ind_estado = $request-> IND_ESTADO;   	
         $rol-> updte_at;
         $rol-> save();
         

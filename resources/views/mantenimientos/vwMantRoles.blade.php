@@ -16,13 +16,22 @@
             <div class="row">
                 <div class="col-sm">
                 <label for="txtRiesgo">Nombre del rol</label>
-                    <input type="text" class="form-control" id="txtNomRol" name="NOM_ROL" placeholder="">
+                    <input type="text" class="form-control" id="txtNomRol" name="NOM_ROL" placeholder="Digite un nombre descriptivo para el rol">
                 </div>
-        
+
             </div>
             </br>
-           
-           
+           <div class="row">
+                <div class="col-sm">
+				<input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
+                <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+                    <label class="form-check-label" for="Activo">
+                        Estado Activo
+                    </label>
+                   
+        </div>
+        </br>   
+        </br>
             <div class="row">
                 
                 <div class="col-sm">
@@ -41,6 +50,7 @@
                         <tr>
                             <th>Código Rol</th>
                             <th>Nombre del Rol</th>
+                            <th>Estado</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -48,7 +58,8 @@
                     @foreach($rols as $rol)
 							<tr>
 								<td>{{$rol->id}}</td>
-								<td>{{$rol->NOM_ROL}}</td>
+								<td>{{$rol->nom_rol}}</td>
+                                <td>{{$rol->estado->nom_estado}}</td>
 								<td>
                                     <a href="/MantRoles/{{$rol->id}}">Modificar</a></td>
                                 		

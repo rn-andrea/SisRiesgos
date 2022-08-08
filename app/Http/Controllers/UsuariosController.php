@@ -14,9 +14,13 @@ class UsuariosController extends Controller
 
         $usuarios = Usuario::all();
         $rols= Rol::all();
+        $rolr = Rol::select('id','nom_rol')->where('ind_estado','1')->get();
+ 
+
         return view('mantenimientos.create',[
             'usuarios'=> $usuarios,
             'rols'=>$rols,
+            'rolr'=>$rolr,
         ]);
 
 
@@ -34,13 +38,14 @@ class UsuariosController extends Controller
         //Log::debug('Ingresa a funcion store');
        
         $usuario = new Usuario();
-        $usuario-> ID_USUARIO = $request-> get('ID_USUARIO');
-        $usuario-> USR_NOMBRE = $request-> get('USR_NOMBRE');
-        $usuario-> USR_APELLIDOS = $request-> get('USR_APELLIDOS');
-        $usuario-> USR_EMAIL = $request-> get('USR_EMAIL');
-        $usuario-> USR_PASSWORD = $request-> get('USR_PASSWORD');
-        $usuario-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $usuario-> ID_ROL = $request-> get('ID_ROL');
+        $usuario-> id = $request-> get('ID');
+        $usuario-> id_usuario = $request-> get('ID_USUARIO');
+        $usuario-> usr_nombre = $request-> get('USR_NOMBRE');
+        $usuario-> usr_apellidos = $request-> get('USR_APELLIDOS');
+        $usuario-> usr_email = $request-> get('USR_EMAIL');
+        $usuario-> usr_password = $request-> get('USR_PASSWORD');
+        $usuario-> ind_estado = $request-> get('IND_ESTADO');
+        $usuario-> id_rol = $request-> get('ID_ROL');
         $usuario-> save();
         
         return REDIRECT ('/MantUsuarios');
@@ -66,12 +71,13 @@ class UsuariosController extends Controller
     {
         $usuario = Usuario::findOrFail($ID_USUARIO);
         //$usuario-> ID_USUARIO = $request-> get;
-        $usuario-> USR_NOMBRE = $request->USR_NOMBRE;
-        $usuario-> USR_APELLIDOS = $request-> USR_APELLIDOS;
-        $usuario-> USR_EMAIL = $request-> USR_EMAIL;
-        $usuario-> USR_PASSWORD = $request->USR_PASSWORD;
-        $usuario-> IND_ESTADO = $request->IND_ESTADO;
-        $usuario-> ID_ROL = $request-> ID_ROL;
+        $usuario-> id_usuario = $request-> ID_USUARIO;
+        $usuario-> usr_nombre = $request->USR_NOMBRE;
+        $usuario-> usr_apellidos = $request-> USR_APELLIDOS;
+        $usuario-> usr_email = $request-> USR_EMAIL;
+        $usuario-> usr_password = $request->USR_PASSWORD;
+        $usuario-> ind_estado = $request->IND_ESTADO;
+        $usuario-> id_rol = $request-> ID_ROL;
         $usuario-> save();
         
         return REDIRECT ('/MantUsuarios');

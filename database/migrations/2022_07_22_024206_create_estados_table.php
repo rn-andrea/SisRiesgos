@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('estados', function (Blueprint $table) {
             $table->engine="InnoDB";
-            $table->ID('ID_ESTADO');
-            $table->string('NOM_ESTADO');
+            $table->id('id_estado');
+            $table->string('nom_estado',30);
             $table->timestamps();
         });
     }

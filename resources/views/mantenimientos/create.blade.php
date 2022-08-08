@@ -17,12 +17,12 @@
 				<div class="row">
 					<div class="col-sm">
 						<label for="txtCodUsu">Código de usuario</label>
-							<input type="text" class="form-control" id="txtCodigo" name="ID_USUARIO"  placeholder="">
+							<input type="text" class="form-control" id="txtCodigo" name="ID_USUARIO"  placeholder="Digite un códgo de usuario único">
 					
 						</div>
 					<div class="col-sm">
 					<label for="txtContrasena">Contraseña</label>
-							<input type="password" class="form-control" id="txtContra" name="USR_PASSWORD"  placeholder="">
+							<input type="password" class="form-control" id="txtContra" name="USR_PASSWORD"  placeholder="Digite una contraseña de mínimo 8 carácteres">
 						
 						
 					</div>
@@ -32,11 +32,11 @@
 				<div class="row">
                 <div class="col-sm">
                 <label for="txtCodUsu">Nombre</label>
-                    <input type="text" class="form-control" id="txtNombre"  name="USR_NOMBRE" placeholder="">
+                    <input type="text" class="form-control" id="txtNombre"  name="USR_NOMBRE" placeholder="Digite el nombre del usuario">
                 </div>
                 <div class="col-sm">
                 <label for="txtCodUsu">Apellidos</label>
-                    <input type="text" class="form-control" id="txtApellidos" name="USR_APELLIDOS" placeholder="">
+                    <input type="text" class="form-control" id="txtApellidos" name="USR_APELLIDOS" placeholder="Digite los apellidos del usuario">
                 </div>
             </div>
 
@@ -46,15 +46,15 @@
             <div class="col-sm">
             <label for="txtClasificacion">Rol del usuario</label>
                 <select id="cbRol" class="form-control" name="ID_ROL" placeholder="Seleccione">
-                   @foreach ($rols as $rol)
-                        <option value="{{$rol['id'] }}">{{$rol ['NOM_ROL']}}</option>
+                   @foreach ($rolr as $rol)
+                        <option value="{{$rol['id']}}">{{$rol['nom_rol']}}</option>
                    @endforeach
                 </select>
                
             </div>
             <div class="col-sm">
             <label for="txtCorreo">Correo eléctronico</label>
-                <input type="text" class="form-control" id="txtCorreo" name="USR_EMAIL"  placeholder="">
+                <input type="text" class="form-control" id="txtCorreo" name="USR_EMAIL"  placeholder="Digite un correo eléctronico">
             </div>
         </div>
 
@@ -93,7 +93,6 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                          
                             <th>Código de Usuario</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
@@ -101,11 +100,11 @@
                             <th>Rol</th>
                             <th>Estado</th>
                             <th></th>
+                          
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                           
                             <th>Código de Usuario</th>
                             <th>Nombre</th>
                             <th>Apellidos</th>
@@ -117,20 +116,19 @@
                         </tr>
                     </tfoot>
                     <tbody>
-						@foreach($usuarios as $usuario)
+                    @foreach($usuarios as $usuario)
 							<tr>
-                              
-								<td>{{$usuario->ID_USUARIO}}</td>
-								<td>{{$usuario->USR_NOMBRE}}</td>
-								<td>{{$usuario->USR_APELLIDOS}}</td>
-								<td>{{$usuario->USR_EMAIL}}</td>
-								<td>{{$usuario->rol->NOM_ROL}}</td>
-								<td>{{$usuario->estado->NOM_ESTADO}}</td>
-                                
-								<td>
+								<td>{{$usuario->id_usuario}}</td>
+								<td>{{$usuario->usr_nombre}}</td>
+								<td>{{$usuario->usr_apellidos}}</td>
+								<td>{{$usuario->usr_email}}</td>
+								<td>{{$usuario->rol->nom_rol}}</td>
+								<td>{{$usuario->estado->nom_estado}}</td>
+                                <td>
                                     <a href="/MantUsuarios/{{$usuario->id}}">Modificar</a></td>
+								
 							 </tr>
-						@endforeach
+					@endforeach
                     </tbody>
                 </table>
             </div>

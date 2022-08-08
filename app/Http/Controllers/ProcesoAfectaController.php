@@ -25,12 +25,13 @@ class ProcesoAfectaController extends Controller
     public function store(Request $request)
     {
         $ProcesoAfectas= new ProcesoAfecta();        	
-        $ProcesoAfectas-> id = $request-> get('ID_PROCESO');		  
-	    $ProcesoAfectas-> NOM_PROCESO_AFECTA = $request-> get('NOM_PROCESO_AFECTA');
-        $ProcesoAfectas-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $ProcesoAfectas-> USR_CREACION = $request-> get('USR_CREACION');
-        $ProcesoAfectas-> USR_MODIFICA = $request-> get('USR_MODIFICA');
-        $ProcesoAfectas-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+        $ProcesoAfectas-> id = $request-> get('ID_PROCESO');		
+        $ProcesoAfectas-> id_nomenclatura= $request-> get('ID_NOMENCLATURA');
+	    $ProcesoAfectas-> nom_proceso_afecta = $request-> get('NOM_PROCESO_AFECTA');
+        $ProcesoAfectas-> ind_estado = $request-> get('IND_ESTADO');
+        $ProcesoAfectas-> usr_creacion= $request-> get('USR_CREACION');
+        $ProcesoAfectas-> usr_modifica= $request-> get('USR_MODIFICA');
+        $ProcesoAfectas-> des_observacion = $request-> get('DES_OBSERVACION');
         $ProcesoAfectas-> save();
         return redirect('/MantProcesoAfecta');
         
@@ -52,11 +53,11 @@ class ProcesoAfectaController extends Controller
     public function update(Request $request, $id)
     {
         $ProcesoAfecta= ProcesoAfecta::findOrFail($id);
-        $ProcesoAfecta-> ID_PROCESO = $request->ID_PROCESO ;
-        $ProcesoAfecta-> NOM_PROCESO_AFECTA = $request->NOM_PROCESO_AFECTA ;
-        $ProcesoAfecta-> IND_ESTADO = $request->IND_ESTADO ;
-        $ProcesoAfecta-> DES_OBSERVACION= $request->DES_OBSERVACION;
-        $ProcesoAfecta-> USR_MODIFICA= $request->USR_MODIFICA;
+        $ProcesoAfecta-> id_nomenclatura = $request->ID_NOMENCLATURA ;
+        $ProcesoAfecta-> nom_proceso_afecta = $request->NOM_PROCESO_AFECTA ;
+        $ProcesoAfecta-> ind_estado = $request->IND_ESTADO ;
+        $ProcesoAfecta-> des_observacion= $request->DES_OBSERVACION;
+        $ProcesoAfecta-> usr_modifica= $request->USR_MODIFICA;
         $ProcesoAfecta-> updte_at;
         $ProcesoAfecta-> save();
         

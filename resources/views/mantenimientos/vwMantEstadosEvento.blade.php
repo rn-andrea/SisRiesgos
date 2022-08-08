@@ -16,11 +16,11 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Descripción Estado</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NOM_ESTADO_RESOLUCIOND">
+            <input type="text" class="form-control" id="txtClasificacion" readonly placeholder="Descipción del estado del evento" name="NOM_ESTADO_RESOLUCIOND">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION"></textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" placeholder="Digite las observaciones necesarias" readonly name="DES_OBSERVACION"></textarea>
         </div>
     </div>
 
@@ -39,7 +39,7 @@
     <div class="row">
         
         <div class="col-sm">
-            <button type="submit" id="btnEstadoResolucion" class="btn btn-primary my-1">Registrar Estado</button>
+            <button type="submit" id="btnEstadoResolucion" class="btn btn-primary my-1">Actualizar Estado</button>
         </div>    
         <div class="col-sm"></div>
     </div>
@@ -63,6 +63,7 @@
                             <th>Fecha Modificación</th>
                             <th>Usuario Creación</th>
                             <th>Estado</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -70,13 +71,13 @@
                     @foreach($estadoresolucions as $estadoresolucion)
                              <tr>
 								<td>{{$estadoresolucion->id}}</td>
-								<td>{{$estadoresolucion->NOM_ESTADO_RESOLUCIOND}}</td>
-								<td>{{$estadoresolucion->DES_OBSERVACION}}</td>
+								<td>{{$estadoresolucion->nom_estado_resolucion}}</td>
+								<td>{{$estadoresolucion->des_observacion}}</td>
                                 <td>{{$estadoresolucion->created_at}}</td>
-                                <td>{{$estadoresolucion->usuario->USR_NOMBRE}}</td>
+                                <td>{{$estadoresolucion->usuario->usr_nombre}}</td>
                                 <td>{{$estadoresolucion->updated_at}}</td>
-                                <td>{{$estadoresolucion->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$estadoresolucion->estado->NOM_ESTADO}}</td>
+                                <td>{{$estadoresolucion->usuario1->usr_nombre}}</td>
+                                <td>{{$estadoresolucion->estado->nom_estado}}</td>
                                 <td>  <a href="/MantEstadosEvento/{{$estadoresolucion->id}}">Modificar</a></td>
                             </tr>
                     @endforeach   

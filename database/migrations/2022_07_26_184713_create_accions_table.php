@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('accions', function (Blueprint $table) {
             $table->id();
-            $table->string('NOM_ACCION');
-            $table->string('DES_OBSERVACION')-> nullable();
-            $table->string('USR_CREACION')-> nullable();
-            $table->string('USR_MODIFICA')-> nullable();
-            $table->unsignedBigInteger('IND_ESTADO');
+            $table->string('nom_accion',30);
+            $table->string('des_observacion',200)-> nullable();
+            $table->string('usr_creacion',10)-> nullable();
+            $table->string('usr_modifica',10)-> nullable();
+            $table->unsignedBigInteger('ind_estado');
             $table->timestamps();
-            $table->foreign('USR_CREACION')->references('ID_USUARIO')
+            $table->foreign('usr_creacion')->references('id_usuario')
                   ->on('usuarios')->onDelete("cascade");
-            $table->foreign('USR_MODIFICA')->references('ID_USUARIO')
+            $table->foreign('usr_modifica')->references('id_usuario')
                   ->on('usuarios')->onDelete("cascade");
-            $table->foreign('IND_ESTADO')->references('ID_ESTADO')
+            $table->foreign('ind_estado')->references('id_estado')
                   ->on('estados')->onDelete("cascade");
         });
     }

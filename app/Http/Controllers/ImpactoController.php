@@ -27,11 +27,11 @@ class ImpactoController extends Controller
     {
         $Impacto= new Impacto();   
         $Impacto-> id = $request-> get('ID_IMPACTO');     			  
-	    $Impacto-> NOM_IMPACTO = $request-> get('NOM_IMPACTO');
-        $Impacto-> IND_ESTADO = $request-> get('IND_ESTADO');
-        $Impacto-> USR_CREACION = $request-> get('USR_CREACION');
-        $Impacto->USR_MODIFICA = $request-> get('USR_MODIFICA');
-        $Impacto-> DES_OBSERVACION = $request-> get('DES_OBSERVACION');
+	    $Impacto-> nom_impacto = $request-> get('NOM_IMPACTO');
+        $Impacto-> ind_estado = $request-> get('IND_ESTADO');
+        $Impacto-> usr_creacion = $request-> get('USR_CREACION');
+        $Impacto-> usr_modifica = $request-> get('USR_MODIFICA');
+        $Impacto-> des_observacion = $request-> get('DES_OBSERVACION');
         $Impacto-> save();
         return REDIRECT ('/MantImpacto');
     }
@@ -52,10 +52,10 @@ class ImpactoController extends Controller
     {
         $impacto = Impacto::findOrFail($id);
        // $usuario-> ID_USUARIO = $request-> get;
-        $impacto-> NOM_IMPACTO = $request->NOM_IMPACTO;
-        $impacto-> IND_ESTADO = $request->IND_ESTADO ;
-        $impacto-> DES_OBSERVACION= $request->DES_OBSERVACION;
-        $impacto-> USR_MODIFICA= $request->USR_MODIFICA;
+        $impacto-> nom_impacto = $request->NOM_IMPACTO;
+        $impacto-> ind_estado = $request->IND_ESTADO ;
+        $impacto-> des_observacion = $request->DES_OBSERVACION;
+        $impacto-> usr_modifica = $request->USR_MODIFICA;
         $impacto-> updte_at;
         $impacto-> save();
         

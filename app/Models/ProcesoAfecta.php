@@ -9,12 +9,12 @@ class ProcesoAfecta extends Model
 {
     use HasFactory;
     public function usuario(){
-        return $this->hasOne('App\Models\Usuario','ID_USUARIO','USR_CREACION');
+        return $this->hasOne('App\Models\Usuario','id_usuario','usr_creacion');
     }
     public function usuario1(){
-        return $this->hasOne('App\Models\Usuario','ID_USUARIO','USR_MODIFICA');
+        return $this->hasOne('App\Models\Usuario','id_usuario','usr_modifica');
     }
     public function estado(){
-        return $this->hasOne('App\Models\Estado','ID_ESTADO','IND_ESTADO');
+        return $this->hasOne('App\Models\Estado','id_estado','ind_estado');
     }
 }

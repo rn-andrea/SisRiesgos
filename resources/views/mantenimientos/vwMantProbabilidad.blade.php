@@ -16,11 +16,11 @@
             <div class="row">
                 <div class="col-sm">
                 <label for="txtRiesgo">Descripción Probabilidad</label>
-                    <input type="text" class="form-control" id="txtRiesgo" placeholder="" name="NOM_PROBABILIDAD">
+                    <input type="text" class="form-control"  id="txtRiesgo" placeholder="Descripción de la probabilidad" name="NOM_PROBABILIDAD" readonly>
                 </div>
                 <div class="col-sm">
                 <label for="txtObservacion">Observación</label>
-                    <textarea class="form-control" id="xtObservacion" rows="3" name="DES_OBSERVACION "></textarea>
+                    <textarea class="form-control" id="xtObservacion" rows="3" name="DES_OBSERVACION" placeholder="Digite las observaciones necesarias" readonly></textarea>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
     <div class="row">
   
         <div class="col-sm">
-            <button type="submit" class="btn btn-primary my-1">Registrar Probabilidad</button>
+            <button type="submit" class="btn btn-primary my-1">Actualizar Probabilidad</button>
         </div>    
         <div class="col-sm"></div>
     </div>
@@ -85,13 +85,13 @@
                     @foreach($probabilidads as $probabilidad)
                              <tr>
 								<td>{{$probabilidad->id}}</td>
-								<td>{{$probabilidad->NOM_PROBABILIDAD}}</td>
-								<td>{{$probabilidad->DES_OBSERVACION}}</td>
+								<td>{{$probabilidad->nom_probabilidad}}</td>
+								<td>{{$probabilidad->des_observacion}}</td>
                                 <td>{{$probabilidad->created_at}}</td>
-                                <td>{{$probabilidad->usuario->USR_NOMBRE}}</td>
+                                <td>{{$probabilidad->usuario->usr_nombre}}</td>
                                 <td>{{$probabilidad->updated_at}}</td>
-                                <td>{{$probabilidad->usuario1->USR_NOMBRE}}</td>
-                                <td>{{$probabilidad->estado->NOM_ESTADO}}</td>
+                                <td>{{$probabilidad->usuario1->usr_nombre}}</td>
+                                <td>{{$probabilidad->estado->nom_estado}}</td>
                                 <td>  <a href="/MantProbabilidad/{{$probabilidad->id}}">Modificar</a></td>
 							 </tr>
                     @endforeach

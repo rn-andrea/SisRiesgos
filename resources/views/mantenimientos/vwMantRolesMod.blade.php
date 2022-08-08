@@ -21,9 +21,17 @@
                 </div>
                 <div class="col-sm">
                 <label for="txtRiesgo">Nombre del rol</label>
-                    <input type="text" class="form-control" id="txtNomRol"  name="NOM_ROL" value="{{$rol->NOM_ROL}}">
+                    <input type="text" class="form-control" id="txtNomRol"  name="NOM_ROL" value="{{$rol->nom_rol}}">
                 </div>
-            
+                <div class="row">
+                <div class="col-sm">
+				<input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
+                <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+                    <label class="form-check-label" for="Activo">
+                        Estado Activo
+                    </label>
+                   
+        </div>
             </div>
             </br>
             <div class="row">
@@ -50,15 +58,15 @@
                         <tr>
                             <th>Código Rol</th>
                             <th>Nombre del Rol</th>
-                            
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($rols as $rol)
 							<tr>
 								<td>{{$rol->id}}</td>
-								<td>{{$rol->NOM_ROL}}</td>
-									
+								<td>{{$rol->nom_rol}}</td>
+                                <td>{{$rol->estado->nom_estado}}</td>
 							 </tr>
 					@endforeach
                         
