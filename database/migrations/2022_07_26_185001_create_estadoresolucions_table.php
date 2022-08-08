@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('estado_resolucions', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_estado_resolucion',30);
+            $table->string('nom_estado_resolucion',100);
             $table->string('des_observacion',200)-> nullable();
             $table->string('usr_creacion',10)-> nullable();
             $table->string('usr_modifica',10)-> nullable();

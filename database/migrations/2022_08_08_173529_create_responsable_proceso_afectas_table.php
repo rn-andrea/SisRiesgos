@@ -13,21 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('probabilidads', function (Blueprint $table) {
+        Schema::create('responsable_proceso_afectas', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_probabilidad',100);
-            $table->string('des_observacion',200)-> nullable();
+            $table->string('usr_responsable_proceso',10);
+            $table->unsignedBigInteger('id_proceso_afecta');
             $table->string('usr_creacion',10)-> nullable();
             $table->string('usr_modifica',10)-> nullable();
-            $table->unsignedBigInteger('ind_estado');
             $table->timestamps();
+            $table->foreign('usr_responsable_proceso')->references('id_usuario')
+            ->on('usuarios')->onDelete("cascade");
+            $table->foreign('id_proceso_afecta')->references('id')
+            ->on('proceso_afectas')->onDelete("cascade");
             $table->foreign('usr_creacion')->references('id_usuario')
-                  ->on('usuarios')->onDelete("cascade");
+            ->on('usuarios')->onDelete("cascade");
             $table->foreign('usr_modifica')->references('id_usuario')
-                  ->on('usuarios')->onDelete("cascade");
-            $table->foreign('ind_estado')->references('id_estado')
-                  ->on('estados')->onDelete("cascade");
-            
+            ->on('usuarios')->onDelete("cascade");
+           
+          
         });
     }
 
@@ -38,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('probabilidads');
+        Schema::dropIfExists('responsable_proceso_afectas');
     }
 };

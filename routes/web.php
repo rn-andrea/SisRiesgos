@@ -10,6 +10,7 @@ use App\Http\Controllers\UnidadMedidaController;
 use App\Http\Controllers\EstadoResolucionController;
 use App\Http\Controllers\AccionController;
 use App\Http\Controllers\ProcesoAfectaController;
+use App\Http\Controllers\ResponsableProcesoAfectaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,6 +80,12 @@ Route::get('MantProcesoAfecta/', [ProcesoAfectaController::class, 'index']);
 Route::post('/MantProcesoAfecta/store',  [ProcesoAfectaController::class, 'store']);
 Route::get('/MantProcesoAfecta/{id}',  [ProcesoAfectaController::class, 'show']);
 Route::put('/MantProcesoAfecta/update/{id}', [ProcesoAfectaController::class, 'update']);
+
+//responsables proceso afecta
+Route::get('MantResponsablesProcesoAfecta/', [ResponsableProcesoAfectaController::class, 'index']);
+Route::post('/MantResponsablesProcesoAfecta/store',  [ResponsableProcesoAfectaController::class, 'store']);
+Route::get('/MantResponsablesProcesoAfecta/{id}',  [ResponsableProcesoAfectaController::class, 'show']);
+Route::put('/MantResponsablesProcesoAfecta/update/{id}', [ResponsableProcesoAfectaController::class, 'update']);
 
 Route::get('InicioSesion/', function () {
     return view('vwlogin');

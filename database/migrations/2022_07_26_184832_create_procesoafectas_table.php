@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('proceso_afectas', function (Blueprint $table) {
             $table->id()->zerofill;
 		    $table->string('id_nomenclatura',10);
-		    $table->string('nom_proceso_afecta',30);
+		    $table->string('nom_proceso_afecta',100);
             $table->string('des_observacion',200)-> nullable();
             $table->string('usr_creacion',10)-> nullable();
             $table->string('usr_modifica',10)-> nullable();

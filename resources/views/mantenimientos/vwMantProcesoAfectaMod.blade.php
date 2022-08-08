@@ -52,7 +52,7 @@
     <div class="row">
         
         <div class="col-sm">
-            <button type="submit" id="btnProcesoAfecta" class="btn btn-primary my-1">Registrar Proceso</button>
+            <button type="submit" id="btnProcesoAfecta" class="btn btn-primary my-1">Actualizar Proceso</button>
         </div>    
         <div class="col-sm"></div>
     </div>
