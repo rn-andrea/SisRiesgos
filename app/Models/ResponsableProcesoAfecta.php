@@ -14,5 +14,7 @@ class ResponsableProcesoAfecta extends Model
     public function procesoafecta(){
         return $this->hasOne('App\Models\ProcesoAfecta','id','id_proceso_afecta');
     }
-   
+    public function estado(){
+        return $this->hasOne('App\Models\Estado','id_estado','ind_estado');
+    }
 }

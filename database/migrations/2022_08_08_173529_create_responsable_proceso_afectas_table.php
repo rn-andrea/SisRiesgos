@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('responsable_proceso_afectas', function (Blueprint $table) {
             $table->id();
-            $table->string('usr_responsable_proceso',10);
+            $table->string('usr_responsable_proceso',30);
             $table->unsignedBigInteger('id_proceso_afecta');
             $table->string('usr_creacion',10)-> nullable();
             $table->string('usr_modifica',10)-> nullable();
+            $table->unsignedBigInteger('ind_estado');
             $table->timestamps();
+            $table->foreign('ind_estado')->references('id_estado')
+            ->on('estados')->onDelete("cascade");
             $table->foreign('usr_responsable_proceso')->references('id_usuario')
             ->on('usuarios')->onDelete("cascade");
             $table->foreign('id_proceso_afecta')->references('id')

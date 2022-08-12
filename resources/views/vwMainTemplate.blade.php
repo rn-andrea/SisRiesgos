@@ -32,7 +32,14 @@
                         <li><a class="dropdown-item" href="#!">Configuración</a></li>
                         <li><a class="dropdown-item" href="#!">Actividad</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Cerrar Sesión</a></li>
+                        <form action="/logout" method="POST">
+                        @csrf
+                        @auth
+                        <li><a class="dropdown-item" onclick="this.closest('form').submit()" href="#!">Cerrar Sesión</a></li>
+                       @else
+                         <li><a class="dropdown-item" onclick="this.closest('form').submit()" href="#!">Login</a></li>
+                       @endauth
+                        </form>
                     </ul>
                 </li>
             </ul>
@@ -47,8 +54,9 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Panel Principal
                             </a>
-                            <div class="sb-sidenav-menu-heading">Procesos</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            @auth
+                            <div id="us1" class="sb-sidenav-menu-heading">Procesos</div>
+                            <a id="us11" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Identificar Riesgos
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -59,7 +67,7 @@
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <a id="us111" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Registrar Eventos
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -90,20 +98,31 @@
                                     </div>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Estrategia</div>
-                            <a class="nav-link" href="charts.html">
+                            <div id="us2" class="sb-sidenav-menu-heading">Estrategia</div>
+                            <a id="us22" class="nav-link" href="charts.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Revisiones
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a id="us222" class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Reportes
                             </a>
+                            @endauth
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logueado como:</div>
-                        jisalazar
+                        <div id='nameDiv' class="small">
+                        <?php
+                            try {
+                            $correo = auth()->user()->email;
+                            $consulta = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+                           echo '<p>Usuario logueado como: '.$consulta.'</p>';
+                           } catch (Exception $e) {
+
+                           }
+                        ?>
+                        </div>
+
                     </div>
                 </nav>
             </div>
@@ -125,6 +144,20 @@
                 </footer>
             </div>
         </div>
+        <?php
+        try {
+         $correo = auth()->user()->email;
+         $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
+        if($consulta=='2')
+        {
+            echo "<script>document.getElementById('us1').remove();</script>";
+            echo "<script>document.getElementById('us11').remove()</script>";
+            echo "<script>document.getElementById('us111').remove()</script>";
+        }
+        } catch (Exception $e) {
+
+        }
+        ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('/mainTemplate/js/scripts.js') }}"></script> <!-- jimmy.salazar-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

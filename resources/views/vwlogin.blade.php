@@ -1,9 +1,8 @@
 @extends('vwMainTemplate')
-@extends('vwLoginTemplate')
-@section('contenido')
 
+@section('contenido')
 </br>
-<form>
+
 <body class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -14,30 +13,33 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form action='/login/verificar' method='POST'>
+                                            @csrf
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                                <label for="inputEmail">Codigo de Usuario</label>
+                                                <input class="form-control" id="email" autofocus name="email" type="email" placeholder="name@example.com" />
+                                                <label for="email">Correo del usuario</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Contraseña</label>
-                                            </div>
-                                           
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Olvido su contraseña?</a>
-                                                
+                                                <input class="form-control" id="password" name="password" type="password" placeholder="Password" />
+                                                <label for="password">Contraseña</label>
                                             </div>
 
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a class="small" href="password.html">Olvido su contraseña?</a>
+
+                                            </div>
+                                            @foreach($errors->all() as $error)
+                                                <li style="color:red">{{$error}}</li>
+                                            @endforeach
                                             <br/>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <div class="col-sm">
                                             </div>
                                             <div class="col-sm" style="margin-left:-20%">
-                                            <a class="btn btn-primary" href="index.html">Iniciar Sesión</a>
+                                            <input type="submit" class="btn btn-primary" value="Iniciar Sesión">
                                             </div>
                                             </div>
-                                               
+
                                         </form>
                                     </div>
                                 </div>
@@ -63,6 +65,7 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-</form>
+
 
 @endsection
+

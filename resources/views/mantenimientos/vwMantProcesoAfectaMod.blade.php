@@ -42,11 +42,7 @@
                    
     </div>
     
-    <input type="hidden" class="form-control" id="txtUSRCREACION"  name="USR_CREACION" value="3050500002"> 
-            </div>
-            <div class="col-sm">
-            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
-            </div>
+    
     </br>
     
     <div class="row">
@@ -99,7 +95,7 @@
 								<td>{{$ProcesoAfecta->nom_proceso_afecta}}</td>
 								<td>{{$ProcesoAfecta->des_observacion}}</td>
                                 <td>{{$ProcesoAfecta->created_at}}</td>
-                                <td>{{$ProcesoAfecta->usuario->usr_nombre}}</td>
+                                <td>{{$ProcesoAfecta->id_usuario}}</td>
                                 <td>{{$ProcesoAfecta->updated_at}}</td>
                                 <td>{{$ProcesoAfecta->usuario1->usr_nombre}}</td>
                                 <td>{{$ProcesoAfecta->estado->nom_estado}}</td>
