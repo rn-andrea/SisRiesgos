@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rols', function (Blueprint $table) {
-            $table->engine="InnoDB";
+        Schema::create('revisions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_rol',50);
-            $table->timestamps();
-            $table->unsignedBigInteger('ind_estado');
-            $table->foreign('ind_estado')->references('id_estado')
-                  ->on('estados')->onDelete("cascade");
+            $table->string('codigo');
+            $table->string('nombre',100);
+            $table->date('fec_evento');
+            $table->string('descripcion');
+           
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rols');
+        Schema::dropIfExists('revisions');
     }
 };

@@ -15,8 +15,9 @@
             <li class="breadcrumb-item active"></br></li>
         </ol>
         <form action="/MantResponsablesProcesoAfecta/update/{{$responsablesproceso->id}}" method="POST">
-		@csrf
+        @csrf
         {{method_field('PUT')}}
+       
             <div class="row">
                 <div class="col-sm">
                 <label for="selectProceso">Proceso que Afecta</label>
@@ -84,16 +85,24 @@
                             <th>ID</th>
                             <th>Proceso que Afecta</th>
                             <th>Responsable del proceso</th>
+                            <th>Fecha Creación</th>
+                            <th>Usuario Creador</th>
+                            <th>Fecha Modificación</th>
+                            <th>Usuario Modificación</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($responsablesprocesos as $responsable)
 							<tr>
-								<td>{{$responsable->id}}</td>
+                                <td>{{$responsable->id}}</td>
 								<td>{{$responsable->procesoafecta->nom_proceso_afecta}}</td>
                                 <td>{{$responsable->usuario->usr_nombre}} {{$responsable->usuario->usr_apellidos}}</td>
-								<td>{{$responsable->estado->nom_estado}}</td>
+                                <td>{{$responsable->created_at}}</td>
+                                <td>{{$responsable->usuariocre->usr_nombre}} {{$responsable->usuario->usr_apellidos}}</td>
+                                <td>{{$responsable->updated_at}}</td>
+                                <td>{{$responsable->usuariomod->usr_nombre}} {{$responsable->usuario->usr_apellidos}}</td>
+                                <td>{{$responsable->estado->nom_estado}}</td>
                                 		
 							 </tr>
 					@endforeach
@@ -108,4 +117,48 @@
 
 </script>
 </html>
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Responsable de proceso que afecta registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> El responsable por el proceso que afecta ya existe', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el responsable por el proceso que afecta', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
+    <script>
+      $('.formulario-agregar').submit(function(e){
+        e.preventDefault();
+        Swal.fire({
+        title: 'Do you want to save the changes?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
+        }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+         
+          this.submit();
+        } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+        }
+        })
+      });
+    </script>
 @endsection

@@ -14,7 +14,7 @@ class UsuariosController extends Controller
 
         $usuarios = Usuario::all();
         $rols= Rol::all();
-        $rolr = Rol::select('id','nom_rol')->where('ind_estado','1')->get();
+        $rolr = Rol::select('id','nombre_rol')->where('ind_estado','1')->get();
  
 
         return view('mantenimientos.create',[
@@ -35,20 +35,37 @@ class UsuariosController extends Controller
 
     public function store(Request $request)
     {
-        //Log::debug('Ingresa a funcion store');
-       
+        
         $usuario = new Usuario();
-        $usuario-> id = $request-> get('ID');
-        $usuario-> id_usuario = $request-> get('ID_USUARIO');
-        $usuario-> usr_nombre = $request-> get('USR_NOMBRE');
-        $usuario-> usr_apellidos = $request-> get('USR_APELLIDOS');
-        $usuario-> usr_email = $request-> get('USR_EMAIL');
-        $usuario-> usr_password = $request-> get('USR_PASSWORD');
-        $usuario-> ind_estado = $request-> get('IND_ESTADO');
-        $usuario-> id_rol = $request-> get('ID_ROL');
+        $verificarid= $request->idusuario;
+        $usuarios = Usuario::select('id','id_usuarios')->where('id_usuario',$verificarid);
+        //Log::debug('Ingresa a funcion store');
+        $this->validate($request, [
+            'id_usuario'=> 'required|max:10|min:3|unique:usuarios|regex:/^[0-9\pL\-]+$/u',
+            'nombre'=> 'required|max:25|min:3|regex:/^[\pL\s\-]+$/u',
+            'apellidos'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
+            'correo'=> 'required|max:50|email|',
+            'contraseña'=> 'required|max:25|min:8',
+            'estado'=> 'required',
+            'rol'=> 'required',
+    
+        ]);
+        echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
+
+      
+       
+       
+        $usuario-> id = $request-> get('id');
+        $usuario-> id_usuario = $request-> get('id_usuario');
+        $usuario-> usr_nombre = $request-> get('nombre');
+        $usuario-> usr_apellidos = $request-> get('apellidos');
+        $usuario-> usr_email = $request-> get('correo');
+        $usuario-> usr_password = $request-> get('contraseña');
+        $usuario-> ind_estado = $request-> get('estado');
+        $usuario-> id_rol = $request-> get('rol');
         $usuario-> save();
         
-        return REDIRECT ('/MantUsuarios');
+        return REDIRECT ('/MantUsuarios')->with('Agregar','ok');;
         
     }
 
@@ -70,17 +87,29 @@ class UsuariosController extends Controller
     public function update(Request $request, $ID_USUARIO)
     {
         $usuario = Usuario::findOrFail($ID_USUARIO);
-        //$usuario-> ID_USUARIO = $request-> get;
-        $usuario-> id_usuario = $request-> ID_USUARIO;
-        $usuario-> usr_nombre = $request->USR_NOMBRE;
-        $usuario-> usr_apellidos = $request-> USR_APELLIDOS;
-        $usuario-> usr_email = $request-> USR_EMAIL;
-        $usuario-> usr_password = $request->USR_PASSWORD;
-        $usuario-> ind_estado = $request->IND_ESTADO;
-        $usuario-> id_rol = $request-> ID_ROL;
+     
+        $this->validate($request, [
+            
+            'nombre'=> 'required|max:25|min:3|regex:/^[\pL\s\-]+$/u',
+            'apellidos'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
+            'correo'=> 'required|max:50|email',
+            'contraseña'=> 'required|max:25|min:8',
+            'estado'=> 'required',
+            'rol'=> 'required',
+    
+        ]);
+        echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
+
+  
+        $usuario-> usr_nombre = $request->nombre;
+        $usuario-> usr_apellidos = $request-> apellidos;
+        $usuario-> usr_email = $request-> correo;
+        $usuario-> usr_password = $request->contraseña;
+        $usuario-> ind_estado = $request->estado;
+        $usuario-> id_rol = $request-> rol;
         $usuario-> save();
         
-        return REDIRECT ('/MantUsuarios');
+        return REDIRECT ('/MantUsuarios')->with('Modificar','ok');;
     }
 
 

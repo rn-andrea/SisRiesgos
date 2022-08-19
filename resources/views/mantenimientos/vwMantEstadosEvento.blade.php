@@ -16,18 +16,18 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Descripción Estado</label>
-            <input type="text" class="form-control" id="txtClasificacion" readonly placeholder="Descipción del estado del evento" name="NOM_ESTADO_RESOLUCIOND">
+            <input type="text" class="form-control" id="txtClasificacion" readonly placeholder="Descipción del estado del evento" name="nombre_estadi_resolucion">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" placeholder="Digite las observaciones necesarias" readonly name="DES_OBSERVACION"></textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" placeholder="Digite las observaciones necesarias" readonly name="observacion"></textarea>
         </div>
     </div>
 
     <div class="row">
     <div class="col-sm">
-			<input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
-            <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+			<input class="form-check-input" type="hidden" value="2" name="estado" >
+            <input class="form-check-input" type="checkbox" value="1" name="estado" id="defaultCheck3" checked>
             <label class="form-check-label" for="Activo">
                 Estado Activo
             </label>
@@ -37,16 +37,16 @@
     </br>
     
     <div class="row">
-        
+    <div class="col-sm"></div>
         <div class="col-sm">
             <button type="submit" id="btnEstadoResolucion" class="btn btn-primary my-1">Actualizar Estado</button>
         </div>    
         <div class="col-sm"></div>
     </div>
-    <input type="hidden" class="form-control" id="txtUSRCREACION"  name="USR_CREACION" value="3050500002"> 
+    <input type="hidden" class="form-control" id="txtUSRCREACION"  name="usuario_creador" value="3050500002"> 
             </div>
             <div class="col-sm">
-            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
+            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="usuario_modificador" value="3050500002">
             </div>
     </br>
 </form>
@@ -90,4 +90,18 @@
 </div>
 </html>
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Unidad de medida registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> Debe seleccionar un estado de evento para modificarlo', '', 'error')
+        </script>
+    @endif
+   
 @endsection

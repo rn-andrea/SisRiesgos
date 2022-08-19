@@ -1,9 +1,13 @@
 @extends('vwMainTemplate')
 @section('contenido')
 <html>
+
+</div>
+<div class="container-fluid px-4">
+</br>
+</br>
 </br>
 
-<div class="container-fluid px-4">
     <h1 class="mt-4">Mantenimiento Roles</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Sistema de Gestión de Riesgos</li>
@@ -15,8 +19,9 @@
 		@csrf
             <div class="row">
                 <div class="col-sm">
-                <label for="txtRiesgo">Nombre del rol</label>
-                    <input type="text" class="form-control" id="txtNomRol" name="NOM_ROL" placeholder="Digite un nombre descriptivo para el rol">
+                <label for="txtRol">Nombre del rol</label>
+                    <input type="text" class="form-control {{$errors->has('nombre_rol')?'is-invalid':'' }}" id="txtRol" name="nombre_rol" placeholder="Digite un nombre descriptivo para el rol"  value="{{old('nombre_rol')}}"  >
+                    {!! $errors->first('nombre_rol','<div class="invalid-feedback">:message</div>') !!}
                 </div>
 
             </div>
@@ -33,7 +38,8 @@
         </br>   
         </br>
             <div class="row">
-                
+            <div class="col-sm"> </div>
+            
                 <div class="col-sm">
                     <button type="submit" class="btn btn-primary my-1">Registrar Rol</button>
                 </div>    
@@ -58,7 +64,7 @@
                     @foreach($rols as $rol)
 							<tr>
 								<td>{{$rol->id}}</td>
-								<td>{{$rol->nom_rol}}</td>
+								<td>{{$rol->nombre_rol}}</td>
                                 <td>{{$rol->estado->nom_estado}}</td>
 								<td>
                                     <a href="/MantRoles/{{$rol->id}}">Modificar</a></td>
@@ -74,4 +80,28 @@
 </div>
 
 </html>
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Rol registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> El nombre del rol ya existe', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre del rol', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
 @endsection

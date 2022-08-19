@@ -17,4 +17,11 @@ class ResponsableProcesoAfecta extends Model
     public function estado(){
         return $this->hasOne('App\Models\Estado','id_estado','ind_estado');
     }
+    public function usuariocre(){
+        return $this->hasOne('App\Models\Usuario','id_usuario','usr_creacion');
+    }
+    public function usuariomod(){
+        return $this->hasOne('App\Models\Usuario','id_usuario','usr_modifica');
+    }
+
 }

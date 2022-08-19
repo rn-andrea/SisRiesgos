@@ -82,4 +82,32 @@ class RiesgoController extends Controller
         return redirect('/procesos/vwIdentificar');
     }
 
+    public function show($id)
+    {
+        //return $id;
+        $riesgos = Riesgo::all();
+        $riesg= Riesgo::findOrFail($id);
+        $categorias= CategoriaRiesgo::all();
+        $categoriasel = CategoriaRiesgo::select('id','nom_categoria')->where('ind_estado','1')->get();
+        $procesoafectasel = ProcesoAfecta::select('id','nom_proceso_afecta')->where('ind_estado','1')->get();
+        $probabilidadsel = Probabilidad::select('id','nom_probabilidad')->where('ind_estado','1')->get();
+        $impactosel = Impacto::select('id','nom_impacto')->where('ind_estado','1')->get();
+        $accionsel = Accion::select('id','nom_accion')->where('ind_estado','1')->get();
+        $unidadmedidasel = UnidadMedida::select('id','nom_unidad_medida')->where('ind_estado','1')->get();
+
+        return view('procesos.vwIdentificarMod',
+        [
+            'riesgos'=> $riesgos,
+            'riesg'=>$riesg,
+            'categoriasel'=> $categoriasel,
+            'categorias'=> $categorias,
+            'probabilidadsel'=>   $probabilidadsel,
+            'procesoafectasel'=>$procesoafectasel,
+            'impactosel'=>$impactosel,
+            'accionsel'=>$accionsel,
+            'unidadmedidasel'=>$unidadmedidasel,
+
+        ]);
+
+    }
 }

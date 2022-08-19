@@ -38,7 +38,7 @@
     </br>
     
     <div class="row">
-        
+    <div class="col-sm"></div>
         <div class="col-sm">
             <button type="submit" id="btnEstadoResolucion2" class="btn btn-primary my-1">Actualizar  Estado</button>
         </div>    

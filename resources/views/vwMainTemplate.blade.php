@@ -113,13 +113,13 @@
                     <div class="sb-sidenav-footer">
                         <div id='nameDiv' class="small">
                         <?php
-                            try {
+                          /*  try {
                             $correo = auth()->user()->email;
                             $consulta = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
                            echo '<p>Usuario logueado como: '.$consulta.'</p>';
                            } catch (Exception $e) {
 
-                           }
+                           }*/
                         ?>
                         </div>
 
@@ -145,7 +145,7 @@
             </div>
         </div>
         <?php
-        try {
+       /* try {
          $correo = auth()->user()->email;
          $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
         if($consulta=='2')
@@ -156,7 +156,7 @@
         }
         } catch (Exception $e) {
 
-        }
+        }*/
         ?>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('/mainTemplate/js/scripts.js') }}"></script> <!-- jimmy.salazar-->
@@ -165,5 +165,10 @@
         <script src="{{ asset('/mainTemplate/assets/demo/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="{{ asset('/mainTemplate/js/datatables-simple-demo.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script scr="{{ asset('js/app.js') }}"></script>
+
+        @yield('js')
     </body>
+
 </html>

@@ -16,37 +16,46 @@
      <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Nomenclatura del Proceso que Afecta</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="Digite tres letras que representen el proceso" name="ID_NOMENCLATURA">
+            <input type="text" class="form-control {{$errors->has('id_nomenclatura')?'is-invalid':'' }}" id="txtClasificacion" placeholder="Digite tres letras que representen el proceso" name="id_nomenclatura" value="{{old('id_nomenclatura')}}">
+            {!! $errors->first('id_nomenclatura','<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-sm">
         <label for="txtRiesgo">Nombre del Proceso que Afecta</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="Nombre descriptivo del proceso que afecta" name="NOM_PROCESO_AFECTA">
+            <input type="text" class="form-control {{$errors->has('nombre_proceso_afecta')?'is-invalid':'' }}" id="txtClasificacion" placeholder="Nombre descriptivo del proceso que afecta" name="nombre_proceso_afecta" value="{{old('nombre_proceso_afecta')}}">
+            {!! $errors->first('nombre_proceso_afecta','<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
+</br>
     <div class="row">
     
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION" placeholder="Digite las observaciones necesarias"></textarea>
+            <textarea class="form-control {{$errors->has('observacion')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="observacion" placeholder="Digite las observaciones necesarias" value="{{old('observacion')}}" ></textarea>
+            {!! $errors->first('observacion','<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
-
+</br>
     <div class="row">
                 <div class="col-sm">
-				<input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
-                <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+				<input class="form-check-input" type="hidden" value="2" name="estado" >
+                <input class="form-check-input" type="checkbox" value="1" name="estado" id="defaultCheck3" checked>
                     <label class="form-check-label" for="Activo">
                         Estado Activo
                     </label>
                    
     </div>
    
-    
+    <div class="col-sm">
+            <input type="hidden" class="form-control" id="txtUSRCREACION"  name="usr_creacion" value="305050002"> 
+            </div>
+            <div class="col-sm">
+            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="usr_modifica" value="305050002">
+</div>  
     
     </br>
     
     <div class="row">
-        
+    <div class="col-sm"></div>
         <div class="col-sm">
             <button type="submit" class="btn btn-primary my-1">Registrar Proceso</button>
         </div>    
@@ -112,4 +121,28 @@
 </div>
 </html>
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('El proceso afecta fue registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> La nomenclatura del proceso afecta ya existe', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe la nomenclatura del proceso afecta', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
 @endsection

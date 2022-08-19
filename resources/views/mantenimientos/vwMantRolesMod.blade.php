@@ -21,7 +21,8 @@
                 </div>
                 <div class="col-sm">
                 <label for="txtRiesgo">Nombre del rol</label>
-                    <input type="text" class="form-control" id="txtNomRol"  name="NOM_ROL" value="{{$rol->nom_rol}}">
+                    <input type="text" class="form-control {{$errors->has('nombre_rol')?'is-invalid':'' }}" id="txtNomRol"  name="nombre_rol" value="{{$rol->nombre_rol}}">
+                    {!! $errors->first('nombre_rol','<div class="invalid-feedback">:message</div>') !!}
                 </div>
                 <div class="row">
                 <div class="col-sm">
@@ -65,7 +66,7 @@
                     @foreach($rols as $rol)
 							<tr>
 								<td>{{$rol->id}}</td>
-								<td>{{$rol->nom_rol}}</td>
+								<td>{{$rol->nombre_rol}}</td>
                                 <td>{{$rol->estado->nom_estado}}</td>
 							 </tr>
 					@endforeach
@@ -78,4 +79,28 @@
 </div>
 </html>
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Rol registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> El nombre del rol ya existe', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre del rol', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
 @endsection

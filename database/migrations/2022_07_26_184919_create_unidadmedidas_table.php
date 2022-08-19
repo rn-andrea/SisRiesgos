@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('unidad_medidas', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_unidad_medida',30);
+            $table->string('nom_unidad_medida',50);
             $table->string('des_observacion',200)-> nullable();
             $table->string('usr_creacion',10)-> nullable();
             $table->string('usr_modifica',10)-> nullable();

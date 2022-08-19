@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('riesgos', function (Blueprint $table) {
             $table->id();
-            $table->string('id_riesgos')->unique;
+            $table->string('id_riesgos',255)->unique;
             $table->string('nom_riesgos',50);
             $table->unsignedBigInteger('id_categoria');
             $table->string('des_detalle',300)-> nullable();

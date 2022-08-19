@@ -5,25 +5,26 @@
 </br>
 <html>
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Identificación y Análisis del Riesgo</h1>
+    <h1 class="mt-4">Modificar Identificación y Análisis del Riesgo</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Sistema de Gestión de Riesgos</li>
         </ol>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></br></li>
         </ol>
-    <form action="/identificarriesgo/store" method="POST" enctype="multipart/form-data">
-	@csrf
+        <form action="/identificarriesgo/update/{{$riesg->id}}" method="POST">
+		@csrf
+        {{method_field('PUT')}}
     <div class="row">
     <input class="form-check-input" type="hidden" value="RI-" name="ID_RIESGO" >
         <div class="col-sm">
         <label for="txtRiesgo">Nombre del Riesgo</label>
 
-        <input type="text" class="form-control" id="txtRiesgo" placeholder="Nombre Riesgo" name="NOM_RIESGO">
+        <input type="text" class="form-control" id="txtRiesgo" placeholder="Nombre Riesgo" name="NOM_RIESGO" value="{{$riesg->nom_riesgos}}">
         </div>
         <div class="col-sm">
         <label for="cbCategoria">Categoria</label>
-        <select id="cbCategoria" class="form-control" name="ID_CATEGORIA" >
+        <select id="cbCategoria" class="form-control" name="ID_CATEGORIA" value="{{$riesg->id_categoria}}">
                    @foreach ($categoriasel as $categ)
                         <option value="{{$categ['id']}}">{{$categ['nom_categoria']}}</option>
                    @endforeach
@@ -36,12 +37,12 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtDetalleRiesgo">Detalle del Riesgo</label>
-        <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_DETALLE"></textarea>
+        <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_DETALLE">{{$riesg->des_detalle}}</textarea>
         </div>
         <div class="col-sm">
         <label for="cbProceso">Proceso que afecta</label>
 
-        <select id="cbProceso" class="form-control" name="ID_PROCESO_AFECTA">
+        <select id="cbProceso" class="form-control" name="ID_PROCESO_AFECTA" >
                     @foreach ($procesoafectasel as $procesoafect)
                         <option value="{{$procesoafect['id']}}">{{$procesoafect['nom_proceso_afecta']}}</option>
                    @endforeach
@@ -70,7 +71,7 @@
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Calificacion</label>
-        <input type="text" class="form-control" id="txtClasificacion" name="TOT_CALIFICACION" readonly>
+        <input type="text" class="form-control" id="txtClasificacion" name="TOT_CALIFICACION" readonly value="{{$riesg->tot_calificacion}}">
         </div>
     </div>
 
@@ -94,7 +95,7 @@
         </div>
         <div class="col-sm">
             <label for="txtClasificacion">RTO (Tiempo Objetivo de Recuperación)</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NUM_RTO">
+            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NUM_RTO" value="{{$riesg->num_rto}}">
         </div>
     </div>
 
@@ -111,11 +112,11 @@
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Tolerancia (Pérdidas anuales)</label>
-        <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="TOT_TOLERANCIA">
+        <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="TOT_TOLERANCIA" value="{{$riesg->tot_tolerancia}}">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Capacidad (Pérdidas anuales)</label>
-        <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="TOT_CAPACIDAD">
+        <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="TOT_CAPACIDAD" value="{{$riesg->tot_capacidad}}">
         </div>
 
     </div>
@@ -192,7 +193,7 @@
                                 <td>{{$riesgo->unidadmedida->nom_unidad_medida}}</td>
                                 <td>{{$riesgo->estado->nom_estado}}</td>
                                 <td>{{$riesgo->created_at}}</td>
-                                <td>  <a href="/identificarriesgo/{{$riesgo->id}}">Modificar</a></td>
+                             
 							 </tr>
                     @endforeach
 
