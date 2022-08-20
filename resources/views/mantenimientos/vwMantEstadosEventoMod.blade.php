@@ -4,7 +4,7 @@
 </br>
 <html>
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Mantenimiento Estados de Evento</h1>
+    <h1 class="mt-4">Modificar Estados de Evento</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Sistema de Gestión de Riesgos</li>
         </ol>
@@ -17,18 +17,18 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Descripción Estado</label>
-            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="NOM_ESTADO_RESOLUCIOND" readonly value="{{$estadoresolucion->nom_estado_resolucion}}">
+            <input type="text" class="form-control" id="txtClasificacion" placeholder="" name="nom_estado_resolucion" readonly value="{{$estadoresolucion->nom_estado_resolucion}}">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION">{{$estadoresolucion->des_observacion}}</textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="des_observacion">{{$estadoresolucion->des_observacion}}</textarea>
         </div>
     </div>
 
     <div class="row">
     <div class="col-sm">
-			<input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
-            <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+			<input class="form-check-input" type="hidden" value="2" name="estado" >
+            <input class="form-check-input" type="checkbox" value="1" name="estado" id="defaultCheck3" checked>
             <label class="form-check-label" for="Activo">
                 Estado Activo
             </label>
@@ -44,11 +44,7 @@
         </div>    
         <div class="col-sm"></div>
     </div>
-    <input type="hidden" class="form-control" id="txtUSRCREACION"  name="USR_CREACION" value="3050500002"> 
-            </div>
-            <div class="col-sm">
-            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
-            </div>
+   
     </br>
 </form>
     <div class="row">
@@ -74,9 +70,9 @@
 								<td>{{$estadoresolucion->nom_estado_resolucion}}</td>
 								<td>{{$estadoresolucion->des_observacion}}</td>
                                 <td>{{$estadoresolucion->created_at}}</td>
-                                <td>{{$estadoresolucion->usuario->usr_nombre}}</td>
+                                <td>{{$estadoresolucion->usuario->usr_nombre}} {{$estadoresolucion->usuario->usr_apellidos}}</td>
                                 <td>{{$estadoresolucion->updated_at}}</td>
-                                <td>{{$estadoresolucion->usuario1->usr_nombre}}</td>
+                                <td>{{$estadoresolucion->usuario1->usr_nombre}} {{$estadoresolucion->usuario1->usr_apellidos}}</td>
                                 <td>{{$estadoresolucion->estado->nom_estado}}</td>
                             </tr>
                     @endforeach   
@@ -89,4 +85,29 @@
 </div>
 </html>
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Responsable de proceso que afecta registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> El responsable por el proceso que afecta ya existe', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el responsable por el proceso que afecta', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
+    
 @endsection

@@ -85,7 +85,7 @@
                             <th>ID</th>
                             <th>Proceso que Afecta</th>
                             <th>Responsable del proceso</th>
-                            <th>Fecha Creación</th>
+                            <th>Fecha de asignación</th>
                             <th>Usuario Creador</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Modificación</th>

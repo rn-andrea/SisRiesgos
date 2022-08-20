@@ -25,9 +25,9 @@ class ProcesoAfectaController extends Controller
 
     public function store(Request $request)
     {
-        //$correo = auth()->user()->email;
-        //$consulta = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
-       
+        $correo = auth()->user()->email;
+        $consulta = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+        $ProcesoAfectas= new ProcesoAfecta();  
         $this->validate($request, [
             'id_nomenclatura'=> 'required|max:3|min:3|unique:proceso_afectas|regex:/^[\pL\-]+$/u',
             'nombre_proceso_afecta'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
@@ -38,13 +38,13 @@ class ProcesoAfectaController extends Controller
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
 
       
-        $ProcesoAfectas= new ProcesoAfecta();        	
+              	
         $ProcesoAfectas-> id = $request-> get('id');		
         $ProcesoAfectas-> id_nomenclatura= $request-> get('id_nomenclatura');
 	    $ProcesoAfectas-> nom_proceso_afecta = $request-> get('nombre_proceso_afecta');
         $ProcesoAfectas-> ind_estado = $request-> get('estado');
-        $ProcesoAfectas-> usr_creacion= $request-> get('usr_creacion');
-        $ProcesoAfectas-> usr_modifica= $request->get('usr_modifica');
+        $ProcesoAfectas-> usr_creacion= $consulta;
+        $ProcesoAfectas-> usr_modifica= $consulta;
         $ProcesoAfectas-> des_observacion = $request-> get('observacion');
         $ProcesoAfectas-> save();
         return redirect('/MantProcesoAfecta')->with('Agregar','ok');
@@ -66,8 +66,8 @@ class ProcesoAfectaController extends Controller
     }
     public function update(Request $request, $id)
     {
-       // $correo = auth()->user()->email;
-       // $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+        $correo = auth()->user()->email;
+        $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
         $ProcesoAfecta= ProcesoAfecta::findOrFail($id);
      
 
@@ -84,8 +84,6 @@ class ProcesoAfectaController extends Controller
         $consulta = DB::table('proceso_afectas')->select('id')->where('id_nomenclatura',$verificardato1)->where('id',$id)->get();
         $existencia= $consulta->count();
 
-       
-        
 
         if($existencia==1){
           
@@ -93,7 +91,7 @@ class ProcesoAfectaController extends Controller
             $ProcesoAfecta-> nom_proceso_afecta = $request->nombre_proceso_afecta;
             $ProcesoAfecta-> ind_estado = $request->estado;
             $ProcesoAfecta-> des_observacion= $request->observacion;
-           // $ProcesoAfectas-> usr_modifica= $request->usr_modifica;
+            $ProcesoAfecta-> usr_modifica= $consultausr;
             $ProcesoAfecta-> updated_at;
             $ProcesoAfecta-> save();
             
@@ -103,20 +101,21 @@ class ProcesoAfectaController extends Controller
             $existencia2= $consulta2->count();
             //return $existencia2;
 
-            if($existencia2>1){
+            if($existencia2<1){
 
-                return back()->with('Error2','error');
-                
-            }else{
-                return back()->with('Error2','error');
                 $ProcesoAfecta-> id_nomenclatura = $request->id_nomenclatura;
                 $ProcesoAfecta-> nom_proceso_afecta = $request->nombre_proceso_afecta;
                 $ProcesoAfecta-> ind_estado = $request->estado;
                 $ProcesoAfecta-> des_observacion= $request->observacion;
-               $ProcesoAfecta-> usr_modifica= $request->usr_modifica;
+                $ProcesoAfecta-> usr_modifica=  $consultausr;
                 $ProcesoAfecta-> updated_at;
                 $ProcesoAfecta-> save();
                 return REDIRECT ('/MantProcesoAfecta')->with('Modificar','ok');
+                
+                
+            }else{
+                
+                return back()->with('Error2','error');
                   
             }
         }

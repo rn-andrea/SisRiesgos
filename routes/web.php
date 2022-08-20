@@ -19,6 +19,7 @@ use App\Http\Controllers\ReporteRiesgosController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ReporteEventosController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RevisionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,17 +37,17 @@ Route::get('/', function () {
 });
 
 // Mantenimiento de usuarios
-Route::get('MantUsuarios/',  [UsuariosController::class, 'index'])->middleware('auth');
-Route::post('/MantUsuarios/store',  [UsuariosController::class, 'store'])->middleware('auth');
-Route::get('/MantUsuarios/{id}',  [UsuariosController::class, 'show'])->middleware('auth');
-Route::put('/MantUsuarios/update/{id}', [UsuariosController::class, 'update'])->middleware('auth');
+Route::get('MantUsuarios/',  [UsuariosController::class, 'index']);
+Route::post('/MantUsuarios/store',  [UsuariosController::class, 'store']);
+Route::get('/MantUsuarios/{id}',  [UsuariosController::class, 'show']);
+Route::put('/MantUsuarios/update/{id}', [UsuariosController::class, 'update']);
 
 
 //roles
-Route::get('MantRoles/',  [RolController::class, 'index'])->middleware('auth');
-Route::post('/MantRoles/store',  [RolController::class, 'store'])->middleware('auth');
-Route::get('/MantRoles/{id}',  [RolController::class, 'show'])->middleware('auth');
-Route::put('/MantRoles/update/{id}', [RolController::class, 'update'])->middleware('auth');
+Route::get('MantRoles/',  [RolController::class, 'index']);
+Route::post('/MantRoles/store',  [RolController::class, 'store']);
+Route::get('/MantRoles/{id}',  [RolController::class, 'show']);
+Route::put('/MantRoles/update/{id}', [RolController::class, 'update']);
 
 //probabilidad
 Route::get('MantProbabilidad/', [ProbabilidadController::class, 'index']);
@@ -67,10 +68,10 @@ Route::get('/MantCategoria/{id}',  [CategoriaRiesgoController::class, 'show']);
 Route::put('/MantCategoria/update/{id}', [CategoriaRiesgoController::class, 'update']);
 
 //unidaddemedida
-Route::get('MantUnidadMedida/', [UnidadMedidaController::class, 'index'])->middleware('auth');
-Route::post('//MantUnidadMedida/store',  [UnidadMedidaController::class, 'store'])->middleware('auth');
-Route::get('//MantUnidadMedida/{id}',  [UnidadMedidaController::class, 'show'])->middleware('auth');
-Route::put('//MantUnidadMedida/update/{id}', [UnidadMedidaController::class, 'update'])->middleware('auth');
+Route::get('MantUnidadMedida/', [UnidadMedidaController::class, 'index']);
+Route::post('//MantUnidadMedida/store',  [UnidadMedidaController::class, 'store']);
+Route::get('//MantUnidadMedida/{id}',  [UnidadMedidaController::class, 'show']);
+Route::put('//MantUnidadMedida/update/{id}', [UnidadMedidaController::class, 'update']);
 
 //MantEstadosEvento
 Route::get('MantEstadosEvento/', [EstadoResolucionController::class, 'index']);
@@ -85,16 +86,16 @@ Route::get('/MantAccion/{id}',  [AccionController::class, 'show']);
 Route::put('/MantAccion/update/{id}', [AccionController::class, 'update']);
 
 //proceso afecta
-Route::get('MantProcesoAfecta/', [ProcesoAfectaController::class, 'index'])->middleware('auth');
-Route::post('/MantProcesoAfecta/store',  [ProcesoAfectaController::class, 'store'])->middleware('auth');
-Route::get('/MantProcesoAfecta/{id}',  [ProcesoAfectaController::class, 'show'])->middleware('auth');
-Route::put('/MantProcesoAfecta/update/{id}', [ProcesoAfectaController::class, 'update'])->middleware('auth');
+Route::get('MantProcesoAfecta/', [ProcesoAfectaController::class, 'index']);
+Route::post('/MantProcesoAfecta/store',  [ProcesoAfectaController::class, 'store']);
+Route::get('/MantProcesoAfecta/{id}',  [ProcesoAfectaController::class, 'show']);
+Route::put('/MantProcesoAfecta/update/{id}', [ProcesoAfectaController::class, 'update']);
 
 //responsables proceso afecta
-Route::get('MantResponsablesProcesoAfecta/', [ResponsableProcesoAfectaController::class, 'index'])->middleware('auth');
-Route::post('/MantResponsablesProcesoAfecta/store',  [ResponsableProcesoAfectaController::class, 'store'])->middleware('auth');
-Route::get('/MantResponsablesProcesoAfecta/{id}',  [ResponsableProcesoAfectaController::class, 'show'])->middleware('auth');
-Route::put('/MantResponsablesProcesoAfecta/update/{id}', [ResponsableProcesoAfectaController::class, 'update'])->middleware('auth');
+Route::get('MantResponsablesProcesoAfecta/', [ResponsableProcesoAfectaController::class, 'index']);
+Route::post('/MantResponsablesProcesoAfecta/store',  [ResponsableProcesoAfectaController::class, 'store']);
+Route::get('/MantResponsablesProcesoAfecta/{id}',  [ResponsableProcesoAfectaController::class, 'show']);
+Route::put('/MantResponsablesProcesoAfecta/update/{id}', [ResponsableProcesoAfectaController::class, 'update']);
 
 // identificar riesgos
 Route::get('identificarriesgo/', [RiesgoController::class, 'index']);
@@ -115,18 +116,21 @@ Route::put('/eventos/update/{id}', [EventoController::class, 'update']);
 Route::post('/login/verificar', [loginController::class, 'verificar']);
 Route::post('/logout', [loginController::class, 'cerrar']);
 
-Route::get('/ReporteUsuarios', [RegistroUsuarioController::class, 'inicio'])->middleware('auth');
-Route::get('/ReportePDF', [PDFController::class, 'cargarBD'])->middleware('auth');
+Route::get('/ReporteUsuarios', [RegistroUsuarioController::class, 'inicio']);
+Route::get('/ReportePDF', [PDFController::class, 'cargarBD']);
 
 
 
 Route::get('/PanelPrincipal', [DashboardController::class,'inicio']);
 
-Route::get('/ReporteRiesgos', [ReporteRiesgosController::class, 'inicio'])->middleware('auth');
-Route::get('/ReportePDFRiesgo', [PDFController::class, 'cargarBD'])->middleware('auth');
+Route::get('/ReporteRiesgos', [ReporteRiesgosController::class, 'inicio']);
+Route::get('/ReportePDFRiesgo', [PDFController::class, 'cargarBD']);
 
-Route::get('/ReporteEvento', [ReporteEventosController::class, 'inicio'])->middleware('auth');
-Route::get('/ReportePDFEventos', [PDFController::class, 'cargarBD'])->middleware('auth');
+Route::get('/ReporteEvento', [ReporteEventosController::class, 'inicio']);
+Route::get('/ReportePDFEventos', [PDFController::class, 'cargarBD']);
+
+Route::get('/Revisiones', [RevisionesController::class, 'inicio']);
+Route::get('/Revisiones', [PDFController::class, 'cargarBD']);
 
 Route::view('Plantilla','vwMainTemplate')->name('vwMainTemplate');
 Route::view('RegistrarEventos','vwEvento')->name('vwEvento')->middleware('auth');

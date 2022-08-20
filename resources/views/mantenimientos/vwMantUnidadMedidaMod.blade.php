@@ -88,9 +88,9 @@
 								<td>{{$UnidadMedida->nom_unidad_medida}}</td>
 								<td>{{$UnidadMedida->des_observacion}}</td>
                                 <td>{{$UnidadMedida->created_at}}</td>
-                                <td>{{$UnidadMedida->usuario->usr_nombre}}</td>
+                                <td>{{$UnidadMedida->usuario->usr_nombre}} {{$UnidadMedida->usuario->usr_apellidos}}</td>
                                 <td>{{$UnidadMedida->updated_at}}</td>
-                                <td>{{$UnidadMedida->usuario1->usr_nombre}}</td>
+                                <td>{{$UnidadMedida->usuario1->usr_nombre}} {{$UnidadMedida->usuario1->usr_apellidos}}</td>
                                 <td>{{$UnidadMedida->estado->nom_estado}}</td>
                                 
                             </tr>

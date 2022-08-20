@@ -81,7 +81,6 @@
                             <th>Proceso que Afecta</th>
                             <th>Responsable del proceso</th>
                             <th>Fecha de asignación</th>
-                            <th>Fecha Creación</th>
                             <th>Usuario Creador</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Modificación</th>
@@ -96,9 +95,9 @@
 								<td>{{$responsable->procesoafecta->nom_proceso_afecta}}</td>
                                 <td>{{$responsable->usuario->usr_nombre}} {{$responsable->usuario->usr_apellidos}}</td>
                                 <td>{{$responsable->created_at}}</td>
-                                <td>{{$responsable->usuariocre->usr_nombre}} {{$responsable->usuario->usr_apellidos}}</td>
+                                <td>{{$responsable->usuariocre->usr_nombre}} {{$responsable->usuariocre->usr_apellidos}}</td>
                                 <td>{{$responsable->updated_at}}</td>
-                                <td>{{$responsable->usuariomod->usr_nombre}} {{$responsable->usuario->usr_apellidos}}</td>
+                                <td>{{$responsable->usuariomod->usr_nombre}} {{$responsable->usuariomod->usr_apellidos}}</td>
                                 <td>{{$responsable->estado->nom_estado}}</td>
                                 <td> <a href="/MantResponsablesProcesoAfecta/{{$responsable->id}}">Modificar</a></td>
                                     

@@ -59,7 +59,7 @@ class ResponsableProcesoAfectaController extends Controller
             $responsablesproceso-> id_proceso_afecta = $request-> get('ID_PROCESO_AFECTA');
             $responsablesproceso-> ind_estado = $request-> get('IND_ESTADO');
             $responsablesproceso-> usr_creacion = $consultausr;
-            $responsablesproceso-> usr_modifica = $consultausr;
+            $responsablesproceso-> usr_modifica =  $consultausr;
             $responsablesproceso-> save();
             
             
@@ -113,7 +113,7 @@ class ResponsableProcesoAfectaController extends Controller
         
             $responsablesproceso-> usr_responsable_proceso = $request->ID_RESPONSABLE;
             $responsablesproceso-> id_proceso_afecta = $request-> ID_PROCESO_AFECTA;
-            $responsablesproceso-> usr_modifica =  $consultausr;
+            $responsablesproceso-> usr_modifica = $consultausr;
             $responsablesproceso-> ind_estado = $request->IND_ESTADO;
             $responsablesproceso-> updte_at;
             $responsablesproceso-> save();

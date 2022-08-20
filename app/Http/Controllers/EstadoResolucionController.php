@@ -25,25 +25,24 @@ class EstadoResolucionController extends Controller
 
     public function store(Request $request)
     {
+        return redirect('/MantEstadosEvento')->with('Error','error');  
         $correo = auth()->user()->email;
         $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
 
         $EstadoResolcions= new EstadoResolucion ();  
-        return redirect('/MantEstadosEvento')->with('Error','error');  
+      
         $this->validate($request, [
            
-            'nombre_estado_resolucion'=> 'required|max:50|min:3|unique:unidad_medidas',
+            'nom_estado_resolucion'=> 'required|max:50|min:3|unique:estado_resolucions',
             'estado'=> 'required',
-            'usuario_creador'=> 'required',
-            'usuario_modificador'=> 'required',
             'observacion'=> 'max:200',
         ]);
        
 
-        $EstadoResolcions-> nom_estado_resolucion= $request-> get('nombre_estado_resolucion');
+        $EstadoResolcions-> nom_estado_resolucion= $request-> get('nom_estado_resolucion');
         $EstadoResolcions-> ind_estado = $request-> get('estado');
-        $EstadoResolcions-> usr_creacion = $request-> get('usuario_creador');
-        $EstadoResolcions-> usr_modifica = $request-> get('usuario_modificador');
+        $EstadoResolcions-> usr_creacion = $consultausr;
+        $EstadoResolcions-> usr_modifica = $consultausr;
         $EstadoResolcions-> des_observacion = $request-> get('observacion');
         $EstadoResolcions-> save();
        
@@ -63,27 +62,56 @@ class EstadoResolucionController extends Controller
     }
     public function update(Request $request, $id)
     {
+       $correo = auth()->user()->email;
+       $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+       
+        $verificardato1= $request->nom_estado_resolucion;
+        $verificardato2= $request->des_observacion;
+        $verificardato4= $request->estado;
+        $verificardato3= DB::table('estado_resolucions')->select('ind_estado')->where('id',$id)->value('ind_estado');
         $estadoresolucion= EstadoResolucion::findOrFail($id);
         $this->validate($request, [
            
-            'nombre_estado_resolucion'=> 'required|max:50|min:3|unique:unidad_medidas',
+            'nom_estado_resolucion'=> 'required|max:50|min:3',
             'estado'=> 'required',
-            'usuario_modificador'=> 'required',
-            'observacion'=> 'max:200',
+            'des_observacion'=> 'max:200',
         ]);
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
     	
-        $correo = auth()->user()->email;
-        $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+        $consulta = DB::table('estado_resolucions')->select('id','des_observacion','ind_estado')->where('nom_estado_resolucion',$verificardato1)->where('des_observacion',$verificardato2)->where('ind_estado',$verificardato3);
+        $existencia= $consulta->count();
 
-        $estadoresolucion-> nom_estado_resolucion = $request->NOM_ESTADO_RESOLUCIOND;
-        $estadoresolucion-> ind_estado = $request->IND_ESTADO ;
-        $estadoresolucion-> des_observacion = $request->DES_OBSERVACION;
-        $estadoresolucion-> usr_modifica= $request->USR_MODIFICA;
-        $estadoresolucion-> updte_at;
-        $estadoresolucion-> save();
-        
-        return REDIRECT ('MantEstadosEvento/');
+        if($existencia==1){
+            if($verificardato3 == $verificardato4){
+                return REDIRECT ('MantEstadosEvento/')->with('Modifica','info');
+            }else {
+                $estadoresolucion-> nom_estado_resolucion = $request->nom_estado_resolucion;
+                $estadoresolucion-> ind_estado = $request->estado;
+                $estadoresolucion-> des_observacion = $request->des_observacion;
+                $estadoresolucion-> usr_modifica= $consultausr;
+                $estadoresolucion-> updte_at;
+                $estadoresolucion-> save();
+                return REDIRECT ('MantEstadosEvento/')->with('Modificar','ok');
+       
+            }
+          
+
+        }
+        else{
+          
+                $estadoresolucion-> nom_estado_resolucion = $request->nom_estado_resolucion;
+                $estadoresolucion-> ind_estado = $request->estado;
+                $estadoresolucion-> des_observacion = $request->des_observacion;
+                $estadoresolucion-> usr_modifica= $consultausr;
+                $estadoresolucion-> updte_at;
+                $estadoresolucion-> save();
+                return REDIRECT ('MantEstadosEvento/')->with('Modificar','ok');
+            
+            
+            
+        }
+
+       
     }
 
 }

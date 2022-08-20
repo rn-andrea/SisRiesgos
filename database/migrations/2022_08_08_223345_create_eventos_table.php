@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nombre',100);
             $table->date('fec_evento');
             $table->string('descripcion');
+            $table->string('usuario');
            
         });
     }

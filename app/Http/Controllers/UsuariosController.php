@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
 {
     public function index()
     {
 
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::select('id','id_usuario','usr_nombre','usr_apellidos','usr_email','usr_password','ind_estado','id_rol','created_at','updated_at')->orderBy('updated_at','DESC')->get();
+        
         $rols= Rol::all();
         $rolr = Rol::select('id','nombre_rol')->where('ind_estado','1')->get();
  
@@ -72,9 +74,10 @@ class UsuariosController extends Controller
     public function show($ID_USUARIO)
     {
         //return $id;
-        $usuarios = Usuario::all();
+        $condicion= Usuario::where('id',$ID_USUARIO)->select('id_rol')->value('id_rol');
+        $usuarios = Usuario::select('id','id_usuario','usr_nombre','usr_apellidos','usr_email','usr_password','ind_estado','id_rol','created_at','updated_at')->orderBy('updated_at','DESC')->get();
         $usuario= Usuario::findOrFail($ID_USUARIO);
-        $rols= Rol::all();
+        $rols= Rol::select('id','nombre_rol')->where('id','!=',$condicion)-> where('ind_estado','1')->get();
 
        return view('mantenimientos.vwMantUsuarios',[
         'usuario'=> $usuario,

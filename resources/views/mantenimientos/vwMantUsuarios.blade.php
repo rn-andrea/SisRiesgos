@@ -51,6 +51,7 @@
             <div class="col-sm">
             <label for="txtClasificacion">Rol del usuario</label>
                 <select id="cbRol" class="form-control" name="rol" value="{{$usuario->rol->nombre_rol}}">
+                <option value="{{$usuario['id_rol']}}">{{$usuario->rol->nombre_rol}}</option>
                    @foreach ($rols as $rol)
                         <option value="{{$rol['id']}}">{{$rol['nombre_rol']}}</option>
                    @endforeach

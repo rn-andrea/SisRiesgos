@@ -91,7 +91,7 @@
                                 <td>{{$UnidadMedida->created_at}}</td>
                                 <td>{{$UnidadMedida->usuario->usr_nombre}} {{$UnidadMedida->usuario->usr_apellidos}}</td>
                                 <td>{{$UnidadMedida->updated_at}}</td>
-                                <td>{{$UnidadMedida->usuario1->usr_nombre}} {{$UnidadMedida->usuario->usr_apellidos}}</td>
+                                <td>{{$UnidadMedida->usuario1->usr_nombre}} {{$UnidadMedida->usuario1->usr_apellidos}}</td>
                                 <td>{{$UnidadMedida->estado->nom_estado}}</td>
                                 <td><a href="/MantUnidadMedida/{{$UnidadMedida->id}}">Modificar</a></td>
                             </tr>

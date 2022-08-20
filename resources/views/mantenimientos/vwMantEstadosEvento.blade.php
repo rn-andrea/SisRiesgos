@@ -16,11 +16,11 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtRiesgo">Descripción Estado</label>
-            <input type="text" class="form-control" id="txtClasificacion" readonly placeholder="Descipción del estado del evento" name="nombre_estadi_resolucion">
+            <input type="text" class="form-control" id="txtClasificacion"  placeholder="Descipción del estado del evento" name="nom_estado_resolucion">
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" placeholder="Digite las observaciones necesarias" readonly name="observacion"></textarea>
+            <textarea class="form-control" id="txtDetalleRiesgo" rows="3" placeholder="Digite las observaciones necesarias"  name="observacion"></textarea>
         </div>
     </div>
 
@@ -43,12 +43,7 @@
         </div>    
         <div class="col-sm"></div>
     </div>
-    <input type="hidden" class="form-control" id="txtUSRCREACION"  name="usuario_creador" value="3050500002"> 
-            </div>
-            <div class="col-sm">
-            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="usuario_modificador" value="3050500002">
-            </div>
-    </br>
+    
 </form>
     <div class="row">
     <div class="card-body">
@@ -74,9 +69,9 @@
 								<td>{{$estadoresolucion->nom_estado_resolucion}}</td>
 								<td>{{$estadoresolucion->des_observacion}}</td>
                                 <td>{{$estadoresolucion->created_at}}</td>
-                                <td>{{$estadoresolucion->usuario->usr_nombre}}</td>
+                                <td>{{$estadoresolucion->usuario->usr_nombre}} {{$estadoresolucion->usuario->usr_apellidos}}</td>
                                 <td>{{$estadoresolucion->updated_at}}</td>
-                                <td>{{$estadoresolucion->usuario1->usr_nombre}}</td>
+                                <td>{{$estadoresolucion->usuario1->usr_nombre}} {{$estadoresolucion->usuario1->usr_apellidos}}</td>
                                 <td>{{$estadoresolucion->estado->nom_estado}}</td>
                                 <td>  <a href="/MantEstadosEvento/{{$estadoresolucion->id}}">Modificar</a></td>
                             </tr>
@@ -100,7 +95,19 @@
     @endif
     @if (session('Error')=='error')
         <script>
-             Swal.fire('Error<br/> Debe seleccionar un estado de evento para modificarlo', '', 'error')
+             Swal.fire('Error<br/> Debe seleccionar un estado de evento en la tabla,para ser actualizado', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Modifica')=='info')
+        
+        <script>
+             Swal.fire('No ha realizado ningun cambio al estado de evento seleccionado', '', 'info')
         </script>
     @endif
    

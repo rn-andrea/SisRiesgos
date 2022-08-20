@@ -4,7 +4,7 @@
 </br>
 <html>
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Mantenimiento Impacto Riesgo</h1>
+    <h1 class="mt-4">Modificar Impacto Riesgo</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Sistema de Gestión de Riesgos</li>
         </ol>
@@ -17,32 +17,32 @@
         <div class="row">
             <div class="col-sm">
             <label for="txtRiesgo">Descripción Impacto</label>
-                <input type="text" class="form-control" id="txtImpacto" placeholder="" name="NOM_IMPACTO" value="{{$impacto->nom_impacto}}" readonly>
+                <input type="text" class="form-control {{$errors->has('nom_impacto')?'is-invalid':'' }}" id="txtImpacto" placeholder="" name="nom_impacto" value="{{$impacto->nom_impacto}}" readonly>
+                {!! $errors->first('nom_impacto','<div class="invalid-feedback">:message</div>') !!}
             </div>
             <div class="col-sm">
             <label for="txtClasificacion">Observación</label>
-                <textarea class="form-control" id="txtDetalleRiesgo" rows="3" name="DES_OBSERVACION"  >{{$impacto->des_observacion}}</textarea>
+                <textarea class="form-control {{$errors->has('observacion')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="observacion" >{{$impacto->des_observacion}}</textarea>
+                {!! $errors->first('observacion','<div class="invalid-feedback">:message</div>') !!}
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm">
-            <input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
-                <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+            <input class="form-check-input" type="hidden" value="2" name="estado" >
+                <input class="form-check-input" type="checkbox" value="1" name="estado" id="defaultCheck3" checked>
                 <label class="form-check-label" for="defaultCheck2">
                     Estado Activo
                 </label>
         </div>
         <div class="col-sm">
                 
-            <div class="col-sm">
-                <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
-            </div>
+         
             </div>
         </br>
         
         <div class="row">
-            
+        <div class="col-sm"></div>
             <div class="col-sm">
                 <button type="submit" id="bntImpacto" class="btn btn-primary my-1">Actualizar Impacto</button>
             </div>    
@@ -99,4 +99,29 @@
 </div>
 </html>
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Impacto registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> El impacto no se modifico', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la unidad de medida', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
+    
 @endsection
