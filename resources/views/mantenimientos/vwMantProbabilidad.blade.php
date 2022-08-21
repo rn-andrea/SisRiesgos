@@ -16,34 +16,31 @@
             <div class="row">
                 <div class="col-sm">
                 <label for="txtRiesgo">Descripción Probabilidad</label>
-                    <input type="text" class="form-control"  id="txtRiesgo" placeholder="Descripción de la probabilidad" name="NOM_PROBABILIDAD" readonly>
+                    <input type="text" class="form-control {{$errors->has('nom_probabilidad')?'is-invalid':'' }}"  id="txtRiesgo" placeholder="Descripción de la probabilidad" name="nom_probabilidad" value="{{old('nom_probabilidad')}}">
+                    {!! $errors->first('nom_probabilidad','<div class="invalid-feedback">:message</div>') !!}
                 </div>
                 <div class="col-sm">
                 <label for="txtObservacion">Observación</label>
-                    <textarea class="form-control" id="xtObservacion" rows="3" name="DES_OBSERVACION" placeholder="Digite las observaciones necesarias" readonly></textarea>
+                    <textarea class="form-control {{$errors->has('observacion')?'is-invalid':'' }}" id="xtObservacion" rows="3" name="observacion" placeholder="Digite las observaciones necesarias" value="{{old('observacion')}}"></textarea>
+                    {!! $errors->first('observacion','<div class="invalid-feedback">:message</div>') !!}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm">
-				<input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
-                <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+				<input class="form-check-input" type="hidden" value="2" name="estado" >
+                <input class="form-check-input" type="checkbox" value="1" name="estado" id="defaultCheck3" checked>
                     <label class="form-check-label" for="Activo">
                         Estado Activo
                     </label>
                    
             </div>
-            <div class="col-sm">
-                <input type="hidden" class="form-control" id="txtUSRCREACION"  name="USR_CREACION" value="3050500002"> 
-            </div>
-            <div class="col-sm">
-                <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
-            </div>
+         
     
     </br>
     
     <div class="row">
-  
+    <div class="col-sm"></div>
         <div class="col-sm">
             <button type="submit" class="btn btn-primary my-1">Actualizar Probabilidad</button>
         </div>    
@@ -88,9 +85,9 @@
 								<td>{{$probabilidad->nom_probabilidad}}</td>
 								<td>{{$probabilidad->des_observacion}}</td>
                                 <td>{{$probabilidad->created_at}}</td>
-                                <td>{{$probabilidad->usuario->usr_nombre}}</td>
+                                <td>{{$probabilidad->usuario->usr_nombre}} {{$probabilidad->usuario->usr_apellidos}}</td>
                                 <td>{{$probabilidad->updated_at}}</td>
-                                <td>{{$probabilidad->usuario1->usr_nombre}}</td>
+                                <td>{{$probabilidad->usuario1->usr_nombre}} {{$probabilidad->usuario1->usr_apellidos}}</td>
                                 <td>{{$probabilidad->estado->nom_estado}}</td>
                                 <td>  <a href="/MantProbabilidad/{{$probabilidad->id}}">Modificar</a></td>
 							 </tr>
@@ -104,4 +101,34 @@
 </div>
 </html>
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Impacto registrado con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/> Debe seleccionar una probabilidad en la tabla, para ser actualizado', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la unidad de medida', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Modifica')=='info')
+        
+        <script>
+             Swal.fire('No ha realizado ningun cambio al estado de evento seleccionado', '', 'info')
+        </script>
+    @endif
 @endsection

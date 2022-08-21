@@ -126,7 +126,7 @@
     @if (session('Modifica')=='info')
         
         <script>
-             Swal.fire('No ha realizado ningun cambio al estado de evento seleccionado', '', 'info')
+             Swal.fire('No ha realizado ningun cambio al impacto seleccionado', '', 'info')
         </script>
     @endif
 @endsection

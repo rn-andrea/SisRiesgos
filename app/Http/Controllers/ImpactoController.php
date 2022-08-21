@@ -46,7 +46,7 @@ class ImpactoController extends Controller
         $Impacto-> usr_modifica = $consultausr;
         $Impacto-> des_observacion = $request-> get('observacion');
         $Impacto-> save();
-        return REDIRECT ('/MantImpacto');
+        return REDIRECT ('/MantImpacto')->with('Agregar','ok');;
     }
     public function show($id)
     {
@@ -63,8 +63,8 @@ class ImpactoController extends Controller
     }
     public function update(Request $request, $id)
     {
-      // $correo = auth()->user()->email;
-       //$consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+        $correo = auth()->user()->email;
+        $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
         $impacto = Impacto::findOrFail($id);
         $verificardato1= $request->nom_impacto;
         $verificardato2= $request->observacion;
