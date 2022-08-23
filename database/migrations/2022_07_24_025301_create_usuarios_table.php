@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('usr_nombre',25);
             $table->string('usr_apellidos',50);
             $table->string('usr_email',50);
-	 	    $table->string('usr_password',25);
+	 	    $table->string('usr_password',250);
             $table->unsignedBigInteger('ind_estado');
             $table->unsignedBigInteger('id_rol');
             $table->timestamps();

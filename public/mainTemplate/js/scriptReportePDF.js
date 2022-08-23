@@ -35,6 +35,26 @@ else if(arr[1]=='generarpdf1Riesgos')
 {
     document.getElementById('h1titulo').innerHTML='Reporte de riesgos por proceso afecta';
     $orientacionArch = "landscape";
+}else if(arr[1]=='generarpdf4Riesgos')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de riesgos por Acción: Eliminar';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de riesgos por Acción Eliminar";
+}else if(arr[1]=='generarpdf5Riesgos')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de riesgos por Acción: Mitigar';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de riesgos por Acción Mitigar";
+}else if(arr[1]=='generarpdf6Riesgos')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de riesgos por Acción: Evitar';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de riesgos por Acción Evitar";
+}else if(arr[1]=='generarpdf7Riesgos')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de riesgos por Acción: Asumir';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de riesgos por Acción Asumir";
 }
 
 else if(arr[1]=='generarpdf1Eventos')
@@ -66,6 +86,11 @@ else if(arr[1]=='generarpdf5Eventos')
     document.getElementById('h1titulo').innerHTML='Reporte de eventos por estado cerrado no resuelto';
     $orientacionArch = "landscape";
     $nombreArch="Reporte de eventos por estado cerrado no resuelto";
+}else if(arr[1]=='generarpdfrevisiones')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de revisiones';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de revisiones";
 }
 
 const valores2 = window.location.search;
@@ -86,25 +111,30 @@ generarpdf($nombreArch, $orientacionArch);
 
 function generarpdf($nombrePDF, $orientacionPDF)
 {
-const $elementoParaConvertir = document.body;
-window.html2pdf().set({
-margin: 1,
-filename: $nombrePDF,
-image: {
-    type: 'jpeg',
-    quality: 0.98
-},
-html2canvas: {
-    scale: 12, // entre mayor sea la escala, mejores gráficos
-    letterRendering: true,
-},
-jsPDF: {
-    unit: "in",
-    format: "a3",
-    orientation: $orientacionPDF // landscape o portrait
-}
-})
-.from($elementoParaConvertir)
-.save()
-.catch(err => console.log(err));
+    const element = document.body;
+    html2pdf().from(element).set({
+        margin:       1,
+        filename: $nombrePDF,
+        image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 6, // entre mayor sea la escala, mejores gráficos
+                letterRendering: true,
+            },
+        pageBreak: { mode: 'css', before:'#nextpage1'},
+        jsPDF: {orientation: 'landscape', unit: 'in', format: 'Tabloid'}
+        }).toPdf().get('pdf').then(function (pdf) {
+        var totalPages = pdf.internal.getNumberOfPages();
+    
+        for (i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(10);
+        pdf.setTextColor(150);
+        pdf.text('Página ' + i + ' de ' + totalPages, (pdf.internal.pageSize.getWidth()/2.25), (pdf.internal.pageSize.getHeight()-0.2));
+    
+    
+        }
+        }).save();
 }

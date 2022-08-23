@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use App\Models\User;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
@@ -48,12 +49,12 @@ class UsuariosController extends Controller
             'nombre'=> 'required|max:25|min:3|regex:/^[\pL\s\-]+$/u',
             'apellidos'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
             'correo'=> 'required|max:50|email|',
-            'contraseña'=> 'required|max:25|min:8',
+            'contraseña'=> 'required|max:250|min:8',
             'estado'=> 'required',
             'rol'=> 'required',
     
         ]);
-        echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
+       
 
       
        
@@ -63,14 +64,21 @@ class UsuariosController extends Controller
         $usuario-> usr_nombre = $request-> get('nombre');
         $usuario-> usr_apellidos = $request-> get('apellidos');
         $usuario-> usr_email = $request-> get('correo');
-        $usuario-> usr_password = $request-> request -> add([
-            'usr_password'=>Hash::make($request->input('contraseña')) ]);
+        $usuario-> usr_password = Hash::make($request->input('contraseña'));
         $usuario-> ind_estado = $request-> get('estado');
         $usuario-> id_rol = $request-> get('rol');
         $usuario-> save();
-        
-        return REDIRECT ('/MantUsuarios')->with('Agregar','ok');;
-        
+
+
+   
+        $user = new User();
+        $user -> name = $request ->  get('nombre');
+        $user -> email = $request ->  get('correo');
+        $user -> password =Hash::make($request->input('contraseña'));
+        $user -> save();
+
+             
+        return REDIRECT ('/MantUsuarios')->with('Agregar','ok');
     }
 
     public function show($ID_USUARIO)
@@ -98,7 +106,7 @@ class UsuariosController extends Controller
             'nombre'=> 'required|max:25|min:3|regex:/^[\pL\s\-]+$/u',
             'apellidos'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
             'correo'=> 'required|max:50|email',
-            'contraseña'=> 'required|max:25|min:8',
+            'contraseña'=> 'required|max:250|min:8',
             'estado'=> 'required',
             'rol'=> 'required',
     
@@ -113,6 +121,13 @@ class UsuariosController extends Controller
         $usuario-> ind_estado = $request->estado;
         $usuario-> id_rol = $request-> rol;
         $usuario-> save();
+
+        $user = User::findOrFail($ID_USUARIO);
+        $user -> name = $request ->  nombre;
+        $user -> email = $request ->  correo;
+        $user -> password = $request = Hash::make($request->input('contraseña'));
+        $user -> save();
+        
         
         return REDIRECT ('/MantUsuarios')->with('Modificar','ok');;
     }

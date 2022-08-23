@@ -33,12 +33,12 @@ let URLactual2 = window.location.toString();
 let ordenPDF = URLactual2.split('=');
 if(ordenPDF[1]=='1')
 {
-window.open("/ReporteRevisiones/?orden=generarpdf1", "_blank");
+window.open("/ReporteRevisionesPDF/?orden=generarpdfrevisiones", "_blank");
 }else if(ordenPDF[1]=='2')
 {
-window.open("/ReporteRevisiones/?orden=generarpdf2", "_blank");
+window.open("/ReporteRevisionesPDF/?orden=generarpdf2", "_blank");
 }else if(ordenPDF[1]=='3')
 {
-window.open("/ReporteRevisiones/?orden=generarpdf3", "_blank");
+window.open("/ReporteRevisionesPDF/?orden=generarpdf3", "_blank");
 }
 }

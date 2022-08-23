@@ -24,10 +24,7 @@
                                                 <label for="password">Contraseña</label>
                                             </div>
 
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Olvido su contraseña?</a>
-
-                                            </div>
+                                      
                                             @foreach($errors->all() as $error)
                                                 <li style="color:red">{{$error}}</li>
                                             @endforeach

@@ -9,7 +9,22 @@
                 Revisiones
             </div>
             <div class="card-body">
-               
+            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+                <div class="dataTable-top">
+                <div class="dataTable-dropdown">
+                <label>Filtrar por: &nbsp;
+                <select id="eleccion" onchange="orden()" class="dataTable-selector">
+                <option value="Todos">Todos</option>
+                <option value="Activo">Riesgos</option>
+                <option value="Inactivo">Eventos</option>
+                </select>
+                </label>
+                </div><div class="dataTable-search">
+
+                <button onclick="generarPDF()" class="dataTable-input">Generar pdf</button>
+
+                </div>
+                </div>
                 <div id="DataTable" class="dataTable-container">
                 <table id="datatablesSimple" class="dataTable-table">
                     <thead>
@@ -26,12 +41,12 @@
                     <tbody>
                      @foreach($revisiones as $revision)
                     <tr>
-                    <td>{{$revisiones->id}}</td>
-                    <td>{{$revisiones->descripcion}}</td>
-                    <td>{{$revisiones->codigo}}</td>
-                    <td>{{$revisiones->nombre}}</td>
-                    <td>{{$revisiones->usuario}}</td>
-                    <td>{{$revisiones->created_at}}</td>
+                    <td>{{$revision->id}}</td>
+                    <td>{{$revision->descripcion}}</td>
+                    <td>{{$revision->codigo}}</td>
+                    <td>{{$revision->nombre}}</td>
+                    <td>{{$revision->usuario}}</td>
+                    <td>{{$revision->created_at}}</td>
                     
                    
                     </tr>

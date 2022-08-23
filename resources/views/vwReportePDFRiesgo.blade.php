@@ -8,11 +8,14 @@
  <body>
  <div>
   </br>
+  <img src="{{ asset('/mainTemplate/img/Rossmon.png') }}" alt="Rossmon" style="position:absolute;" width="182" height="98">
  </br>
  <div style="position: absolute; right: 5.3%; font-size: 24px; ">
  <p id="pfecha">
  </p>
  </div>
+ </br>
+ </br>
  </br>
  </br>
  <h1 id="h1titulo" style="text-align: center;">
@@ -44,12 +47,12 @@
                     <td>{{$reporteRiesgo->id}}</td>
                     <td>{{$reporteRiesgo->nom_riesgos}}</td>
                     <td>{{$reporteRiesgo->des_detalle}}</td>
-                    <td>{{$reporteRiesgo->nom_categoria}}</td>
+                    <td>{{$reporteRiesgo->nombre_categoria}}</td>
                     <td>{{$reporteRiesgo->id_nomenclatura}}</td>
                     <td>{{$reporteRiesgo->nom_probabilidad}}</td>
                     <td>{{$reporteRiesgo->nom_impacto}}</td>
                     <td>{{$reporteRiesgo->tot_calificacion}}</td>
-                    <td>{{$reporteRiesgo->nom_accion}}</td>
+                    <td>{{$reporteRiesgo->nombre_accion}}</td>
                     <td>{{$reporteRiesgo->nom_unidad_medida}}</td>
                     <td>
                     @if($reporteRiesgo->ind_estado==1)

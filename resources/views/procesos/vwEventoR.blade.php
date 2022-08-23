@@ -64,7 +64,7 @@
         <div class="col-sm">
         <input class="form-check-input" type="hidden" name="valestado" id="valestado">
         <label for="cbestado">Estado de Resolución del Evento</label>
-        <select id="id_estado_resolucion" class="form-control" name="id_estado_resolucion">
+        <select id="id_estado_resolucion" class="form-control" onchange='cambio()' name="id_estado_resolucion">
            @foreach ($estadoresolucion as $estresolucion)
                 <option value="{{$estresolucion['id']}}">{{$estresolucion['nom_estado_resolucion']}}</option>
             @endforeach
@@ -86,7 +86,7 @@
     <div class="row">
         <div class="col-sm">
             <label for="txtDetalleRiesgo">Justificación por evento no resuelto</label>
-            <textarea class="form-control {{$errors->has('jus_evento_no_resuelto')?'is-invalid':'' }}" id="jus_evento_no_resuelto" rows="3" name="jus_evento_no_resuelto"></textarea>
+            <textarea id="jus_evento_no_resuelto" rows="3" name="jus_evento_no_resuelto"></textarea>
             {!! $errors->first('jus_evento_no_resuelto','<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-sm">
@@ -137,12 +137,12 @@
            
         </div>
     </br>
-  
+</div>
     <div class="row">
    
 
         <div class="col-sm">
-</br>
+
             <button type="submit" class="btn btn-primary my-1">Registrar Evento</button>
         </div>  
     </div>
@@ -230,9 +230,9 @@
 </div>
 
 <script>
-           $('#jus_evento_no_resuelto').hide();
-           var selection= document.getElementById("id_estado_resolucion");
-           selection.addEventListener('change',
+       //    $('#jus_evento_no_resuelto').hide();
+          
+       /*    selection.addEventListener('change',
         function(){
             $('#des_lecciones_aprend').val(selection.selectedOptions[0].value);
           //  let valor=document.getElementById("des_lecciones_aprend");
@@ -242,8 +242,20 @@
                 $('#jus_evento_no_resuelto').hide();
             }
            
-     });
-    
+     });*/
+     document.getElementById('jus_evento_no_resuelto').hide();
+     
+
+     function cambio(){
+    var selection= document.getElementById("id_estado_resolucion");
+     if(selection.value=='3')
+     {
+        document.getElementById('jus_evento_no_resuelto').show();
+     }else
+     {
+        document.getElementById('jus_evento_no_resuelto').hide();
+     }
+    }
 
   
 

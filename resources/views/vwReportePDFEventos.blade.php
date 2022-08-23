@@ -8,11 +8,14 @@
  <body>
  <div>
   </br>
+  <img src="{{ asset('/mainTemplate/img/Rossmon.png') }}" alt="Rossmon" style="position:absolute;" width="182" height="98">
  </br>
  <div style="position: absolute; right: 5.3%; font-size: 24px; ">
  <p id="pfecha">
  </p>
  </div>
+ </br>
+ </br>
  </br>
  </br>
  <h1 id="h1titulo" style="text-align: center;">
@@ -52,7 +55,7 @@
                     <td>{{$reporteEvento->des_situacion_pre}}</td>
                     <td>{{$reporteEvento->des_detalle_medidas}}</td>
                     <td>{{$reporteEvento->nom_estado_resolucion}}</td>
-                    <td>{{$reporteEvento->nom_accion}}</td>
+                    <td>{{$reporteEvento->nombre_accion}}</td>
                     <td>{{$reporteEvento->jus_evento_no_resuelto}}</td>
                     <td>{{$reporteEvento->jus_medida_aplicada}}</td>
                     <td>{{$reporteEvento->nom_unidad_medida}}</td>

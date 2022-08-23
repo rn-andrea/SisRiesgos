@@ -24,25 +24,30 @@ generarpdf();
 
 function generarpdf()
 {
-const $elementoParaConvertir = document.body;
-window.html2pdf().set({
-margin: 1,
-filename: 'Reporte de usuarios.pdf',
-image: {
-    type: 'jpeg',
-    quality: 0.98
-},
-html2canvas: {
-    scale: 12, // entre mayor sea la escala, mejores gráficos
-    letterRendering: true,
-},
-jsPDF: {
-    unit: "in",
-    format: "a3",
-    orientation: 'portrait' // landscape o portrait
-}
-})
-.from($elementoParaConvertir)
-.save()
-.catch(err => console.log(err));
+    const element = document.body;
+    html2pdf().from(element).set({
+        margin:       1,
+        filename: 'Reporte de usuarios',
+        image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 6, // entre mayor sea la escala, mejores gráficos
+                letterRendering: true,
+            },
+        pageBreak: { mode: 'css', before:'#nextpage1'},
+        jsPDF: {orientation: 'landscape', unit: 'in', format: 'Tabloid'}
+        }).toPdf().get('pdf').then(function (pdf) {
+        var totalPages = pdf.internal.getNumberOfPages();
+    
+        for (i = 1; i <= totalPages; i++) {
+        pdf.setPage(i);
+        pdf.setFontSize(10);
+        pdf.setTextColor(150);
+        pdf.text('Página ' + i + ' de ' + totalPages, (pdf.internal.pageSize.getWidth()/2.25), (pdf.internal.pageSize.getHeight()-0.2));
+    
+    
+        }
+        }).save();
 }

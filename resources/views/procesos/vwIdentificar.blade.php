@@ -5,7 +5,23 @@
 </br>
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+    input[type=file]::file-selector-button {
+  border: 2px solid   #7d7d7d;
+  padding: .2em .4em;
+  border-radius: .2em;
+  background-color:   #7d7d7d;;
+  color: #ffffff;
+  transition: 1s;
+ 
+}
 
+input[type=file]::file-selector-button:hover {
+  background-color: #81ecec;
+  border: 2px solid #00cec9;
+  
+}
+</style>
 <body>
 
 <div class="container-fluid px-4">
@@ -156,13 +172,12 @@
         
     <div class="col-sm">
                     
-                    <input type="file"  name="inpArchivo">
+                    <input type="file" id="fileUpload" placeholder="Seleccione el archivo" name="inpArchivo">
                 </div>
 </div>
-</div>
+
 <div class="row">
-      <div class="row">
-</div>
+    
     <div class="row">
 
     <div class="col-sm">
@@ -173,7 +188,7 @@
         
 </div>
     </form>
-    <script> 
+
 
 
 
@@ -199,6 +214,7 @@
                             <th>Usuario Creador</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Modificador</th>
+                            <th>Archivo</th>
                             <th>Estado</th>
                             <th></th>
                         </tr>
@@ -222,6 +238,7 @@
                             <th>Usuario Creador</th>
                             <th>Fecha Modificación</th>
                             <th>Usuario Modificador</th>
+                            <th>Archivo</th>
                             <th>Estado</th>
                             <th></th>
                         </tr>
@@ -246,7 +263,11 @@
                                 <td>{{$riesgo->usuario->usr_nombre}} {{$riesgo->usuario->usr_apellidos}}</td>
                                 <td>{{$riesgo->updated_at}}</td>
                                 <td>{{$riesgo->usuario1->usr_nombre}} {{$riesgo->usuario1->usr_apellidos}}</td>
+                                <td><a href='{{Storage::url($riesgo->nom_archivo)}}'>Link del archivo</a></td>
                                 <td>{{$riesgo->estado->nom_estado}}</td>
+                                
+                                 
+                                
                                 <td>  <a href="/identificarriesgo/{{$riesgo->id}}">Modificar</a></td>
 							 </tr>
                     @endforeach

@@ -91,7 +91,12 @@ class RiesgoController extends Controller
 	    $Riesgos-> ind_estado= $request-> get('estado');
         $Riesgos-> usr_creacion= $consultausr;
         $Riesgos-> usr_modifica= $consultausr;
-        $Riesgos ->nom_archivo = $request->file('inpArchivo')->store('public');
+
+        if(!is_null($request->file('inpArchivo')))
+        {
+            $Riesgos ->nom_archivo = $request->file('inpArchivo')->store('public');
+        }
+        
 
         $Riesgos-> save();
 
@@ -186,7 +191,11 @@ class RiesgoController extends Controller
                 $riesg-> tot_capacidad = $request->capacidad;
                 $riesg-> ind_estado = $request->estado;
                 $riesg-> usr_modifica = $consultausr;
-               // $riesg-> nom_archivo = $request->file('inpArchivo')->store('public');
+                if(!is_null($request->file('inpArchivo')))
+                {
+                    $riesg-> nom_archivo = $request->file('inpArchivo')->store('public');
+                }
+              
                 $riesg-> save();
                  
                 $revision = new Revision();
@@ -219,7 +228,11 @@ class RiesgoController extends Controller
                 $riesg-> tot_capacidad = $request->capacidad;
                 $riesg-> ind_estado = $request->estado;
                 $riesg-> usr_modifica = $consultausr;
-                $riesg-> nom_archivo = $request->file('inpArchivo')->store('public');
+                if(!is_null($request->file('inpArchivo')))
+                {
+                    $riesg-> nom_archivo = $request->file('inpArchivo')->store('public');
+                }
+              
                 $riesg-> save();
                  
                 $revision = new Revision();

@@ -20,6 +20,8 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ReporteEventosController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RevisionesController;
+use App\Http\Controllers\ReporteGraficoRXRController;
+use App\Http\Controllers\ReporteGraficoRiesgosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,7 +131,13 @@ Route::get('/ReporteEvento', [ReporteEventosController::class, 'inicio']);
 Route::get('/ReportePDFEventos', [PDFController::class, 'cargarBD']);
 
 Route::get('/Revisiones', [RevisionesController::class, 'inicio']);
-Route::get('/Revisiones', [PDFController::class, 'cargarBD']);
+Route::get('/ReporteRevisionesPDF', [PDFController::class, 'cargarBD']);
+
+Route::get('/graficoriegosxresp',[ReporteGraficoRXRController::class,'inicio'])->middleware('auth');
+
+Route::get('/ReporteGraficoRiesgos', [ReporteGraficoRiesgosController::class,'inicio'])->middleware('auth');
+
+Route::get('/ReporteGraficoEventosxRiesgo', [ReporteGraficoRiesgosController::class,'inicio2'])->middleware('auth');
 
 Route::view('Plantilla','vwMainTemplate')->name('vwMainTemplate');
 Route::view('RegistrarEventos','vwEvento')->name('vwEvento')->middleware('auth');

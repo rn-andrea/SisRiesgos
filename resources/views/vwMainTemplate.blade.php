@@ -16,7 +16,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">IT Rossmon</a>
+            <a class="navbar-brand ps-3" href="/PanelPrincipal">IT Rossmon</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -52,7 +52,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Monitorear Riesgos</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/PanelPrincipal">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Panel Principal
                             </a>
@@ -105,24 +105,43 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Revisiones
                             </a>
-                            <a id="us222" class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            <a id="us222" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReportes" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Reportes
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a id="repgrafico" class="nav-link" href="/ReporteGraficoRiesgos">Reporte gráfico de riesgos</a>
+                                    <a id="repgrafico" class="nav-link" href="/ReporteGraficoEventosxRiesgo/?valor=0">Reporte gráfico de eventos por riesgo</a>
+                                    <a id="repusuarios" class="nav-link" href="/graficoriegosxresp">Reporte gráfico de riesgos por responsable</a>
+                                    <a id="repeventos" class="nav-link" href="/ReporteEvento/?orden=1">Reporte de eventos</a>
+                                    <a id="repriesgos" class="nav-link" href="/ReporteRiesgos/?orden=1">Reporte de riesgos</a>
+                                    <a id="repusuarios" class="nav-link" href="/ReporteUsuarios/?orden=1">Reporte de usuarios</a>
+                                    <a id="repRev" class="nav-link" href="/Revisiones/?orden=1">Reporte de revisiones</a>
+                               
+                                   
+                                </nav>
+                            </div>
                             @endauth
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div id='nameDiv' class="small">
                         <?php
-                          /*  try {
-                            $correo = auth()->user()->email;
-                            $consulta = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
-                           echo '<p>Usuario logueado como: '.$consulta.'</p>';
-                           } catch (Exception $e) {
+        try {
+         $correo = auth()->user()->email;
+         $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
+        if($consulta=='2')
+        {
+            echo "<script>document.getElementById('us1').remove();</script>";
+            echo "<script>document.getElementById('us11').remove()</script>";
+            echo "<script>document.getElementById('us111').remove()</script>";
+        }
+        } catch (Exception $e) {
 
-                           }*/
-                        ?>
+        }
+        ?>
                         </div>
 
                     </div>

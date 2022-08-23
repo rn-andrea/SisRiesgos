@@ -8,6 +8,18 @@ if(arr[1]=='1')
 }else if(arr[1]=='2')
 {
     document.getElementById("eleccion").selectedIndex = "1";
+}else if(arr[1]=='3')
+{
+    document.getElementById("eleccion").selectedIndex = "2";
+}else if(arr[1]=='4')
+{
+    document.getElementById("eleccion").selectedIndex = "3";
+}else if(arr[1]=='5')
+{
+    document.getElementById("eleccion").selectedIndex = "4";
+}else if(arr[1]=='6')
+{
+    document.getElementById("eleccion").selectedIndex = "5";
 }
 
 function orden()
@@ -16,9 +28,21 @@ function orden()
     if(vrOrden=='Sin filtros')
     {
         window.location.href = "/ReporteRiesgos/?orden=1";
-    } else if(vrOrden=='Proceso Afecta')
+    }else if(vrOrden=='Proceso Afecta')
     {
         window.location.href = "/ReporteRiesgos/?orden=2";
+    }else if(vrOrden=='Accion1')
+    {
+        window.location.href = "/ReporteRiesgos/?orden=3";
+    }else if(vrOrden=='Accion2')
+    {
+        window.location.href = "/ReporteRiesgos/?orden=4";
+    }else if(vrOrden=='Accion3')
+    {
+        window.location.href = "/ReporteRiesgos/?orden=5";
+    }else if(vrOrden=='Accion4')
+    {
+        window.location.href = "/ReporteRiesgos/?orden=6";
     }
 }
 
@@ -33,6 +57,18 @@ window.open("/ReportePDFRiesgo/?orden=generarpdf1Riesgos", "_blank");
 }else if(ordenPDF[1]=='2')
 {
 window.open("/ReportePDFRiesgo/?orden=generarpdf2Riesgos", "_blank");
+}else if(ordenPDF[1]=='3')
+{
+window.open("/ReportePDFRiesgo/?orden=generarpdf4Riesgos", "_blank");
+}else if(ordenPDF[1]=='4')
+{
+window.open("/ReportePDFRiesgo/?orden=generarpdf5Riesgos", "_blank");
+}else if(ordenPDF[1]=='5')
+{
+window.open("/ReportePDFRiesgo/?orden=generarpdf6Riesgos", "_blank");
+}else if(ordenPDF[1]=='6')
+{
+window.open("/ReportePDFRiesgo/?orden=generarpdf7Riesgos", "_blank");
 }
 
 const valores2 = window.location.search;

@@ -8,11 +8,14 @@
  <body>
  <div>
   </br>
+  <img src="{{ asset('/mainTemplate/img/Rossmon.png') }}" alt="Rossmon" style="position:absolute;" width="182" height="98">
  </br>
  <div style="position: absolute; right: 5.3%; font-size: 24px; ">
  <p id="pfecha">
  </p>
  </div>
+ </br>
+ </br>
  </br>
  </br>
  <h1 id="h1titulo" style="text-align: center;">
