@@ -85,9 +85,9 @@
 								<td>{{$impacto->nom_impacto}}</td>
 								<td>{{$impacto->des_observacion}}</td>
                                 <td>{{$impacto->created_at}}</td>
-                                <td>{{$impacto->usuario->usr_nombre}}</td>
+                                <td>{{$impacto->usuario->usr_nombre}} {{$impacto->usuario->usr_apellidos}}</td>
                                 <td>{{$impacto->updated_at}}</td>
-                                <td>{{$impacto->usuario1->usr_nombre}}</td>
+                                <td>{{$impacto->usuario1->usr_nombre}} {{$impacto->usuario1->usr_apellidos}}</td>
                                 <td>{{$impacto->estado->nom_estado}}</td>
                                  </tr>
                     @endforeach
@@ -109,12 +109,12 @@
     @endif
     @if (session('Error')=='error')
         <script>
-             Swal.fire('Error<br/> El impacto no se modifico', '', 'error')
+             Swal.fire('Error<br/> El impacto no se ha modificado', '', 'error')
         </script>
     @endif
     @if (session('Error2')=='error')
         <script>
-             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la unidad de medida', '', 'error')
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre del impacto de riesgo', '', 'error')
         </script>
     @endif
     @if (session('Modificar')=='ok')

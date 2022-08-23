@@ -33,7 +33,7 @@ class EstadoResolucionController extends Controller
       
         $this->validate($request, [
            
-            'nom_estado_resolucion'=> 'required|max:50|min:3|unique:estado_resolucions',
+            'nom_estado_resolucion'=> 'required|max:50|min:3|unique:estado_resolucions|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
             'observacion'=> 'max:200',
         ]);

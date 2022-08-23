@@ -90,7 +90,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('Agregar')=='ok')
         <script>
-             Swal.fire('Unidad de medida registrado con exito!', '', 'success')
+             Swal.fire('Estado de evento registrado con exito!', '', 'success')
         </script>
     @endif
     @if (session('Error')=='error')

@@ -45,12 +45,7 @@
                    
     </div>
    
-    <div class="col-sm">
-            <input type="hidden" class="form-control" id="txtUSRCREACION"  name="usr_creacion" value="305050002"> 
-            </div>
-            <div class="col-sm">
-            <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="usr_modifica" value="305050002">
-</div>  
+    
     
     </br>
     

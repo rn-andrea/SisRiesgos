@@ -106,7 +106,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('Agregar')=='ok')
         <script>
-             Swal.fire('Impacto registrado con exito!', '', 'success')
+             Swal.fire('Probabilidad registrada con exito!', '', 'success')
         </script>
     @endif
     @if (session('Error')=='error')
@@ -116,7 +116,7 @@
     @endif
     @if (session('Error2')=='error')
         <script>
-             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la unidad de medida', '', 'error')
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la probabilidad', '', 'error')
         </script>
     @endif
     @if (session('Modificar')=='ok')
@@ -128,7 +128,7 @@
     @if (session('Modifica')=='info')
         
         <script>
-             Swal.fire('No ha realizado ningun cambio al estado de evento seleccionado', '', 'info')
+             Swal.fire('No ha realizado ningun cambio a la probabilidad seleccionado', '', 'info')
         </script>
     @endif
 @endsection

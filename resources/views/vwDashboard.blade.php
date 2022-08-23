@@ -202,12 +202,12 @@
                     <td>{{$reporteRiesgo->id}}</td>
                     <td>{{$reporteRiesgo->nom_riesgos}}</td>
                     <td>{{$reporteRiesgo->des_detalle}}</td>
-                    <td>{{$reporteRiesgo->nom_categoria}}</td>
+                    <td>{{$reporteRiesgo->nombre_categoria}}</td>
                     <td>{{$reporteRiesgo->id_nomenclatura}}</td>
                     <td>{{$reporteRiesgo->nom_probabilidad}}</td>
                     <td>{{$reporteRiesgo->nom_impacto}}</td>
                     <td>{{$reporteRiesgo->tot_calificacion}}</td>
-                    <td>{{$reporteRiesgo->nom_accion}}</td>
+                    <td>{{$reporteRiesgo->nombre_accion}}</td>
                     <td>{{$reporteRiesgo->nom_unidad_medida}}</td>
                     <td>
                     @if($reporteRiesgo->ind_estado==1)

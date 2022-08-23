@@ -105,9 +105,9 @@
 								<td>{{$ProcesoAfecta->nom_proceso_afecta}}</td>
 								<td>{{$ProcesoAfecta->des_observacion}}</td>
                                 <td>{{$ProcesoAfecta->created_at}}</td>
-                                <td>{{$ProcesoAfecta->id_usuario}}</td>
+                                <td>{{$ProcesoAfecta->usuario->usr_nombre}} {{$ProcesoAfecta->usuario->usr_apellidos}}</td>
                                 <td>{{$ProcesoAfecta->updated_at}}</td>
-                                <td>{{$ProcesoAfecta->usuario1->usr_nombre}}</td>
+                                <td>{{$ProcesoAfecta->usuario1->usr_nombre}} {{$ProcesoAfecta->usuario1->usr_apellidos}}</td>
                                 <td>{{$ProcesoAfecta->estado->nom_estado}}</td>
                              </tr>
                     @endforeach  

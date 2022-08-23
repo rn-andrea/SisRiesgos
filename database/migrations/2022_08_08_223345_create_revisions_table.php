@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('codigo');
             $table->string('nombre',100);
-            $table->date('fec_evento');
+            
             $table->string('descripcion');
             $table->string('usuario');
-           
+            $table->timestamps();
         });
     }
 

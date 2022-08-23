@@ -155,12 +155,12 @@
     @endif
     @if (session('Error')=='error')
         <script>
-             Swal.fire('Error<br/> El codigo de usuario ya existe', '', 'error')
+             Swal.fire('Error<br/> El código de usuario ya existe', '', 'error')
         </script>
     @endif
     @if (session('Error2')=='error')
         <script>
-             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el codigo del usuario', '', 'error')
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el código del usuario', '', 'error')
         </script>
     @endif
     @if (session('Modificar')=='ok')

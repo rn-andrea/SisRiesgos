@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Models\Revision;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,14 @@ class PDFController extends Controller
             {
                 $reporteusuarios = DB::select('select * from usuarios where IND_ESTADO = 2');
                 return view ('vwReportePDF', [
+                    'reporteusuarios' => $reporteusuarios
+                ]);
+            }
+
+            if($orden=='generarpdfrevisiones')
+            {
+                $reporteusuarios = Revision::all();
+                return view ('vwReporteRevPDF', [
                     'reporteusuarios' => $reporteusuarios
                 ]);
             }

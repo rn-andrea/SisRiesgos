@@ -7,6 +7,7 @@ use App\Models\Usuario;
 use App\Models\Rol;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsuariosController extends Controller
 {
@@ -62,7 +63,8 @@ class UsuariosController extends Controller
         $usuario-> usr_nombre = $request-> get('nombre');
         $usuario-> usr_apellidos = $request-> get('apellidos');
         $usuario-> usr_email = $request-> get('correo');
-        $usuario-> usr_password = $request-> get('contraseña');
+        $usuario-> usr_password = $request-> request -> add([
+            'usr_password'=>Hash::make($request->input('contraseña')) ]);
         $usuario-> ind_estado = $request-> get('estado');
         $usuario-> id_rol = $request-> get('rol');
         $usuario-> save();

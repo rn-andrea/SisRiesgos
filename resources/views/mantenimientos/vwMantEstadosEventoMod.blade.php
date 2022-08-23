@@ -90,17 +90,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('Agregar')=='ok')
         <script>
-             Swal.fire('Responsable de proceso que afecta registrado con exito!', '', 'success')
+             Swal.fire('Estado de evento registrado con exito!', '', 'success')
         </script>
     @endif
     @if (session('Error')=='error')
         <script>
-             Swal.fire('Error<br/> El responsable por el proceso que afecta ya existe', '', 'error')
+             Swal.fire('Error<br/> El nombre del estado de evento ya existe', '', 'error')
         </script>
     @endif
     @if (session('Error2')=='error')
         <script>
-             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el responsable por el proceso que afecta', '', 'error')
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el estado de evento', '', 'error')
         </script>
     @endif
     @if (session('Modificar')=='ok')

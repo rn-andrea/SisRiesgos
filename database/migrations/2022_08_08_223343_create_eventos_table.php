@@ -28,7 +28,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_unidad_medida');
             $table->decimal('num_perdida_estimada')-> nullable();
             $table->integer('num_rto')-> nullable();
-            $table->string('des-lecciones_aprend',300)-> nullable();
+            $table->string('des_lecciones_aprend',300)-> nullable();
             $table->string('usr_creacion',10)-> nullable();
             $table->string('usr_modifica',10)-> nullable();
             $table->timestamps();

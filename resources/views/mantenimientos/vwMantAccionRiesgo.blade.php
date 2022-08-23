@@ -17,33 +17,30 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtAccion">Descripción de la Acción</label>
-            <input type="text" class="form-control" id="txtAccion" name="NOM_ACCION" placeholder="">
+            <input type="text" class="form-control {{$errors->has('nombre_accion')?'is-invalid':'' }}" id="txtAccion" name="nombre_accion" placeholder="Descipción de la acción de riesgo" value="{{old('nombre_accion')}}">
+            {!! $errors->first('nombre_accion','<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Observación</label>
-            <textarea class="form-control" id="txtDetalleRiesgo" name="DES_OBSERVACION" rows="3"></textarea>
+            <textarea class="form-control {{$errors->has('observacion')?'is-invalid':'' }}" id="txtDetalleRiesgo" placeholder="Digite las observaciones necesarias" rows="3" name="observacion" value="{{old('observacion')}}"></textarea>
+            {!! $errors->first('observacion','<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
 
     <div class="row">
                 <div class="col-sm">
-				<input class="form-check-input" type="hidden" value="2" name="IND_ESTADO" >
-                <input class="form-check-input" type="checkbox" value="1" name="IND_ESTADO" id="defaultCheck3" checked>
+				<input class="form-check-input" type="hidden" value="2" name="estado" >
+                <input class="form-check-input" type="checkbox" value="1" name="estado" id="defaultCheck3" checked>
                     <label class="form-check-label" for="Activo">
                         Estado Activo
                     </label>
                    
                     
     </div>
-    <div class="col-sm">
-                    <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_MODIFICA" value="3050500002">
-                    <input type="hidden" class="form-control" id="txtUSRMODIFICA"  name="USR_CREACION" value="3050500002">
-                 </div>
-    
-    </br>
+  
     
     <div class="row">
-       
+    <div class="col-sm"></div>
         <div class="col-sm">
             <button type="submit" id="btnAccionRiesg" class="btn btn-primary my-1">Registrar Acción</button>
         </div>    
@@ -85,12 +82,12 @@
                     @foreach($Accions as $Accion)
                              <tr>
 								<td>{{$Accion->id}}</td>
-								<td>{{$Accion->nom_accion}}</td>
+								<td>{{$Accion->nombre_accion}}</td>
 								<td>{{$Accion->des_observacion}}</td>
                                 <td>{{$Accion->created_at}}</td>
-                                <td>{{$Accion->usuario->usr_nombre}}</td>
+                                <td>{{$Accion->usuario->usr_nombre}} {{$Accion->usuario->usr_apellidos}}</td>
                                 <td>{{$Accion->updated_at}}</td>
-                                <td>{{$Accion->usuario1->usr_nombre}}</td>
+                                <td>{{$Accion->usuario1->usr_nombre}} {{$Accion->usuario1->usr_apellidos}}</td>
                                 <td>{{$Accion->estado->nom_estado}}</td>
                                 <td>  <a href="/MantAccion/{{$Accion->id}}">Modificar</a></td>
                             </tr>
@@ -104,4 +101,34 @@
 </div>
 </html>
 
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('Agregar')=='ok')
+        <script>
+             Swal.fire('Acción de riesgo registrada con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Error')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la acción de riesgo', '', 'error')
+        </script>
+    @endif
+    @if (session('Error2')=='error')
+        <script>
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la acción de riesgo', '', 'error')
+        </script>
+    @endif
+    @if (session('Modificar')=='ok')
+        
+        <script>
+             Swal.fire('Datos modificados, con exito!', '', 'success')
+        </script>
+    @endif
+    @if (session('Modifica')=='info')
+        
+        <script>
+             Swal.fire('No ha realizado ningun cambio a la acción de riesgo seleccionada', '', 'info')
+        </script>
+    @endif
 @endsection

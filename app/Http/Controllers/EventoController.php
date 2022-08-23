@@ -9,6 +9,7 @@ use App\Models\EstadoResolucion;
 use App\Models\Accion;
 use App\Models\UnidadMedida;
 use App\Models\Evento;
+use App\Models\Revision;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -18,11 +19,11 @@ class EventoController extends Controller
     public function index()
     {
         $Eventos = Evento::select('id','id_evento','nom_evento','id_riesgos','fec_evento','des_situacion_pre','des_detalle_medidas','id_estado_resolucion','id_accion','jus_evento_no_resuelto','jus_medida_aplicada','id_unidad_medida','num_perdida_estimada','num_rto','des_lecciones_aprend','usr_creacion','usr_modifica','created_at','updated_at','ind_estado')->orderBy('updated_at','DESC')->get();;
-        $riesgo = Riesgo::select('id','id_riesgos','nom_riesgos')->where('ind_estado','1')->get();
+        $riesgo = Riesgo::select('id','id_riesgos','nom_riesgos','id_accion')->where('ind_estado','1')->get();
         $estadoresolucion = EstadoResolucion::select('id','nom_estado_resolucion')->where('ind_estado','1')->get();
-        $accionsel = Accion::select('id','nom_accion')->where('ind_estado','1')->get();
+        $accionsel = Accion::select('id','nombre_accion')->where('ind_estado','1')->get();
         $unidadmedidasel = UnidadMedida::select('id','nom_unidad_medida')->where('ind_estado','1')->get();
-
+       // $riesgo = Riesgo::select('id','id_riesgos','nom_riesgos','id_accion')->where('ind_estado','1')->where('id_riesgo',$riesgo['id'])->value('id_accion');
         return view('procesos.vwEventoR',
         [ 
             'Eventos'=> $Eventos,
@@ -40,27 +41,157 @@ class EventoController extends Controller
 
     public function store(Request $request)
     {
-        $Eventos= new Evento();        			  		   
-        $Eventos-> nom_evento = $request-> get('NOM_EVENTO');
-	    $Eventos-> nom_riesgo = $request-> get('NOM_RIESGO');
-        $Eventos-> fec_evento = $request-> get('FEC_EVENTO');
-	    $Eventos-> des_situacion_pre = $request-> get('DES_SITUACION_PRE');
-        $Eventos-> des_detalle_medidas = $request-> get('DES_DETALLE_MEDIDAS');
-        $Eventos-> id_estado_resolucion= $request-> get('ID_ESTADO_RESOLUCION');
-	    $Eventos-> id_accion = $request-> get('ID_ACCION');
-        $Eventos-> id_unidad_medida = $request-> get('ID_UNIDAD_MEDIDA');
-        $Eventos-> jus_evento_no_resuelto = $request-> get('JUS_EVENTO_NO_RESUELTO');
-        $Eventos-> jus_medida_aplicada = $request-> get('JUS_MEDIDA_APLICADA');
-        $Eventos-> num_perdida_estimada= $request-> get('NUM_PERDIDA_ESTIMADA');
-        $Eventos-> des_lecciones_aprend= $request-> get('DES_LECCIONES_APREND');
-        $Eventos-> num_rto = $request-> get('NUM_RTO');
-	    $Eventos-> ind_estado= $request-> get('IND_ESTADO');
-	   	$Eventos-> usr_creacion = $request-> get('USR_CREACION ');
-        $Eventos-> usr_modifica = $request-> get('USR_MODIFICA ');
+       $correo = auth()->user()->email;
+       $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+       
+        $Eventos= new Evento();  
+        $this->validate($request, [
+            'nom_evento'=> 'required|max:50|min:3|unique:eventos',
+            'fec_evento'=> 'required|date',
+            'des_situacion_pre'=> 'required',
+            'num_perdida_estimada'=> 'numeric',
+
+        ]);      
+        $dato1= $request->id_evento;	
+        $dato2=DB::table('eventos')->select('id');
+        $contador= $dato2->count()+1;
+
+        $Eventos-> id_evento = $dato1.$contador;
+        $Eventos-> nom_evento = $request-> get('nom_evento');
+	    $Eventos-> id_riesgos = $request-> get('id_riesgos');
+        $Eventos-> fec_evento = $request-> get('fec_evento');
+	    $Eventos-> des_situacion_pre = $request-> get('des_situacion_pre');
+        $Eventos-> des_detalle_medidas = $request-> get('des_detalle_medidas');
+        $Eventos-> id_estado_resolucion= $request-> get('id_estado_resolucion');
+	    $Eventos-> id_accion = $request-> get('id_accion');
+        $Eventos-> id_unidad_medida = $request-> get('id_unidad_medida');
+        $Eventos-> jus_evento_no_resuelto = $request-> get('jus_evento_no_resuelto');
+        $Eventos-> jus_medida_aplicada = $request-> get('jus_medida_aplicada');
+        $Eventos-> num_perdida_estimada= $request-> get('num_perdida_estimada');
+        $Eventos-> des_lecciones_aprend= $request-> get('des_lescciones_aprend');
+        $Eventos-> num_rto = $request-> get('rto');
+	    $Eventos-> ind_estado= $request-> get('estado');
+	   	$Eventos-> usr_creacion = $consultausr;
+        $Eventos-> usr_modifica = $consultausr;
 
 
         $Eventos-> save();
-        return redirect('/procesos/vwEventoR');
-    }
 
+        $revision = new Revision();
+        $revision-> codigo= $dato1.$contador;
+        $revision->nombre=$request-> get('nom_evento');
+        $revision->descripcion='Creación de evento';
+        $revision->usuario=$consultausr;
+        $revision-> save();
+        return redirect('/procesos/vwEventoR')->with('Agregar','ok');
+    }
+    public function show($id)
+    {
+        //return $id;
+       
+        $event= Evento::findOrFail($id);
+        $Eventos = Evento::select('id','id_evento','nom_evento','id_riesgos','fec_evento','des_situacion_pre','des_detalle_medidas','id_estado_resolucion','id_accion','jus_evento_no_resuelto','jus_medida_aplicada','id_unidad_medida','num_perdida_estimada','num_rto','des_lecciones_aprend','usr_creacion','usr_modifica','created_at','updated_at','ind_estado')->orderBy('updated_at','DESC')->get();;
+        $condicion2=Evento::where('id',$id)->select('id_riesgos')->value('id_riesgos');
+        $riesgo = Riesgo::select('id','id_riesgos','nom_riesgos','id_accion')->where('ind_estado','1')->where('id','!=',$condicion2)->get();
+        $condicion3=Evento::where('id',$id)->select('id_estado_resolucion')->value('id_estado_resolucion');
+        $estadoresolucion = EstadoResolucion::select('id','nom_estado_resolucion')->where('ind_estado','1')->where('id','!=',$condicion3)->get();
+        $condicion4=Evento::where('id',$id)->select('id_accion')->value('id_accion');
+        $accionsel = Accion::select('id','nombre_accion')->where('ind_estado','1')->where('id','!=',$condicion4)->get();
+        $condicion5=Evento::where('id',$id)->select('id_unidad_medida')->value('id_unidad_medida');
+        $unidadmedidasel = UnidadMedida::select('id','nom_unidad_medida')->where('ind_estado','1')->where('id','!=',$condicion5)->get();
+       // $riesgo = Riesgo::select('id','id_riesgos','nom_riesgos','id_accion')->where('ind_estado','1')->where('id_riesgo',$riesgo['id'])->value('id_accion');
+        return view('procesos.vwEventoRMod',
+        [ 
+            'Eventos'=> $Eventos,
+            'riesgo'=>$riesgo,
+            'estadoresolucion'=>$estadoresolucion,
+            'accionsel'=> $accionsel,
+            'unidadmedidasel'=>$unidadmedidasel,
+            'event'=>$event,
+        ]);
+    } 
+    public function update(Request $request, $id)
+    {
+        //$correo = auth()->user()->email;
+        //$consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+       
+        $event= Evento::findOrFail($id);
+        $verificardatoa= $request->nom_evento;
+      
+        $verificardato3= DB::table('eventos')->select('nom_evento')->where('nom_evento',$verificardatoa);
+        $existencia2= $verificardato3->count();
+
+        $this->validate($request, [
+            'nom_evento'=> 'required|max:50|min:3',
+            'fec_evento'=> 'required|date',
+            'des_situacion_pre'=> 'required',
+            'num_perdida_estimada'=> 'numeric',
+
+        ]);
+
+       $consultacd = DB::table('eventos')->select('id')->where('nom_evento',$verificardatoa)->where('id',$id);
+        $existencia= $consultacd->count();
+        $dato2=DB::table('eventos')->select('id')->where('id',$id)->value('id');;
+
+        if($existencia==1){
+
+            $event-> nom_evento = $request->nom_evento;
+            $event-> id_riesgos = $request->id_riesgos;
+            $event-> fec_evento = $request->fec_evento;
+            $event-> des_situacion_pre = $request->des_situacion_pre;
+            $event-> des_detalle_medidas = $request->des_detalle_medidas;
+            $event-> id_estado_resolucion = $request->id_estado_resolucion;
+            $event-> id_accion = $request->id_accion;
+            $event-> id_unidad_medida =  $request->id_unidad_medida;
+            $event-> jus_evento_no_resuelto = $request->jus_evento_no_resuelto;
+            $event-> jus_medida_aplicada = $request->jus_medida_aplicada;
+            $event-> num_perdida_estimada = $request-> num_perdida_estimada;
+            $event-> des_lecciones_aprend = $request->des_lecciones_aprend;
+            $event->  num_rto= $request-> rto;
+            $event-> ind_estado = $request->estado;
+            $event-> usr_modifica = '305050002';
+              
+               $event-> save();
+                 
+                $revision = new Revision();
+                $revision-> codigo= $dato2 ;
+                $revision->nombre=$request-> get('nom_evento');
+                $revision->descripcion='Modificación de evento';
+                $revision->usuario='305050002';
+                $revision-> save();
+                return REDIRECT ('/evento')->with('Modificar','ok');
+            
+
+        }else{
+            if( $existencia2 > 0){
+                return back()->with('Error','error');
+            }else{
+                $event-> nom_evento = $request->nom_evento;
+                $event-> id_riesgos = $request->id_riesgos;
+                $event-> fec_evento = $request->fec_evento;
+                $event-> des_situacion_pre = $request->des_situacion_pre;
+                $event-> des_detalle_medidas = $request->des_detalle_medidas;
+                $event-> id_estado_resolucion = $request->id_estado_resolucion;
+                $event-> id_accion = $request->id_accion;
+                $event-> id_unidad_medida =  $request->id_unidad_medida;
+                $event-> jus_evento_no_resuelto = $request->jus_evento_no_resuelto;
+                $event-> jus_medida_aplicada = $request->jus_medida_aplicada;
+                $event-> num_perdida_estimada = $request-> num_perdida_estimada;
+                $event-> des_lecciones_aprend = $request->des_lecciones_aprend;
+                $event->  num_rto= $request-> rto;
+                $event-> ind_estado = $request->estado;
+                $event-> usr_modifica = '305050002';
+                  
+                $revision = new Revision();
+                $revision-> codigo= $dato2;
+                $revision->nombre=$request-> get('nom_evento');
+                $revision->descripcion='Modificación de evento';
+                $revision->usuario='305050002';
+                $revision-> save();
+                return REDIRECT ('/evento')->with('Modificar','ok');
+                
+        }
+   
+    }
+}
 }

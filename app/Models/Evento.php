@@ -15,14 +15,14 @@ class Evento extends Model
     public function estado(){
         return $this->hasOne('App\Models\Estado','id_estado','ind_estado');
     }
-    public function usuario(){
+    public function usuarioc(){
         return $this->hasOne('App\Models\Usuario','id_usuario','usr_creacion');
     }
-    public function usuario1(){
+    public function usuariom(){
         return $this->hasOne('App\Models\Usuario','id_usuario','usr_modifica');
     }
     public function riesgo(){
-        return $this->hasOne('App\Models\Riesgo','id_riesgos','id_riesgos');
+        return $this->hasOne('App\Models\Riesgo','id','id_riesgos');
     }
     public function estadoresolucion(){
         return $this->hasOne('App\Models\EstadoResolucion','id','id_estado_resolucion');

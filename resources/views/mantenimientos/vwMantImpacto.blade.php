@@ -114,7 +114,7 @@
     @endif
     @if (session('Error2')=='error')
         <script>
-             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la unidad de medida', '', 'error')
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre del impacto de riesgo', '', 'error')
         </script>
     @endif
     @if (session('Modificar')=='ok')

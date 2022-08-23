@@ -25,7 +25,7 @@ return new class extends Migration
             $table->decimal('tot_calificacion');
             $table->integer('num_pos_matriz')-> nullable();
             $table->unsignedBigInteger('id_accion');
-            $table->boolean('ind_afecta_servicio');
+            $table->string('ind_afecta_servicio')->nullable();
             $table->Integer('num_rto')-> nullable();
             $table->unsignedBigInteger('id_unidad_medida');
             $table->decimal('tot_tolerancia')-> nullable();

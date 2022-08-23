@@ -1,26 +1,24 @@
 @extends('vwMainTemplate')
 @section('contenido')
 <html>
-</br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <body>
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Registrar Evento</h1>
+    <h1 class="mt-4">Modificar Evento</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Sistema de Gestión de Riesgos</li>
         </ol>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></br></li>
         </ol>
-    <form action="/evento/store" method="POST" enctype="multipart/form-data">
-	@csrf
-    <input class="form-check-input" type="hidden" value="EV-" name="id_evento" >
+    <form action="/evento/update/{{$event->id}}" method="POST" >
+    @csrf
+        {{method_field('PUT')}}
     <div class="row">
         <div class="col-sm">
         <label for="txtEvento">Nombre del Evento</label>
 
-        <input type="text" class="form-control {{$errors->has('nom_evento')?'is-invalid':'' }}" id="txtEvento" placeholder="Nombre del evento" name="nom_evento" value="{{old('nom_evento')}}">
+        <input type="text" class="form-control {{$errors->has('nom_evento')?'is-invalid':'' }}" id="txtEvento" placeholder="Nombre del evento" name="nom_evento" value="{{$event->nom_evento}}">
         {!! $errors->first('nom_evento','<div class="invalid-feedback">:message</div>') !!}   
     </div>
 
@@ -30,14 +28,15 @@
         <div class="col-sm">
         <label for="txtRiesgo">Nombre del Riesgo</label>
         <select id="cbCategoria" class="form-control" name="id_riesgos">
-            @foreach ($riesgo as $riesg)
+        <option value="{{$event['id_riesgos']}}">{{$event->riesgo->nom_riesgos}}</option>  
+          @foreach ($riesgo as $riesg)
                 <option value="{{$riesg['id']}}">{{$riesg['nom_riesgos']}}</option>
             @endforeach
         </select>
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Fecha del Evento</label>
-        <input type="date" class="form-control {{$errors->has('fec_evento')?'is-invalid':'' }}" id="txtClasificacion" placeholder="" name="fec_evento">
+        <input type="date" class="form-control {{$errors->has('fec_evento')?'is-invalid':'' }}" id="txtClasificacion" placeholder="" name="fec_evento" value="{{$event->fec_evento}}">
         {!! $errors->first('fec_evento','<div class="invalid-feedback">:message</div>') !!}
     </div>
     </div>
@@ -48,12 +47,12 @@
     <div class="row">
         <div class="col-sm">
             <label for="txtDetalleRiesgo">Situación Presentada</label>
-            <textarea class="form-control {{$errors->has('des_situacion_pre')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="des_situacion_pre"></textarea>
+            <textarea class="form-control {$errors->has('des_situacion_pre')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="des_situacion_pre">{{$event->des_situacion_pre}}</textarea>
             {!! $errors->first('des_situacion_pre','<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-sm">
             <label for="txtDetalleRiesgo">Detalle de medidas o controles aplicados</label>
-            <textarea class="form-control  {{$errors->has('des_detalle_medidas')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="des_detalle_medidas"></textarea>
+            <textarea class="form-control {{$errors->has('des_detalle_medidas')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="des_detalle_medidas">{{$event->des_detalle_medidas}}</textarea>
             {!! $errors->first('des_detalle_medidas','<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -62,10 +61,10 @@
     
     <div class="row">
         <div class="col-sm">
-        <input class="form-check-input" type="hidden" name="valestado" id="valestado">
-        <label for="cbestado">Estado de Resolución del Evento</label>
-        <select id="id_estado_resolucion" class="form-control" name="id_estado_resolucion">
-           @foreach ($estadoresolucion as $estresolucion)
+        <label for="cbProbabilidad">Estado de Resolución del Evento</label>
+        <select id="cbProbabilidad" class="form-control" name="id_estado_resolucion">
+        <option value="{{$event['id_estado_resolucion']}}">{{$event->estadoresolucion->nom_estado_resolucion}}</option>  
+        @foreach ($estadoresolucion as $estresolucion)
                 <option value="{{$estresolucion['id']}}">{{$estresolucion['nom_estado_resolucion']}}</option>
             @endforeach
         </select>
@@ -73,7 +72,7 @@
         <div class="col-sm">
         <label for="cbImpacto">Accion Aplicada al evento</label>
         <select id="cbImpacto" class="form-control" name="id_accion">
-       
+        <option value="{{$event['id_accion']}}">{{$event->accions->nombre_accion}}</option>  
           @foreach ($accionsel as $accion)
                 <option value="{{$accion['id']}}">{{$accion['nombre_accion']}}</option>
           @endforeach
@@ -86,12 +85,12 @@
     <div class="row">
         <div class="col-sm">
             <label for="txtDetalleRiesgo">Justificación por evento no resuelto</label>
-            <textarea class="form-control {{$errors->has('jus_evento_no_resuelto')?'is-invalid':'' }}" id="jus_evento_no_resuelto" rows="3" name="jus_evento_no_resuelto"></textarea>
+            <textarea class="form-control {{$errors->has('jus_evento_no_resuelto')?'is-invalid':'' }}" id="jus_evento_no_resuelto" rows="3" name="jus_evento_no_resuelto">{{$event->jus_evento_no_resuelto}}</textarea>
             {!! $errors->first('jus_evento_no_resuelto','<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="col-sm">
             <label for="txtDetalleRiesgo">Justificación por medida aplicada</label>
-            <textarea class="form-control {{$errors->has('jus_medida_aplicada')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="jus_medida_aplicada"></textarea>
+            <textarea class="form-control {{$errors->has('jus_medida_aplicada')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="jus_medida_aplicada">{{$event->jus_medida_aplicada}}</textarea>
             {!! $errors->first('jus_medida_aplicada','<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
@@ -101,20 +100,21 @@
     <div class="row">
         <div class="col-sm">
         <label for="cbUnidadMedida">Unidad de Medida (Pérdidas anuales)</label>
-            <select id="cbUnidadMedida" class="form-control" name="id_unidad_medida">
-                 @foreach ($unidadmedidasel as $unidadmed)
+        
+         <select id="cbUnidadMedida" class="form-control"name="id_unidad_medida">
+         <option value="{{$event['id_unidad_medida']}}">{{$event->unidadmedida->nom_unidad_medida}}</option>  
+            @foreach ($unidadmedidasel as $unidadmed)
                     <option value="{{$unidadmed['id']}}">{{$unidadmed['nom_unidad_medida']}}</option>
                  @endforeach
             </select>
         </div>
         <div class="col-sm">
         <label for="txtClasificacion">Pérdida Estimada por el Evento</label>
-        <input type="numeric" class="form-control {{$errors->has('num_perdida_estimada')?'is-invalid':'' }}" id="txtClasificacion" placeholder="" name="num_perdida_estimada" >
+        <input type="number" class="form-control {{$errors->has('num_perdida_estimada')?'is-invalid':'' }}" id="txtClasificacion" placeholder="" name="num_perdida_estimada" value="{{$event->num_perdida_estimada}}">
         </div>
         <div class="col-sm">
             <label for="txtClasificacion">RTO Estimado</label>
-            <input type="text" class="form-control {{$errors->has('rto')?'is-invalid':'' }}" id="rto" placeholder="" name="rto">
-            {!! $errors->first('rto','<div class="invalid-feedback">:message</div>') !!}
+            <input type="number" class="form-control" id="txtClasificacion" placeholder="" id="rto" name="rto"  value="{{$event->num_rto}}">
         </div>
     </div>
 
@@ -122,13 +122,11 @@
     <div class="row">
         <div class="col-sm">
             <label for="txtDetalleRiesgo">Lecciones aprendidas</label>
-            <textarea class="form-control {{$errors->has('des_lecciones_aprend')?'is-invalid':'' }}" id="des_lecciones_aprend" rows="3" name="des_lecciones_aprend"></textarea>
-            {!! $errors->first('des_lecciones_aprend','<div class="invalid-feedback">:message</div>') !!}
+            <textarea class="form-control {{$errors->has('des_lecciones_aprend')?'is-invalid':'' }}" id="txtDetalleRiesgo" rows="3" name="des_lecciones_aprend">{{$event->des_lecciones_aprend}}</textarea>
         </div>
     </div>
-    <div class="row">
-       
-       <div class="col-sm">
+</br>
+    <div class="col-sm">
        <input class="form-check-input" type="hidden" value="2" name="estado" >
        <input class="form-check-input" type="checkbox" value="1" name="estado" id="defaultCheck3" checked>
            <label class="form-check-label" for="Activo">
@@ -136,17 +134,15 @@
            </label>
            
         </div>
-    </br>
-  
-    <div class="row">
-   
 
+    </br>
+
+    <div class="row">
         <div class="col-sm">
-</br>
-            <button type="submit" class="btn btn-primary my-1">Registrar Evento</button>
+            <button type="submit" class="btn btn-primary my-1">Actualizar Evento</button>
         </div>  
     </div>
-    
+
     <div class="row">
     <div class="card-body">
                 <table id="datatablesSimple">
@@ -170,7 +166,7 @@
                             <th>Fecha Modificación</th>
                             <th>Usuario Modificador</th>
                             <th>Estado</th>
-                            <th></th>
+                       
                         </tr>
                     </thead>
                     <tfoot>
@@ -193,7 +189,7 @@
                             <th>Fecha Modificación</th>
                             <th>Usuario Modificador</th>
                             <th>Estado</th>
-                            <th></th>
+                         
                         </tr>
                     </tfoot>
                     <tbody>
@@ -217,7 +213,7 @@
                                 <td>{{$evento->updated_at}}</td>
                                 <td>{{$evento->usuarioc->usr_nombre}} {{$evento->usuariom->usr_apellidos}}</td>
                                 <td>{{$evento->estado->nom_estado}}</td>
-                                <td>  <a href="/evento/{{$evento->id}}">Modificar</a></td>
+                                
 							 </tr>
                     @endforeach
 
@@ -226,28 +222,8 @@
             </div>
     </div>
 
-
 </div>
-
-<script>
-           $('#jus_evento_no_resuelto').hide();
-           var selection= document.getElementById("id_estado_resolucion");
-           selection.addEventListener('change',
-        function(){
-            $('#des_lecciones_aprend').val(selection.selectedOptions[0].value);
-          //  let valor=document.getElementById("des_lecciones_aprend");
-        if(($('#des_lecciones_aprend').val(selection.selectedOptions[0].value))=='3'){
-                $('#jus_evento_no_resuelto').show();
-            }else{
-                $('#jus_evento_no_resuelto').hide();
-            }
-           
-     });
-    
-
-  
-
-</script>
+</form>
 </body>
 </html>
 @endsection

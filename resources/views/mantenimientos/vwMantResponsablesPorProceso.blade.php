@@ -167,25 +167,6 @@ alert('Datos de registrados correctamente');
              Swal.fire('Datos modificados, con exito!', '', 'success')
         </script>
     @endif
-    <script>
-      $('.formulario-agregar').submit(function(e){
-        e.preventDefault();
-        Swal.fire({
-        title: 'Do you want to save the changes?',
-        showDenyButton: true,
-        showCancelButton: true,
-        confirmButtonText: 'Save',
-        denyButtonText: `Don't save`,
-        }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-         
-          this.submit();
-        } else if (result.isDenied) {
-            Swal.fire('Changes are not saved', '', 'info')
-        }
-        })
-      });
-    </script>
+    
 @endsection
 

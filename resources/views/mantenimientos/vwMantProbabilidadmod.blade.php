@@ -86,9 +86,9 @@
 								<td>{{$probabilidad->nom_probabilidad}}</td>
 								<td>{{$probabilidad->des_observacion}}</td>
                                 <td>{{$probabilidad->created_at}}</td>
-                                <td>{{$probabilidad->usuario->usr_nombre}}</td>
+                                <td>{{$probabilidad->usuario->usr_nombre}} {{$probabilidad->usuario->usr_apellidos}}</td>
                                 <td>{{$probabilidad->updated_at}}</td>
-                                <td>{{$probabilidad->usuario1->usr_nombre}}</td>
+                                <td>{{$probabilidad->usuario1->usr_nombre}} {{$probabilidad->usuario1->usr_apellidos}}</td>
                                 <td>{{$probabilidad->estado->nom_estado}}</td>
                               </tr>
                     @endforeach
@@ -106,12 +106,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if (session('Error')=='error')
         <script>
-             Swal.fire('Error<br/> Debe seleccionar un impacto en la tabla, para ser actualizado', '', 'error')
+             Swal.fire('Error<br/> Debe seleccionar una probabilidad en la tabla, para ser actualizado', '', 'error')
         </script>
     @endif
     @if (session('Error2')=='error')
         <script>
-             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la unidad de medida', '', 'error')
+             Swal.fire('Error<br/>No se pude modificar, debido a que ya existe el nombre de la probabilidad', '', 'error')
         </script>
     @endif
     @if (session('Modificar')=='ok')
@@ -123,7 +123,7 @@
     @if (session('Modifica')=='info')
         
         <script>
-             Swal.fire('No ha realizado ningun cambio al estado de evento seleccionado', '', 'info')
+             Swal.fire('No ha realizado ningun cambio a la probabilidad seleccionado', '', 'info')
         </script>
     @endif
 @endsection

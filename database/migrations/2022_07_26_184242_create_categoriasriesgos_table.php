@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('categoria_riesgos', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_categoria',100);
+            $table->string('nombre_categoria',100);
             $table->string('des_observacion',200)-> nullable();
             $table->string('usr_creacion',10)-> nullable();
             $table->string('usr_modifica',10)-> nullable();

@@ -31,7 +31,7 @@ class UnidadMedidaController extends Controller
         $UnidadMedidas = new UnidadMedida();  
         $this->validate($request, [
            
-            'nom_unidad_medida'=> 'required|max:50|min:3|unique:unidad_medidas',
+            'nom_unidad_medida'=> 'required|max:50|min:3|unique:unidad_medidas|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
             'usuario_creador'=> 'required',
             'usuario_modificador'=> 'required',

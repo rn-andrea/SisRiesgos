@@ -32,7 +32,7 @@ class ProbabilidadController extends Controller
         $Probabilidades= new Probabilidad();  
         $this->validate($request, [
            
-            'nom_probabilidad'=> 'required|max:50|min:3|unique:probabilidads',
+            'nom_probabilidad'=> 'required|max:50|min:3|unique:probabilidads|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
             'observacion'=> 'max:200',
         ]);

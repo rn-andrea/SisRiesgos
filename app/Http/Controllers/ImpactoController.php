@@ -46,7 +46,7 @@ class ImpactoController extends Controller
         $Impacto-> usr_modifica = $consultausr;
         $Impacto-> des_observacion = $request-> get('observacion');
         $Impacto-> save();
-        return REDIRECT ('/MantImpacto')->with('Agregar','ok');;
+        return REDIRECT ('/MantImpacto')->with('Agregar','ok');
     }
     public function show($id)
     {
@@ -73,7 +73,7 @@ class ImpactoController extends Controller
         $this->validate($request, [
            
             
-            'nom_impacto'=> 'required|max:50|min:3',
+            'nom_impacto'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
             'observacion'=> 'max:200',
         ]);
@@ -101,7 +101,7 @@ class ImpactoController extends Controller
             $impacto-> ind_estado = $request->estado;
             $impacto-> des_observacion = $request->observacion;
             $impacto-> usr_modifica = $consultausr;
-            $impacto-> updte_at;
+            
             $impacto-> save();
             return REDIRECT ('/MantImpacto')->with('Modificar','ok');
         }

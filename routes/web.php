@@ -37,10 +37,10 @@ Route::get('/', function () {
 });
 
 // Mantenimiento de usuarios
-Route::get('MantUsuarios/',  [UsuariosController::class, 'index']);
-Route::post('/MantUsuarios/store',  [UsuariosController::class, 'store']);
-Route::get('/MantUsuarios/{id}',  [UsuariosController::class, 'show']);
-Route::put('/MantUsuarios/update/{id}', [UsuariosController::class, 'update']);
+Route::get('MantUsuarios/',  [UsuariosController::class, 'index'])->middleware('auth');
+Route::post('/MantUsuarios/store',  [UsuariosController::class, 'store'])->middleware('auth');
+Route::get('/MantUsuarios/{id}',  [UsuariosController::class, 'show'])->middleware('auth');
+Route::put('/MantUsuarios/update/{id}', [UsuariosController::class, 'update'])->middleware('auth');
 
 
 //roles
@@ -107,7 +107,7 @@ Route::put('/identificarriesgo/update/{id}', [RiesgoController::class, 'update']
 Route::get('evento/', [EventoController::class, 'index']);
 Route::post('/evento/store',  [EventoController::class, 'store']);
 Route::get('/evento/{id}',  [EventoController::class, 'show']);
-Route::put('/eventos/update/{id}', [EventoController::class, 'update']);
+Route::put('/evento/update/{id}', [EventoController::class, 'update']);
 
 
 
@@ -118,7 +118,6 @@ Route::post('/logout', [loginController::class, 'cerrar']);
 
 Route::get('/ReporteUsuarios', [RegistroUsuarioController::class, 'inicio']);
 Route::get('/ReportePDF', [PDFController::class, 'cargarBD']);
-
 
 
 Route::get('/PanelPrincipal', [DashboardController::class,'inicio']);
