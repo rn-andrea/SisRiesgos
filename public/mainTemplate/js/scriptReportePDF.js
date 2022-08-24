@@ -86,11 +86,15 @@ else if(arr[1]=='generarpdf5Eventos')
     document.getElementById('h1titulo').innerHTML='Reporte de eventos por estado cerrado no resuelto';
     $orientacionArch = "landscape";
     $nombreArch="Reporte de eventos por estado cerrado no resuelto";
-}else if(arr[1]=='generarpdfrevisiones1')
+
+}
+
+else if(arr[1]=='generarpdfrevisiones1')
 {
     document.getElementById('h1titulo').innerHTML='Reporte de revisiones';
     $orientacionArch = "landscape";
     $nombreArch="Reporte de revisiones";
+
 }else if(arr[1]=='generarpdfrevisiones2')
 {
     document.getElementById('h1titulo').innerHTML='Reporte de revisiones de los riesgos';
@@ -101,6 +105,29 @@ else if(arr[1]=='generarpdf5Eventos')
     document.getElementById('h1titulo').innerHTML='Reporte de revisiones de los eventos';
     $orientacionArch = "landscape";
     $nombreArch="Reporte de revisiones de los eventos";
+}else if(arr[1]=='generarpdfrevisiones4')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de revisiones por el nombre del riesgo';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de revisiones por Nombre de Riesgos";
+}else if(arr[1]=='generarpdfrevisiones5')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de revisiones por el nombre del evento';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de revisiones por Nombre de Eventos";
+}
+const valores1 = window.location.search;
+const urlParams1 = new URLSearchParams(valores1);
+if(urlParams1.has('nombre'))
+{
+
+    var nom = urlParams1.get('nombre');
+    
+
+
+    document.getElementById('h1titulo').innerHTML="Reporte de revisiones de acuerdo al nombre "+nom;
+    $nombreArch="Reporte de revisiones por nombre "+ nom;
+    $orientacionArch = "landscape";
 }
 
 const valores2 = window.location.search;

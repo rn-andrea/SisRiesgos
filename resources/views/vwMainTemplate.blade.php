@@ -130,8 +130,7 @@
                                     <a id="repeventos" class="nav-link" href="/ReporteEvento/?orden=1">Reporte de eventos</a>
                                     <a id="repriesgos" class="nav-link" href="/ReporteRiesgos/?orden=1">Reporte de riesgos</a>
                                     <a id="repusuarios" class="nav-link" href="/ReporteUsuarios/?orden=1">Reporte de usuarios</a>
-                                    
-                                   
+                                    <a id="repriesgosxprocafect" class="nav-link" href="/graficoriegosxpocafect">Reporte gráfico de riesgos por proceso afecta</a>
                                 </nav>
                             </div>
                             <a id="usRevisiones" class="nav-link"  class="nav-link" href="/Revisiones/?orden=1" >
@@ -146,7 +145,15 @@
                         <?php
         try {
          $correo = auth()->user()->email;
-         $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
+        // $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
+         
+         $consulta = DB::table('usuarios')->select('USR_NOMBRE')->where('USR_EMAIL',$correo)->value('USR_NOMBRE');
+         $consulta1 = DB::table('usuarios')->select('USR_APELLIDOS')->where('USR_EMAIL',$correo)->value('USR_APELLIDOS');
+         echo '<p>Usuario logueado como: </br>'.$consulta.' '.$consulta1.'</p>';
+         } catch (Exception $e) {
+
+         }
+
         if($consulta=='2')
         {
             echo "<script>document.getElementById('usMant').remove();</script>";
@@ -160,9 +167,7 @@
             echo "<script>document.getElementById('flechaMant').remove()</script>";
             
         }
-        } catch (Exception $e) {
-
-        }
+        
         ?>
                         </div>
 

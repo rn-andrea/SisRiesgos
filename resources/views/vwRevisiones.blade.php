@@ -2,6 +2,7 @@
 @section('contenido')
 
 <html>
+    
 </br>
 <div class="card mb-4">
             <div class="card-header">
@@ -17,13 +18,45 @@
                 <option value="Todos">Todos</option>
                 <option value="Riesgos">Riesgos</option>
                 <option value="Eventos">Eventos</option>
+                <option value="NomRiesgo">Por Nombre de Riesgo</option>
+                <option value="NomEvento">Por Nombre de Evento</option>
                 </select>
+                <label id="lbl" ></label>
                 </label>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <div class="dataTable-dropdown">
+                <form action="/Revisiones/?orden=4" method="GET">
+                <label id="lbl1" for="nombre1">Nombre del Riesgo</label>
+                <select class="form-control" id="nombre1" name="nombre">
+                   @foreach ($riesgos as $riesgo)
+                        <option value="{{$riesgo['nom_riesgos']}}">{{$riesgo['nom_riesgos']}}</option>
+                   @endforeach
+                </select>
+</br>
+                <input type="submit" class="btn btn-primary my-1" id="btn1" value="Consultar" class="dataTable-input" style="width: 100px;">
+                </form>
+                <form action="/Revisiones/?orden=5" method="GET">
+                <label id="lbl2" for="txtClasificacion">Nombre del Riesgo</label>
+                <select  class="form-control" id="nombre2" name="nombre">
+                   @foreach ($Eventos as $evento)
+                        <option value="{{$evento['nom_evento']}}">{{$evento['nom_evento']}}</option>
+                   @endforeach
+                </select>
+                </br>
+                <input type="submit" class="btn btn-primary my-1" id="btn2" value="Consultar" class="dataTable-input" style="width: 100px;">
+                </form>
+                
+</div>
                 </div><div class="dataTable-search">
 
+               
+                
                 <button onclick="generarPDF()" class="dataTable-input">Generar pdf</button>
+</div>
 
-                </div>
+
+               
+               
                 </div>
                 <div id="DataTable" class="dataTable-container">
                 <table id="datatablesSimple" class="dataTable-table">
@@ -59,6 +92,40 @@
 
       <script src="{{ asset('/mainTemplate/js/scriptReporteRevisiones.js') }}"> </script>
 
+      <script>
+           
+          var cod= document.getElementById("eleccion");
+         var selected= cod.options[cod.selectedIndex].text;
+          document.querySelector('#lbl').innerText=selected;
+         
+          $('#lbl').hide();
+                if(selected == "Por Nombre de Riesgo"){
+                
+                     $('#btn2').hide();
+                     $('#nombre2').hide();
+                     $('#lbl2').hide();
+        
+                    $('#btn1').show();
+                    $('#nombre1').show();
+                    $('#lbl1').show();
+                }else if(selected == "Por Nombre de Evento"){
+                    $('#btn1').hide();
+                    $('#nombre1').hide();
+                    $('#lbl1').hide();
+                    $('#btn2').show();
+                    $('#nombre2').show();
+                    $('#lbl2').show();
+                }else{
+                    $('#btn1').hide();
+                    $('#btn2').hide();
+                    $('#nombre1').hide();
+                    $('#nombre2').hide();
+                    $('#lbl1').hide();
+                    $('#lbl2').hide();
+                }
+            
 
+
+</script>
 </html>
 @endsection

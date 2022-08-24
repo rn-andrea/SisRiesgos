@@ -103,7 +103,7 @@ let variable = document.getElementById('pminimo').innerHTML;
     options: {
       title: {
         display: true,
-        text: 'Gráfico de Riesgos por proceso afecta',
+        text: 'Gráfico de Riesgos por impacto',
         fontSize: 30
       }
     }
@@ -120,7 +120,7 @@ function generarPDF()
 const $elementoParaConvertir = document.getElementById('grafico');
 window.html2pdf().set({
 margin: 1,
-filename: "Reporte de gráfico de riesgos por proceso afecta",
+filename: "Reporte de gráfico de riesgos por impacto",
 image: {
     type: 'jpeg',
     quality: 0.98

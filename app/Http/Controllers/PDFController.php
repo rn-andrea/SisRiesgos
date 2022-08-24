@@ -37,22 +37,45 @@ class PDFController extends Controller
             if($orden=='generarpdfrevisiones1')
             {
                 $revisiones = DB::select('select * from revisions');
-                return view ('vwRevisiones', [
+                return view ('vwReporteRevPDF', [
                     'revisiones' => $revisiones
                 ]);
             }else if($orden=='generarpdfrevisiones2')
             {
                 $revisiones  = DB::select('select * from revisions where descripcion = "Creación de riesgo" or  descripcion = "Modificación de riesgo" ');
-                 return view ('vwreporteusuarios', [
+                 return view ('vwReporteRevPDF', [
                 'revisiones' => $revisiones 
                  ]);
             }else if($orden=='generarpdfrevisiones3')
             {
                
                  $revisiones  = DB::select('select * from revisions where descripcion = "Creación de evento" or  descripcion = "Modificación de evento"');
-                 return view ('vwreporteusuarios', [
+                 return view ('vwReporteRevPDF', [
                 'revisiones' =>  $revisiones
             ]);
+            }else if($orden=='generarpdfrevisiones4')
+            {
+               
+                $revisiones  = DB::select('select * from revisions where nombre= "Riesgo 1"' );
+                return view ('vwReporteRevPDF', [
+                'revisiones' =>  $revisiones
+                ]);
+            }else if($orden=='generarpdfrevisiones5')
+            {
+               
+                $revisiones  = DB::select('select * from revisions where nombre= "evento3"' );
+                return view ('vwReporteRevPDF', [
+                'revisiones' =>  $revisiones
+                ]);
+            
+            }else if($orden=='generarpdfrevisiones6')
+            {
+               /*--------------------------------------------------------------------------- */
+                $revisiones  = DB::select('select * from revisions where nombre= ?' , [$request->get('nombre')]);
+                return view ('vwReporteRevPDF', [
+                'revisiones' =>  $revisiones
+                ]);
+            
             }
 
             if($orden=='generarpdf1Riesgos')

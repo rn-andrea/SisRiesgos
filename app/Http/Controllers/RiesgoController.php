@@ -54,7 +54,9 @@ class RiesgoController extends Controller
 
         $correo = auth()->user()->email;
         $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
-       
+        $consultanom = DB::table('usuarios')->select('usr_nombre')->where('id_usuario',$consultausr)->value('usr_nombre');
+        $consultapell = DB::table('usuarios')->select('usr_apellidos')->where('id_usuario',$consultausr)->value('usr_apellidos');
+
         $Riesgos = new Riesgo();
         $this->validate($request, [
             'nom_riesgos'=> 'required|max:50|min:3|unique:riesgos',
@@ -104,7 +106,7 @@ class RiesgoController extends Controller
         $revision-> codigo= $dato1.$consulta.'-'.$contador;
         $revision->nombre=$request-> get('nom_riesgos');
         $revision->descripcion='Creación de riesgo';
-        $revision->usuario=$consultausr;
+        $revision->usuario=$consultanom.' '.$consultapell;
         $revision-> save();
         
         return redirect('/identificarriesgo')->with('Agregar','ok');
@@ -149,6 +151,9 @@ class RiesgoController extends Controller
         $correo = auth()->user()->email;
         $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
        
+        $consultanom = DB::table('usuarios')->select('usr_nombre')->where('id_usuario',$consultausr)->value('usr_nombre');
+        $consultapell = DB::table('usuarios')->select('usr_apellidos')->where('id_usuario',$consultausr)->value('usr_apellidos');
+
         $riesg= Riesgo::findOrFail($id);
         $verificardatoa= $request->nom_riesgos;
       
@@ -202,7 +207,7 @@ class RiesgoController extends Controller
                 $revision-> codigo= $dato1.$consulta.'-'.$id;
                 $revision->nombre=$request-> get('nom_riesgos');
                 $revision->descripcion='Modificación de riesgo';
-                $revision->usuario=$consultausr;
+                $revision->usuario=$consultanom.' '.$consultapell;
                 $revision-> save();
                  return REDIRECT ('/identificarriesgo')->with('Modificar','ok');
             
@@ -239,7 +244,7 @@ class RiesgoController extends Controller
                 $revision-> codigo= $dato1.$consulta.'-'.$id;
                 $revision->nombre=$request-> get('nom_riesgos');
                 $revision->descripcion='Modificación de riesgo';
-                $revision->usuario=$consultausr;
+                $revision->usuario=$consultanom.' '.$consultapell;
                 $revision-> save();
                  return REDIRECT ('/identificarriesgo')->with('Modificar','ok');
         }

@@ -76,12 +76,13 @@ class EventoController extends Controller
 
 
         $Eventos-> save();
-
+        $consultanom = DB::table('usuarios')->select('usr_nombre')->where('id_usuario',$consultausr)->value('usr_nombre');
+        $consultapell = DB::table('usuarios')->select('usr_apellidos')->where('id_usuario',$consultausr)->value('usr_apellidos');
         $revision = new Revision();
         $revision-> codigo= $dato1.$contador;
         $revision->nombre=$request-> get('nom_evento');
         $revision->descripcion='Creación de evento';
-        $revision->usuario=$consultausr;
+        $revision->usuario=$consultanom.' '.$consultapell;
         $revision-> save();
         return redirect('/procesos/vwEventoR')->with('Agregar','ok');
     }
@@ -112,8 +113,8 @@ class EventoController extends Controller
     } 
     public function update(Request $request, $id)
     {
-        //$correo = auth()->user()->email;
-        //$consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
+        $correo = auth()->user()->email;
+        $consultausr = DB::table('usuarios')->select('ID_USUARIO')->where('USR_EMAIL',$correo)->value('ID_USUARIO');
        
         $event= Evento::findOrFail($id);
         $verificardatoa= $request->nom_evento;
@@ -132,7 +133,8 @@ class EventoController extends Controller
        $consultacd = DB::table('eventos')->select('id')->where('nom_evento',$verificardatoa)->where('id',$id);
         $existencia= $consultacd->count();
         $dato2=DB::table('eventos')->select('id')->where('id',$id)->value('id');;
-
+        $consultanom = DB::table('usuarios')->select('usr_nombre')->where('id_usuario',$consultausr)->value('usr_nombre');
+        $consultapell = DB::table('usuarios')->select('usr_apellidos')->where('id_usuario',$consultausr)->value('usr_apellidos');
         if($existencia==1){
 
             $event-> nom_evento = $request->nom_evento;
@@ -149,15 +151,15 @@ class EventoController extends Controller
             $event-> des_lecciones_aprend = $request->des_lecciones_aprend;
             $event->  num_rto= $request-> rto;
             $event-> ind_estado = $request->estado;
-            $event-> usr_modifica = '305050002';
+            $event-> usr_modifica = $consultausr;
               
                $event-> save();
-                 
+              
                 $revision = new Revision();
                 $revision-> codigo= $dato2 ;
                 $revision->nombre=$request-> get('nom_evento');
                 $revision->descripcion='Modificación de evento';
-                $revision->usuario='305050002';
+                $revision->usuario=$consultanom.' '.$consultapell;
                 $revision-> save();
                 return REDIRECT ('/evento')->with('Modificar','ok');
             
@@ -180,13 +182,13 @@ class EventoController extends Controller
                 $event-> des_lecciones_aprend = $request->des_lecciones_aprend;
                 $event->  num_rto= $request-> rto;
                 $event-> ind_estado = $request->estado;
-                $event-> usr_modifica = '305050002';
+                $event-> usr_modifica = $consultausr;
                   
                 $revision = new Revision();
                 $revision-> codigo= $dato2;
                 $revision->nombre=$request-> get('nom_evento');
                 $revision->descripcion='Modificación de evento';
-                $revision->usuario='305050002';
+                $revision->usuario=$consultanom.' '.$consultapell;
                 $revision-> save();
                 return REDIRECT ('/evento')->with('Modificar','ok');
                 

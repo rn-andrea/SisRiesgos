@@ -161,7 +161,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-chart-bar me-1"></i>
-                        Eventos Reportados
+                        Riesgos Reportados
                     </div>
                     <div class="card-body">
 
