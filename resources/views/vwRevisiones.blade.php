@@ -15,8 +15,8 @@
                 <label>Filtrar por: &nbsp;
                 <select id="eleccion" onchange="orden()" class="dataTable-selector">
                 <option value="Todos">Todos</option>
-                <option value="Activo">Riesgos</option>
-                <option value="Inactivo">Eventos</option>
+                <option value="Riesgos">Riesgos</option>
+                <option value="Eventos">Eventos</option>
                 </select>
                 </label>
                 </div><div class="dataTable-search">

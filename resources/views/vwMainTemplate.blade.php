@@ -51,28 +51,23 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Monitorear Riesgos</div>
+                            <div class="sb-sidenav-menu-heading">Sistema de Riesgos</div>
                             <a class="nav-link" href="/PanelPrincipal">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Panel Principal
                             </a>
                             @auth
                             <div id="us1" class="sb-sidenav-menu-heading">Procesos</div>
-                            <a id="us11" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                          
+                            <a id="us22" class="nav-link"  class="nav-link" href="/identificarriesgo" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Identificar Riesgos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                                </nav>
-                            </div>
-                            <a id="us111" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            
+                            
+                            <a id="us22" class="nav-link"  class="nav-link" href="/evento" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Registrar Eventos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
@@ -100,11 +95,28 @@
                                     </div>
                                 </nav>
                             </div>
-                            <div id="us2" class="sb-sidenav-menu-heading">Estrategia</div>
-                            <a id="us22" class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Revisiones
+                            <div id="usMant" class="sb-sidenav-menu-heading">Mantenimientos</div>
+                            <a id="us2" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMant" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div id='divMant' class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                               <div id='divMantTitulo'> Mantenimientos del Sistema</div>
+                                <div id='flechaMant' class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div id='divMant2' class="collapse" id="collapseMant" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a id="repgrafico" class="nav-link" href="/MantUsuarios">Mantenimiento de Usuarios</a>
+                                    <a id="repgrafico" class="nav-link" href="/MantRoles">Mantenimiento de Roles</a>
+                                    <a id="repusuarios" class="nav-link" href="/MantCategoria">Mantenimiento Categoría Riesgo</a>
+                                    <a id="repeventos" class="nav-link" href="/MantAccion">Mantenimiento Acción Riesgo</a>
+                                    <a id="repriesgos" class="nav-link" href="/MantProbabilidad">Mantenimiento Probabilidad Riesgo</a>
+                                    <a id="repusuarios" class="nav-link" href="/MantImpacto">Mantenimiento Impacto Riesgo</a>
+                                    <a id="repRev" class="nav-link" href="/MantUnidadMedida">Mantenimiento Unidad de Medida</a>
+                                    <a id="repRev" class="nav-link" href="/MantEstadosEvento">Mantenimiento Estado Eventos</a>
+                                    <a id="repRev" class="nav-link" href="/MantProcesoAfecta">Mantenimiento Proceso Afecta</a>
+                                    <a id="repRev" class="nav-link" href="/MantResponsablesProcesoAfecta">Mantenimiento Responsable de Proceso Afecta</a>
+                                </nav>
+                            </div>
+                            <div id="us2" class="sb-sidenav-menu-heading">Estrategia</div>
+                            
                             <a id="us222" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReportes" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Reportes
@@ -118,11 +130,14 @@
                                     <a id="repeventos" class="nav-link" href="/ReporteEvento/?orden=1">Reporte de eventos</a>
                                     <a id="repriesgos" class="nav-link" href="/ReporteRiesgos/?orden=1">Reporte de riesgos</a>
                                     <a id="repusuarios" class="nav-link" href="/ReporteUsuarios/?orden=1">Reporte de usuarios</a>
-                                    <a id="repRev" class="nav-link" href="/Revisiones/?orden=1">Reporte de revisiones</a>
-                               
+                                    
                                    
                                 </nav>
                             </div>
+                            <a id="usRevisiones" class="nav-link"  class="nav-link" href="/Revisiones/?orden=1" >
+                                <div id='divRevisiones' class="sb-nav-link-icon"><i class="fas fa-chart-area"></i>
+                                Revisiones</div>
+                            </a>
                             @endauth
                         </div>
                     </div>
@@ -134,9 +149,16 @@
          $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
         if($consulta=='2')
         {
-            echo "<script>document.getElementById('us1').remove();</script>";
+            echo "<script>document.getElementById('usMant').remove();</script>";
             echo "<script>document.getElementById('us11').remove()</script>";
             echo "<script>document.getElementById('us111').remove()</script>";
+            echo "<script>document.getElementById('usRevisiones').remove()</script>";
+            echo "<script>document.getElementById('divMant').remove()</script>";
+            echo "<script>document.getElementById('divMant2').remove()</script>";
+            echo "<script>document.getElementById('divRevisiones').remove()</script>";
+            echo "<script>document.getElementById('divMantTitulo').remove()</script>";
+            echo "<script>document.getElementById('flechaMant').remove()</script>";
+            
         }
         } catch (Exception $e) {
 

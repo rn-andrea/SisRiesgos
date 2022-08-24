@@ -86,11 +86,21 @@ else if(arr[1]=='generarpdf5Eventos')
     document.getElementById('h1titulo').innerHTML='Reporte de eventos por estado cerrado no resuelto';
     $orientacionArch = "landscape";
     $nombreArch="Reporte de eventos por estado cerrado no resuelto";
-}else if(arr[1]=='generarpdfrevisiones')
+}else if(arr[1]=='generarpdfrevisiones1')
 {
     document.getElementById('h1titulo').innerHTML='Reporte de revisiones';
     $orientacionArch = "landscape";
     $nombreArch="Reporte de revisiones";
+}else if(arr[1]=='generarpdfrevisiones2')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de revisiones de los riesgos';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de revisiones de los riesgos";
+}else if(arr[1]=='generarpdfrevisiones3')
+{
+    document.getElementById('h1titulo').innerHTML='Reporte de revisiones de los eventos';
+    $orientacionArch = "landscape";
+    $nombreArch="Reporte de revisiones de los eventos";
 }
 
 const valores2 = window.location.search;

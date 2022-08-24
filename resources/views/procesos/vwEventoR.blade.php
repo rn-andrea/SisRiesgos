@@ -85,7 +85,7 @@
 
     <div class="row">
         <div class="col-sm">
-            <label for="txtDetalleRiesgo">Justificación por evento no resuelto</label>
+            <label for="jus_evento_no_resuelto">Justificación por evento no resuelto</label>
             <textarea id="jus_evento_no_resuelto" rows="3" name="jus_evento_no_resuelto"></textarea>
             {!! $errors->first('jus_evento_no_resuelto','<div class="invalid-feedback">:message</div>') !!}
         </div>

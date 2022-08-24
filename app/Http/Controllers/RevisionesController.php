@@ -17,6 +17,19 @@ class RevisionesController extends Controller
         return view ('vwRevisiones', [
             'revisiones' => $revisiones
         ]);
-    }
+        }else if($request->get('orden')=='2')
+        {
+            $revisiones  = DB::select('select * from revisions where descripcion = "Creación de riesgo" or  descripcion = "Modificación de riesgo" ');
+        return view ('vwRevisiones', [
+            'revisiones' => $revisiones 
+        ]);
+        }else if($request->get('orden')=='3')
+        {
+            $revisiones  = DB::select('select * from revisions where descripcion = "Creación de evento" or  descripcion = "Modificación de evento"');
+            return view ('vwRevisiones', [
+                'revisiones' =>  $revisiones
+            ]);
+        }
+
     }
 }

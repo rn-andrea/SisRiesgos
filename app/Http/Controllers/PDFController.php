@@ -34,12 +34,25 @@ class PDFController extends Controller
                 ]);
             }
 
-            if($orden=='generarpdfrevisiones')
+            if($orden=='generarpdfrevisiones1')
             {
-                $revisiones= Revision::all();
-                return view ('vwReporteRevPDF', [
+                $revisiones = DB::select('select * from revisions');
+                return view ('vwRevisiones', [
                     'revisiones' => $revisiones
                 ]);
+            }else if($orden=='generarpdfrevisiones2')
+            {
+                $revisiones  = DB::select('select * from revisions where descripcion = "Creación de riesgo" or  descripcion = "Modificación de riesgo" ');
+                 return view ('vwreporteusuarios', [
+                'revisiones' => $revisiones 
+                 ]);
+            }else if($orden=='generarpdfrevisiones3')
+            {
+               
+                 $revisiones  = DB::select('select * from revisions where descripcion = "Creación de evento" or  descripcion = "Modificación de evento"');
+                 return view ('vwreporteusuarios', [
+                'revisiones' =>  $revisiones
+            ]);
             }
 
             if($orden=='generarpdf1Riesgos')

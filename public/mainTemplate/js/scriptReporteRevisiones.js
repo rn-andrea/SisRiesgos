@@ -18,10 +18,10 @@ function orden()
     if(vrOrden=='Todos')
     {
         window.location.href = "/Revisiones/?orden=1";
-    } else if(vrOrden=='Activo')
+    } else if(vrOrden=='Riesgos')
     {
         window.location.href = "/Revisiones/?orden=2";
-    } else if(vrOrden=='Inactivo')
+    } else if(vrOrden=='Eventos')
     {
         window.location.href = "/Revisiones/?orden=3";
     }
@@ -33,12 +33,12 @@ let URLactual2 = window.location.toString();
 let ordenPDF = URLactual2.split('=');
 if(ordenPDF[1]=='1')
 {
-window.open("/ReporteRevisionesPDF/?orden=generarpdfrevisiones", "_blank");
+window.open("/ReporteRevisionesPDF/?orden=generarpdfrevisiones1", "_blank");
 }else if(ordenPDF[1]=='2')
 {
-window.open("/ReporteRevisionesPDF/?orden=generarpdf2", "_blank");
+window.open("/ReporteRevisionesPDF/?orden=generarpdfrevisiones2", "_blank");
 }else if(ordenPDF[1]=='3')
 {
-window.open("/ReporteRevisionesPDF/?orden=generarpdf3", "_blank");
+window.open("/ReporteRevisionesPDF/?orden=generarpdfrevisiones3", "_blank");
 }
 }
