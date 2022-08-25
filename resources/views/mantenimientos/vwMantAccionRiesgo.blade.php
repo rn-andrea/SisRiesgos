@@ -99,6 +99,23 @@
     </div>
     
 </div>
+<form action="/logout" method="POST">
+                        @csrf
+    <a id="apresionar" onclick="this.closest('form').submit()" href="#!">Cerrar Sesión</a>
+ <?php
+        try {
+         $correo = auth()->user()->email;
+         $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
+        if($consulta=='2')
+        {
+            echo '<script>alert("Usted no tiene permisos para acceder a esta página, debe loguearse como un usuario Administrativo");</script>';
+            echo '<script>document.getElementById("apresionar").click();</script>';
+        }
+        } catch (Exception $e) {
+
+        }
+        ?>
+        </form>
 </html>
 
 @endsection

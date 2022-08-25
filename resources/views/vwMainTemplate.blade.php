@@ -65,7 +65,7 @@
                             </a>
                             
                             
-                            <a id="us22" class="nav-link"  class="nav-link" href="/evento" >
+                            <a id="us22" class="nav-link"  class="nav-link" href="/evento/?id=1" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Registrar Eventos
                             </a>
@@ -99,9 +99,9 @@
                             <a id="us2" class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMant" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div id='divMant' class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                <div id='divMantTitulo'> Mantenimientos del Sistema</div>
-                                <div id='flechaMant' class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                <div id='collapseMant' class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div id='divMant2' class="collapse" id="collapseMant" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseMant" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a id="repgrafico" class="nav-link" href="/MantUsuarios">Mantenimiento de Usuarios</a>
                                     <a id="repgrafico" class="nav-link" href="/MantRoles">Mantenimiento de Roles</a>
@@ -145,29 +145,32 @@
                         <?php
         try {
          $correo = auth()->user()->email;
-        // $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
+        $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
          
-         $consulta = DB::table('usuarios')->select('USR_NOMBRE')->where('USR_EMAIL',$correo)->value('USR_NOMBRE');
+         $consulta0 = DB::table('usuarios')->select('USR_NOMBRE')->where('USR_EMAIL',$correo)->value('USR_NOMBRE');
          $consulta1 = DB::table('usuarios')->select('USR_APELLIDOS')->where('USR_EMAIL',$correo)->value('USR_APELLIDOS');
-         echo '<p>Usuario logueado como: </br>'.$consulta.' '.$consulta1.'</p>';
+         echo '<p>Usuario logueado como: </br>'.$consulta0.' '.$consulta1.'</p>';
+         if($consulta=='2')
+         {
+             echo "<script>document.getElementById('usMant').remove();</script>";
+             echo "<script>document.getElementById('us11').remove()</script>";
+             echo "<script>document.getElementById('us111').remove()</script>";
+             echo "<script>document.getElementById('usRevisiones').remove()</script>";
+             echo "<script>document.getElementById('divMant').remove()</script>";
+             echo "<script>document.getElementById('divMant2').remove()</script>";
+             echo "<script>document.getElementById('divRevisiones').remove()</script>";
+             echo "<script>document.getElementById('divMantTitulo').remove()</script>";
+             echo "<script>document.getElementById('flechaMant').remove()</script>";
+             echo "<script>document.getElementById('divMantTitulo').remove()</script>";
+             echo "<script>document.getElementById('collapseMant').remove()</script>";
+             
+         }
+         
          } catch (Exception $e) {
 
          }
 
-        if($consulta=='2')
-        {
-            echo "<script>document.getElementById('usMant').remove();</script>";
-            echo "<script>document.getElementById('us11').remove()</script>";
-            echo "<script>document.getElementById('us111').remove()</script>";
-            echo "<script>document.getElementById('usRevisiones').remove()</script>";
-            echo "<script>document.getElementById('divMant').remove()</script>";
-            echo "<script>document.getElementById('divMant2').remove()</script>";
-            echo "<script>document.getElementById('divRevisiones').remove()</script>";
-            echo "<script>document.getElementById('divMantTitulo').remove()</script>";
-            echo "<script>document.getElementById('flechaMant').remove()</script>";
-            
-        }
-        
+       
         ?>
                         </div>
 

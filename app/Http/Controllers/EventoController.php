@@ -18,6 +18,7 @@ class EventoController extends Controller
     
     public function index()
     {
+       
         $Eventos = Evento::select('id','id_evento','nom_evento','id_riesgos','fec_evento','des_situacion_pre','des_detalle_medidas','id_estado_resolucion','id_accion','jus_evento_no_resuelto','jus_medida_aplicada','id_unidad_medida','num_perdida_estimada','num_rto','des_lecciones_aprend','usr_creacion','usr_modifica','created_at','updated_at','ind_estado')->orderBy('updated_at','DESC')->get();;
         $riesgo = Riesgo::select('id','id_riesgos','nom_riesgos','id_accion')->where('ind_estado','1')->get();
         $estadoresolucion = EstadoResolucion::select('id','nom_estado_resolucion')->where('ind_estado','1')->get();
@@ -84,7 +85,9 @@ class EventoController extends Controller
         $revision->descripcion='Creación de evento';
         $revision->usuario=$consultanom.' '.$consultapell;
         $revision-> save();
-        return redirect('/procesos/vwEventoR')->with('Agregar','ok');
+
+        return redirect('/evento/?id=1')->with('Agregar','ok');
+        
     }
     public function show($id)
     {

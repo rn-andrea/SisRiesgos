@@ -1,15 +1,30 @@
 let variable = document.getElementById('pminimo').innerHTML;
         let arr = variable.split('=');
         let arr2 = arr[2].split(' ');
-        let arr22 = arr2[1].substr(0,2);
+        let arr22;
+        if(isNaN(arr2[1].substr(0,3))) //is not a number isNaN
+        {
+            arr22 = arr2[1].substr(0,2)
+        }else
+        {
+            arr22 =  arr2[1].substr(0,3)
+        }
         arr22 = arr22.replace(/\s+/g, '');
         document.getElementById('pminimo').innerHTML = arr22;
         let var1 = parseInt(arr22);
 
+
         let variablenum2 = document.getElementById('pbajo').innerHTML;
         let arrnum2 = variablenum2.split('=');
         let arrnum22 = arrnum2[2].split(' ');
-        let arrnum222 = arrnum22[1].substr(0,2);
+        let arrnum222;
+        if(isNaN(arrnum22[1].substr(0,3))) //is not a number isNaN
+        {
+            arrnum222 = arrnum22[1].substr(0,2)
+        }else
+        {
+            arrnum222=  arrnum22[1].substr(0,3)
+        }
         arrnum222 = arrnum222.replace(/\s+/g, '');
         document.getElementById('pbajo').innerHTML = arrnum222;
         let var2 = parseInt(arrnum222);
@@ -17,7 +32,14 @@ let variable = document.getElementById('pminimo').innerHTML;
         let variablenum3 = document.getElementById('pmoderado').innerHTML;
         let arrnum3 = variablenum3.split('=');
         let arrnum33 = arrnum3[2].split(' ');
-        let arrnum333 = arrnum33[1].substr(0,2);
+        let arrnum333;
+        if(isNaN(arrnum33[1].substr(0,3))) //is not a number isNaN
+        {
+            arrnum333 = arrnum33[1].substr(0,2)
+        }else
+        {
+            arrnum333 =  arrnum33[1].substr(0,3)
+        }
         arrnum333 = arrnum333.replace(/\s+/g, '');
         document.getElementById('pmoderado').innerHTML = arrnum333;
         let var3 = parseInt(arrnum333);
@@ -25,7 +47,14 @@ let variable = document.getElementById('pminimo').innerHTML;
         let variablenum4 = document.getElementById('palto').innerHTML;
         let arrnum4 = variablenum4.split('=');
         let arrnum44 = arrnum4[2].split(' ');
-        let arrnum444 = arrnum44[1].substr(0,2);
+        let arrnum444;
+        if(isNaN(arrnum44[1].substr(0,3))) //is not a number isNaN
+        {
+            arrnum444 = arrnum44[1].substr(0,2)
+        }else
+        {
+            arrnum444 =  arrnum44[1].substr(0,3)
+        }
         arrnum444 = arrnum444.replace(/\s+/g, '');
         document.getElementById('palto').innerHTML = arrnum444;
         let var4 = parseInt(arrnum444);
@@ -33,7 +62,14 @@ let variable = document.getElementById('pminimo').innerHTML;
         let variablenum5 = document.getElementById('pcritico').innerHTML;
         let arrnum5 = variablenum5.split('=');
         let arrnum55 = arrnum5[2].split(' ');
-        let arrnum555 = arrnum55[1].substr(0,2);
+        let arrnum555;
+        if(isNaN(arrnum55[1].substr(0,3))) //is not a number isNaN
+        {
+            arrnum555 = arrnum55[1].substr(0,2)
+        }else
+        {
+            arrnum555 =  arrnum55[1].substr(0,3)
+        }
         arrnum555 = arrnum555.replace(/\s+/g, '');
         document.getElementById('pcritico').innerHTML = arrnum555;
         let var5 = parseInt(arrnum555);
@@ -46,7 +82,7 @@ let variable = document.getElementById('pminimo').innerHTML;
         let var5final;
         if(var1!=0)
         {
-            var1final = var1/varTotal*100;
+            var1final = Number.parseFloat(var1/varTotal*100).toFixed(2);
         }else
         {
             var1final = 0;
@@ -54,7 +90,7 @@ let variable = document.getElementById('pminimo').innerHTML;
 
         if(var2!=0)
         {
-            var2final = var2/varTotal*100;
+            var2final = Number.parseFloat(var2/varTotal*100).toFixed(2);
         }else
         {
             var2final = 0;
@@ -62,7 +98,7 @@ let variable = document.getElementById('pminimo').innerHTML;
 
         if(var3!=0)
         {
-            var3final = var3/varTotal*100;
+            var3final = Number.parseFloat(var3/varTotal*100).toFixed(2);
         }else
         {
             var3final = 0;
@@ -70,7 +106,7 @@ let variable = document.getElementById('pminimo').innerHTML;
 
         if(var4!=0)
         {
-            var4final = var4/varTotal*100;
+            var4final = Number.parseFloat(var4/varTotal*100).toFixed(2);
         }else
         {
             var4final = 0;
@@ -78,7 +114,7 @@ let variable = document.getElementById('pminimo').innerHTML;
 
         if(var5!=0)
         {
-            var5final = var5/varTotal*100;
+            var5final = Number.parseFloat(var5/varTotal*100).toFixed(2);
         }else
         {
             var5final = 0;

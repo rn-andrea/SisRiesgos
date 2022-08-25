@@ -67,7 +67,14 @@
 let variable = document.getElementById('pmaximo').innerHTML;
         let arr = variable.split('=');
         let arr2 = arr[2].split(' ');
-        let arr3 = arr2[1].substr(0,2);
+        let arr3;
+        if(isNaN(arr2[1].substr(0,3))) //is not a number isNaN
+        {
+            arr3 = arr2[1].substr(0,2)
+        }else
+        {
+            arr3 =  arr2[1].substr(0,3)
+        }
         arr3 = arr3.replace(/\s+/g, '');
         document.getElementById('pmaximo').innerHTML = arr3;
         let var1 = parseInt(arr3);
