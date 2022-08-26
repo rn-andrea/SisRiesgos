@@ -6,19 +6,31 @@
 <html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
-    input[type=file]::file-selector-button {
-  border: 2px solid   #7d7d7d;
-  padding: .2em .4em;
-  border-radius: .2em;
-  background-color:   #7d7d7d;;
-  color: #ffffff;
-  transition: 1s;
+
  
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }
 
-input[type=file]::file-selector-button:hover {
-  background-color: #81ecec;
-  border: 2px solid #00cec9;
+.btn-file:hover {
+ color: #0d6efd;
+ 
   
 }
 </style>
@@ -162,17 +174,29 @@ input[type=file]::file-selector-button:hover {
                         Estado Activo
                     </label>
                     </div>
+                    </br>          
 </div>
-<div class="col-sm">
-                    
-                    <input type="file"  name="inpArchivo"  value="{{Storage::url($riesg->nom_archivo)}}">
-                </div>
-    <div class="row">
+</br>
+<div class="row">
+</br>
         <div class="col-sm">
-        <br>
-        <button type="submit" class="btn btn-primary my-1">Actualizar Riesgo</button>
+        <span class="btn btn-file">Haga click aquí para subir un archivo
+                        <input type="file" id="fileUpload" placeholder="Seleccione el archivo" name="inpArchivo">
+    </span>
+                    </div>
     </div>
+    <div class="row">
+    </br>
+    <div class="row">
 
+    <div class="col-sm">
+
+<button type="submit" class="btn btn-primary my-1">Registrar Riesgo</button>
+</div>
+    
+        
+</div>
+    </form>
 
     <div class="row">
     <div class="card-body">

@@ -18,7 +18,6 @@
     <div class="row">
         <div class="col-sm">
         <label for="txtEvento">Nombre del Evento</label>
-
         <input type="text" class="form-control {{$errors->has('nom_evento')?'is-invalid':'' }}" id="txtEvento" placeholder="Nombre del evento" name="nom_evento" value="{{old('nom_evento')}}">
         {!! $errors->first('nom_evento','<div class="invalid-feedback">:message</div>') !!}   
     </div>
@@ -27,10 +26,7 @@
     </br>
     <div class="row">
         <div class="col-sm">
-        
-       
         <label id="lbl" type="hidden" name='lbl'></label>
-
         <label for="txtRiesgo">Nombre del Riesgo</label>
         <select id="id_riesgos" class="form-control" onchange="selecNombre();" name="id_riesgos">
             @foreach ($riesgo as $riesg)
@@ -38,12 +34,8 @@
                 @endforeach
         </select>
 
-        
 
-
-       
         </div>
-       
         <div class="col-sm">
         <label for="txtClasificacion">Fecha del Evento</label>
         <input type="date" class="form-control {{$errors->has('fec_evento')?'is-invalid':'' }}" id="txtClasificacion" placeholder="" name="fec_evento">
@@ -118,7 +110,8 @@
         <div class="col-sm">
         <label for="txtClasificacion">Pérdida Estimada por el Evento</label>
         <input type="numeric" class="form-control {{$errors->has('num_perdida_estimada')?'is-invalid':'' }}" id="txtClasificacion" placeholder="" name="num_perdida_estimada" >
-        </div>
+        {!! $errors->first('num_perdida_estimada','<div class="invalid-feedback">:message</div>') !!}    
+    </div>
         <div class="col-sm">
             <label for="txtClasificacion">RTO Estimado</label>
             <input type="text" class="form-control {{$errors->has('rto')?'is-invalid':'' }}" id="rto" placeholder="" name="rto">
@@ -225,7 +218,7 @@
                                 <td>{{$evento->updated_at}}</td>
                                 <td>{{$evento->usuarioc->usr_nombre}} {{$evento->usuariom->usr_apellidos}}</td>
                                 <td>{{$evento->estado->nom_estado}}</td>
-                                <td>  <a href="/evento/{{$evento->id}}">Modificar</a></td>
+                                <td>  <a href="/evento/{{$evento->id}}/?id={{$evento->riesgo->id}}">Modificar</a></td>
 							 </tr>
                     @endforeach
 
@@ -238,7 +231,7 @@
 </div>
 <label id="lblname"></label>
 <?php 
-        $host= $_SERVER["HTTP_HOST"];
+       try{ $host= $_SERVER["HTTP_HOST"];
         $url= $_SERVER["REQUEST_URI"];
 
         $urlfinal= $host.$url;
@@ -247,9 +240,12 @@
          $consulta = DB::table('riesgos')->select('id_accion')->where('id',$urlfinal2[1])->value('id_accion');
                  
                  echo '<script>document.getElementById("id_accion").value = '.$consulta.' </script>';
-                 echo '<label id="lblaccion">'.$consulta.' </label>';
+                 echo '<label id="lblaccion" style="color:#FFFFFF">'.$consulta.' </label>';
                
-        
+                }catch(Exception $e){
+
+
+                }
         ?>
 
 <script scr="funcion.js"></script>
@@ -260,7 +256,7 @@
         ////ocultar justificacion por cambio medida
          $('#jusmed').hide();
          $('#jus_medida_aplicada').hide();
-         $('#lblaccion').hide();
+    
 
          function detectChange(id_accion){
           var cod= document.getElementById("id_accion");
@@ -384,6 +380,27 @@ document.getElementsByName('des_lecciones_aprend')[0].value = "";
         
         <script>
              Swal.fire('Datos modificados, con exito!', '', 'success')
+
+             sessionStorage.setItem("evento", "");
+    document.getElementById("txtEvento").value = "";
+
+    sessionStorage.setItem("fecha", "");
+sessionStorage.setItem("situacion", "");
+sessionStorage.setItem("detalleM", "");
+sessionStorage.setItem("estRes", "");
+sessionStorage.setItem("Unidad", "");
+sessionStorage.setItem("Perdida", "");
+sessionStorage.setItem("rto", "");
+sessionStorage.setItem("lecciones", "");
+
+document.getElementsByName('fec_evento')[0].value = "";
+document.getElementsByName('des_situacion_pre')[0].value = "";
+document.getElementsByName('des_detalle_medidas')[0].value = "";
+document.getElementsByName('id_estado_resolucion')[0].value = "1";
+document.getElementsByName('id_unidad_medida')[0].value = "1";
+document.getElementsByName('num_perdida_estimada')[0].value = "";
+document.getElementsByName('rto')[0].value = "";
+document.getElementsByName('des_lecciones_aprend')[0].value = "";
         </script>
     @endif
     @if (session('Modifica')=='info')

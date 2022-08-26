@@ -48,7 +48,7 @@ class EventoController extends Controller
         $Eventos= new Evento();  
         $this->validate($request, [
             'nom_evento'=> 'required|max:50|min:3|unique:eventos',
-            'fec_evento'=> 'required|date',
+            'fec_evento'=> 'required|date|before:tomorrow',
             'des_situacion_pre'=> 'required',
             'num_perdida_estimada'=> 'numeric',
 
@@ -57,7 +57,7 @@ class EventoController extends Controller
         $dato2=DB::table('eventos')->select('id');
         $contador= $dato2->count()+1;
 
-        $Eventos-> id_evento = $dato1.$contador;
+        $Eventos-> id_evento = 'EV-'.$contador;
         $Eventos-> nom_evento = $request-> get('nom_evento');
 	    $Eventos-> id_riesgos = $request-> get('id_riesgos');
         $Eventos-> fec_evento = $request-> get('fec_evento');
@@ -127,7 +127,7 @@ class EventoController extends Controller
 
         $this->validate($request, [
             'nom_evento'=> 'required|max:50|min:3',
-            'fec_evento'=> 'required|date',
+            'fec_evento'=> 'required|date|before:tomorrow',
             'des_situacion_pre'=> 'required',
             'num_perdida_estimada'=> 'numeric',
 
@@ -164,7 +164,7 @@ class EventoController extends Controller
                 $revision->descripcion='Modificación de evento';
                 $revision->usuario=$consultanom.' '.$consultapell;
                 $revision-> save();
-                return REDIRECT ('/evento')->with('Modificar','ok');
+                return REDIRECT ('/evento/?id=1')->with('Modificar','ok');
             
 
         }else{
@@ -193,7 +193,7 @@ class EventoController extends Controller
                 $revision->descripcion='Modificación de evento';
                 $revision->usuario=$consultanom.' '.$consultapell;
                 $revision-> save();
-                return REDIRECT ('/evento')->with('Modificar','ok');
+                return REDIRECT ('/evento/?id=1')->with('Modificar','ok');
                 
         }
    

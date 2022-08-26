@@ -3,6 +3,7 @@
 
 </br>
 <html>
+<body>
 <div class="container-fluid px-4">
     <h1 class="mt-4">Mantenimiento Acción Riesgo</h1>
         <ol class="breadcrumb mb-4">
@@ -108,6 +109,7 @@
          $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
         if($consulta=='2')
         {
+            echo '<script>document.body.style.display = "none";</script>';
             echo '<script>alert("Usted no tiene permisos para acceder a esta página, debe loguearse como un usuario Administrativo");</script>';
             echo '<script>document.getElementById("apresionar").click();</script>';
         }
@@ -116,6 +118,7 @@
         }
         ?>
         </form>
+        </body>
 </html>
 
 @endsection

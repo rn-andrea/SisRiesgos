@@ -3,6 +3,7 @@
 
 </br>
 <html>
+<body>
 <div class="container-fluid px-4">
     <h1 class="mt-4">Mantenimiento Categoría Riesgo</h1>
         <ol class="breadcrumb mb-4">
@@ -97,6 +98,26 @@
     </div>
     
 </div>
+
+<form action="/logout" method="POST">
+                        @csrf
+    <a id="apresionar" onclick="this.closest('form').submit()" href="#!">Cerrar Sesión</a>
+ <?php
+        try {
+         $correo = auth()->user()->email;
+         $consulta = DB::table('usuarios')->select('ID_ROL')->where('USR_EMAIL',$correo)->value('ID_ROL');
+        if($consulta=='2')
+        {
+            echo '<script>document.body.style.display = "none";</script>';
+            echo '<script>alert("Usted no tiene permisos para acceder a esta página, debe loguearse como un usuario Administrativo");</script>';
+            echo '<script>document.getElementById("apresionar").click();</script>';
+        }
+        } catch (Exception $e) {
+
+        }
+        ?>
+        </form>
+        </body>
 </html>
 
 @endsection
