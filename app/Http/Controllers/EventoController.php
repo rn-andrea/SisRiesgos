@@ -49,8 +49,12 @@ class EventoController extends Controller
         $this->validate($request, [
             'nom_evento'=> 'required|max:50|min:3|unique:eventos',
             'fec_evento'=> 'required|date|before:tomorrow',
-            'des_situacion_pre'=> 'required',
+            'des_situacion_pre'=> 'required|max:2000',
             'num_perdida_estimada'=> 'numeric',
+            'des_detalle_medidas'=> 'max:2000',
+            'jus_evento_no_resuelto'=> 'max:2000',
+            'jus_medida_aplicada'=> 'max:2000',
+            'des_lescciones_aprend'=> 'max:2000',
 
         ]);      
         $dato1= $request->id_evento;	
@@ -128,8 +132,12 @@ class EventoController extends Controller
         $this->validate($request, [
             'nom_evento'=> 'required|max:50|min:3',
             'fec_evento'=> 'required|date|before:tomorrow',
-            'des_situacion_pre'=> 'required',
+            'des_situacion_pre'=> 'required|max:2000',
             'num_perdida_estimada'=> 'numeric',
+            'des_detalle_medidas'=> 'max:2000',
+            'jus_evento_no_resuelto'=> 'max:2000',
+            'jus_medida_aplicada'=> 'max:2000',
+            'des_lescciones_aprend'=> 'max:2000',
 
         ]);
 

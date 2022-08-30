@@ -33,7 +33,7 @@ class CategoriaRiesgoController extends Controller
            
             'nombre_categoria'=> 'required|max:50|min:3|unique:categoria_riesgos',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
         $CategoriaRiesgo-> id = $request-> get('id');
         $CategoriaRiesgo-> nombre_categoria = $request-> get('nombre_categoria');
@@ -73,7 +73,7 @@ class CategoriaRiesgoController extends Controller
            
             'nombre_categoria'=> 'required|max:50|min:3',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
 
         $consulta = DB::table('categoria_riesgos')->select('id','nombre_categoria','des_observacion','ind_estado')->where('nombre_categoria',$verificardato1)->where('des_observacion',$verificardato2)->where('ind_estado',$verificardato3);

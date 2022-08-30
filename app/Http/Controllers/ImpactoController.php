@@ -36,7 +36,7 @@ class ImpactoController extends Controller
            
             'nom_impacto'=> 'required|max:50|min:3|unique:impactos',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
 
       		  
@@ -75,7 +75,7 @@ class ImpactoController extends Controller
             
             'nom_impacto'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
     

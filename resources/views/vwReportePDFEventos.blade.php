@@ -40,8 +40,6 @@
                             <th>Pérdida estimada</th>
                             <th>Rto</th>
                             <th>Lecciones aprendidas</th>
-                            <th>Usuario de creación</th>
-                            <th>Usuario que modifica</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
@@ -62,8 +60,6 @@
                     <td>{{$reporteEvento->num_perdida_estimada}}</td>
                     <td>{{$reporteEvento->num_rto}}</td>
                     <td>{{$reporteEvento->des_lecciones_aprend}}</td>
-                    <td>{{$reporteEvento->usr_creacion}}</td>
-                    <td>{{$reporteEvento->usr_modifica}}</td>
                     <td>
                     @if($reporteEvento->ind_estado==1)
                     <p>Activo</p>

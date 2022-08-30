@@ -35,7 +35,7 @@ class EstadoResolucionController extends Controller
            
             'nom_estado_resolucion'=> 'required|max:50|min:3|unique:estado_resolucions|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
        
 
@@ -74,7 +74,7 @@ class EstadoResolucionController extends Controller
            
             'nom_estado_resolucion'=> 'required|max:50|min:3',
             'estado'=> 'required',
-            'des_observacion'=> 'max:200',
+            'des_observacion'=> 'max:2000',
         ]);
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
     	

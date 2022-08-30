@@ -33,7 +33,7 @@ class AccionController extends Controller
            
             'nombre_accion'=> 'required|max:50|min:3|unique:accions',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
 
         $Accions-> id = $request-> get('id'); 
@@ -72,7 +72,7 @@ class AccionController extends Controller
            
             'nombre_accion'=> 'required|max:50|min:3|',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
 
         $consulta = DB::table('accions')->select('id','nombre_accion','des_observacion','ind_estado')->where('nombre_accion',$verificardato1)->where('des_observacion',$verificardato2)->where('ind_estado',$verificardato3);

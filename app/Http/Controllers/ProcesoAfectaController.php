@@ -32,7 +32,7 @@ class ProcesoAfectaController extends Controller
             'id_nomenclatura'=> 'required|max:3|min:3|unique:proceso_afectas|regex:/^[\pL\-]+$/u',
             'nombre_proceso_afecta'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
     
         ]);
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
@@ -75,7 +75,7 @@ class ProcesoAfectaController extends Controller
             'id_nomenclatura'=> 'required|max:3|min:3|regex:/^[\pL\-]+$/u',
             'nombre_proceso_afecta'=> 'required|max:50|min:3|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
     
         ]);
         

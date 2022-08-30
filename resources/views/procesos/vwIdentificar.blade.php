@@ -357,10 +357,5 @@
              Swal.fire('Datos modificados, con exito!', '', 'success')
         </script>
     @endif
-    @if (session('Modifica')=='info')
-        
-        <script>
-             Swal.fire('No ha realizado ningun cambio al riesgo seleccionada', '', 'info')
-        </script>
-    @endif
+   
 @endsection

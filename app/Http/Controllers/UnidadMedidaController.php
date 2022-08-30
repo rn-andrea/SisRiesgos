@@ -35,7 +35,7 @@ class UnidadMedidaController extends Controller
             'estado'=> 'required',
             'usuario_creador'=> 'required',
             'usuario_modificador'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
 
@@ -75,7 +75,7 @@ class UnidadMedidaController extends Controller
             'estado'=> 'required',
             'usuario_creador'=> 'required',
             'usuario_modificador'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
 

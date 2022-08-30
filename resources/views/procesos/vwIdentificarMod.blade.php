@@ -44,7 +44,7 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></br></li>
         </ol>
-        <form action="/identificarriesgo/update/{{$riesg->id}}" method="POST">
+        <form action="/identificarriesgo/update/{{$riesg->id}}" method="POST" enctype="multipart/form-data">
 		@csrf
         {{method_field('PUT')}}
     <div class="row">
@@ -177,13 +177,14 @@
                     </br>          
 </div>
 </br>
+
 <div class="row">
 </br>
         <div class="col-sm">
         <span class="btn btn-file">Haga click aquí para subir un archivo
                         <input type="file" id="fileUpload" placeholder="Seleccione el archivo" name="inpArchivo">
     </span>
-                    </div>
+                    </div><label id='lblArchR' style="color: red"></label>
     </div>
     <div class="row">
     </br>
@@ -191,7 +192,7 @@
 
     <div class="col-sm">
 
-<button type="submit" class="btn btn-primary my-1">Registrar Riesgo</button>
+<button type="submit" class="btn btn-primary my-1">Actualizar Riesgo</button>
 </div>
     
         
@@ -281,6 +282,8 @@
 
 </form>
 </div>
+<label id='lblArch'>{{$riesg->nom_archivo}}</label>
+
 <script>
            
         $('#ind_afecta_servicio').click(function(){
@@ -297,6 +300,18 @@
          }
     });
 
+             var datoaccion = document.getElementById("lblArch").innerText;
+            if(datoaccion == null || datoaccion.length == 0 || /^\s+$/.test(datoaccion) ){
+               
+                document.getElementById("lblArchR").innerText = "";
+            }else
+            {
+               document.getElementById("lblArchR").innerText = "Hay un archivo almacenado, si inserta un archivo nuevo este se borrara";
+           
+            }
+          
+
+
     var selection= document.getElementById("cbProbabilidad");
     var selection2= document.getElementById("cbImpacto");
     $('#calificacion').val(selection.selectedOptions[0].value*selection2.selectedOptions[0].value);
@@ -312,6 +327,11 @@
             $('#calificacion').val(selection.selectedOptions[0].value*selection2.selectedOptions[0].value);
            
      });
+let nomArch = document.getElementById('lblArch').innerText;
+if(nomArch!=null)
+{
+    Swal.fire('Atención: si sube un archivo a este riesgo, reemplazará al anterior', '', 'info');
+}
 
 </script>
 </body>
@@ -340,7 +360,7 @@
     @if (session('Modifica')=='info')
         
         <script>
-             Swal.fire('No ha realizado ningun cambio al riesgo seleccionada', '', 'info')
+             Swal.fire('Atención: si sube un archivo a este riesgo, reemplazará al anterior', '', 'info')
         </script>
     @endif
 @endsection

@@ -125,7 +125,7 @@
                             <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a id="repgrafico" class="nav-link" href="/ReporteGraficoRiesgos">Reporte gráfico de riesgos</a>
-                                    <a id="repgrafico" class="nav-link" href="/ReporteGraficoEventosxRiesgo/?valor=0">Reporte gráfico de eventos por riesgo</a>
+                                    <a id="repgrafico" class="nav-link" href="/ReporteGraficoEventosxRiesgo/?valor=0">Reporte de gráfico de riesgos según el estado del evento</a>
                                     <a id="repusuarios" class="nav-link" href="/graficoriegosxresp">Reporte gráfico de riesgos por responsable</a>
                                     <a id="repeventos" class="nav-link" href="/ReporteEvento/?orden=1">Reporte de eventos</a>
                                     <a id="repriesgos" class="nav-link" href="/ReporteRiesgos/?orden=1">Reporte de riesgos</a>
@@ -184,7 +184,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; IT Rossmon: Prototipo Sistema de Gestión de Riesgos | Elaborado por: Jimmy Salazar 2022-2023</div>
+                            <div class="text-muted">Copyright &copy; IT Rossmon: Sistema de Gestión de Riesgos | Elaborado por: Jimmy Salazar, Maikol Navarro y Andrea Rojas 2022-2023</div>
                             <div>
                                 <!--a href="#">Privacy Policy</a>
                                 &middot;

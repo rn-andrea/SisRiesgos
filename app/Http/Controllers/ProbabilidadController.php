@@ -34,7 +34,7 @@ class ProbabilidadController extends Controller
            
             'nom_probabilidad'=> 'required|max:50|min:3|unique:probabilidads|regex:/^[\pL\s\-]+$/u',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
 
         $Probabilidades-> nom_probabilidad = $request-> get('nom_probabilidad');
@@ -74,7 +74,7 @@ class ProbabilidadController extends Controller
            
             'nom_probabilidad'=> 'required|max:50|min:3',
             'estado'=> 'required',
-            'observacion'=> 'max:200',
+            'observacion'=> 'max:2000',
         ]);
         echo 'Ahora sé que los datos están validados. Puedo insertar en la base de datos';
     

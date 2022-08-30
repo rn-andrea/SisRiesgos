@@ -5,7 +5,7 @@
 </br>
         <div class="card mb-4">
            <div class="card-header" style="white-space: nowrap;">
-               <i class="fas fa-chart-pie"></i>&nbsp; Reporte de gráfico de eventos por riesgo
+               <i class="fas fa-chart-pie"></i>&nbsp; Reporte de gráfico de riesgos según el estado del evento
             </div>
             <div class="card-body">
                 <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
