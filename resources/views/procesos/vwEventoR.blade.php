@@ -202,7 +202,7 @@
                              <tr>
 								<td>{{$evento->id_evento}}</td>
 								<td>{{$evento->nom_evento}}</td>
-								<td>{{$evento->riesgo->id_riesgos}}</td>
+								<td>{{$evento->riesgo->nom_riesgos}}</td>
                                 <td>{{$evento->fec_evento}}</td>
                                 <td>{{$evento->des_situacion_pre}}</td>
                                 <td>{{$evento->estadoresolucion->nom_estado_resolucion}}</td>

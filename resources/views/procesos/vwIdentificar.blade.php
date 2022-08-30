@@ -286,10 +286,7 @@
                                 <td>{{$riesgo->usuario1->usr_nombre}} {{$riesgo->usuario1->usr_apellidos}}</td>
                                 <td><a href='{{Storage::url($riesgo->nom_archivo)}}'>Link del archivo</a></td>
                                 <td>{{$riesgo->estado->nom_estado}}</td>
-                                
-                                 
-                                
-                                <td>  <a href="/identificarriesgo/{{$riesgo->id}}">Modificar</a></td>
+                                <td><a href="/identificarriesgo/{{$riesgo->id}}">Modificar</a></td>
 							 </tr>
                     @endforeach
 

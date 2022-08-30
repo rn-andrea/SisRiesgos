@@ -202,7 +202,7 @@
                              <tr>
 								<td>{{$evento->id_evento}}</td>
 								<td>{{$evento->nom_evento}}</td>
-								<td>{{$evento->riesgo->id_riesgos}}</td>
+								<td>{{$evento->riesgo->nom_riesgos}}</td>
                                 <td>{{$evento->fec_evento}}</td>
                                 <td>{{$evento->des_situacion_pre}}</td>
                                 <td>{{$evento->estadoresolucion->nom_estado_resolucion}}</td>
@@ -226,10 +226,11 @@
                 </table>
             </div>
     </div>
+    <label id="lblJust" style="color:#FFFFFF">{{$event->jus_evento_no_resuelto}}</label>
 <label id="lblJustMedidaAplicada" style="color:#FFFFFF">{{$event->jus_medida_aplicada}}</label>
 </div>
 
-<label id="lblname"></label>
+<label id="lblname" style="color:#FFFFFF"></label>
 <?php 
 try{
         $host= $_SERVER["HTTP_HOST"];
@@ -252,8 +253,21 @@ try{
 <script scr="funcion.js"></script>
 <script type="text/javascript">
         //ocultar justificacion por evento no resuelto
-         $('#jus_evento_no_resuelto').hide();
-         $('#jus').hide();
+        // 
+        var cod= document.getElementById("id_estado_resolucion");
+            var selected= cod.options[cod.selectedIndex].text;
+            if(selected == "Cerrado/No Resuelto"){
+                $('#jus_evento_no_resuelto').show();
+                $('#jus').show();
+            }else  if(selected == "Cerrado/Resuelto"){
+                $('#jus_evento_no_resuelto').hide();
+                $('#jus').hide();
+            }else  if(selected == "Abierto/Pendiente"){
+                $('#jus_evento_no_resuelto').hide();
+                $('#jus').hide();
+            }
+      
+          //  $('#jus').hide();
         ////ocultar justificacion por cambio medida
          //$('#jusmed').hide();
         // $('#jus_medida_aplicada').hide();
@@ -264,6 +278,7 @@ try{
           var selected= cod.options[cod.selectedIndex].value;
           var datoaccion = document.getElementById("lblaccion").innerText;
           let justMedidaAp = document.getElementById("lblJustMedidaAplicada").innerText;
+          let justEvento = document.getElementById("lblJust").innerText;
           if(justMedidaAp == "" )
           {
             $('#jus_medida_aplicada').hide();
@@ -274,6 +289,7 @@ try{
             $('#jus_medida_aplicada').show();
                $('#jusmed').show();
           }
+
 
           if(datoaccion == selected )
             {
@@ -287,7 +303,6 @@ try{
                $('#jusmed').show();
                
            }
-
          
          
         }
@@ -300,10 +315,15 @@ try{
             if(selected == "Cerrado/No Resuelto"){
                 $('#jus_evento_no_resuelto').show();
                 $('#jus').show();
-            }else{
+            }else  if(selected == "Cerrado/Resuelto"){
+                $('#jus_evento_no_resuelto').hide();
+                $('#jus').hide();
+            }else  if(selected == "Abierto/Pendiente"){
                 $('#jus_evento_no_resuelto').hide();
                 $('#jus').hide();
             }
+
+           
           }
           
 

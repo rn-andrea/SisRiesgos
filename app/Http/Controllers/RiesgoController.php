@@ -20,7 +20,7 @@ class RiesgoController extends Controller
 
     public function index()
     {
-        $riesgos = Riesgo::select('id_riesgos','nom_riesgos','id_categoria','des_detalle','id_proceso_afecta','id_probabilidad','id_impacto','tot_calificacion','num_pos_matriz','id_accion','ind_afecta_servicio','num_rto','id_unidad_medida','tot_tolerancia','tot_capacidad','usr_creacion','usr_modifica','created_at','updated_at','ind_estado','nom_archivo')->orderBy('updated_at','DESC')->get();
+        $riesgos = Riesgo::select('id','id_riesgos','nom_riesgos','id_categoria','des_detalle','id_proceso_afecta','id_probabilidad','id_impacto','tot_calificacion','num_pos_matriz','id_accion','ind_afecta_servicio','num_rto','id_unidad_medida','tot_tolerancia','tot_capacidad','usr_creacion','usr_modifica','created_at','updated_at','ind_estado','nom_archivo')->orderBy('updated_at','DESC')->get();
         $categorias= CategoriaRiesgo::all();
         $categoriasel = CategoriaRiesgo::select('id','nombre_categoria')->where('ind_estado','1')->get();
         $procesoafectasel = ProcesoAfecta::select('id','nom_proceso_afecta')->where('ind_estado','1')->get();

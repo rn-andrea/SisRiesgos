@@ -19,7 +19,7 @@ class RevisionesController extends Controller
         {
             $Eventos = Evento::all();
             $riesgos = Riesgo::all();
-        $revisiones = DB::select('select * from revisions');
+        $revisiones = DB::select('select * from revisions ORDER BY updated_at DESC');
         return view ('vwRevisiones', [
             'Eventos'=> $Eventos,
             'riesgos'=> $riesgos,
@@ -29,7 +29,7 @@ class RevisionesController extends Controller
         {
             $Eventos = Evento::all();
             $riesgos = Riesgo::all();
-            $revisiones  = DB::select('select * from revisions where descripcion = "Creación de riesgo" or  descripcion = "Modificación de riesgo" ');
+            $revisiones  = DB::select('select * from revisions where descripcion = "Creación de riesgo" or  descripcion = "Modificación de riesgo" ORDER BY updated_at DESC ');
         return view ('vwRevisiones', [
             'Eventos'=> $Eventos,
             'riesgos'=> $riesgos,
@@ -39,7 +39,7 @@ class RevisionesController extends Controller
         {
             $Eventos = Evento::all();
             $riesgos = Riesgo::all();
-            $revisiones  = DB::select('select * from revisions where descripcion = "Creación de evento" or  descripcion = "Modificación de evento"');
+            $revisiones  = DB::select('select * from revisions where descripcion = "Creación de evento" or  descripcion = "Modificación de evento" ORDER BY updated_at DESC');
             return view ('vwRevisiones', [
                 'Eventos'=> $Eventos,
                 'riesgos'=> $riesgos,
@@ -49,7 +49,7 @@ class RevisionesController extends Controller
         {
             $Eventos = Evento::all();
             $riesgos = Riesgo::all();
-             $revisiones  = DB::select('select * from revisions where nombre= ?' , [$request->get('nombre')]);
+             $revisiones  = DB::select('select * from revisions where nombre= ? ORDER BY updated_at DESC' , [$request->get('nombre')]);
             return view ('vwRevisiones', [
                 'Eventos'=> $Eventos,
                 'riesgos'=> $riesgos,
